@@ -1,11 +1,4 @@
-var domain = window.location.hostname;
-var regexp = /(.*)\.yb.andreyonweb.ru/g;
-var match = regexp.exec(domain);
-if (typeof match[1] === 'undefined') {
-    console.exception('Error site name');
-}
-
-const BASE_URL = 'http://' + match[1] + '.api.yb.andreyonweb.ru'
+const BASE_URL = 'http://dev.api.yb.andreyonweb.ru'
 
 export default {
     token_login: BASE_URL + '/users/signup/get_token',
