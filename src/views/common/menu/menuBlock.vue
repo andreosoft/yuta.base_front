@@ -12,7 +12,7 @@
           :element="el">
         </MenuItem>
         <div class="left-menu-item">
-          <button class="btn-blank" @click="$root.logout"><i class="fas fa-sign-out-alt" title="Выйти"></i></button>
+          <button class="btn-blank" @click="$root.logout"><i class="fal fa-sign-out-alt" title="Выйти"></i></button>
         </div>
     </div>
   </div>

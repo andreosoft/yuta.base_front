@@ -2,15 +2,15 @@
   <div>
     <nav class="navbar navbar-dark bg-primary fixed-top">
       <div>
-        <button class="btn-blank" @click="$root.showMenu = !$root.showMenu "><i class="fas fa-bars"></i></button>
+        <button class="btn-blank" @click="$root.showMenu = !$root.showMenu "><i class="fal fa-bars"></i></button>
         <div class="menu-title d-none d-sm-inline-block"><router-link :to="{name: 'index'}">{{ $root.appName }}</router-link></div>
       </div>
 
       <div class="user-info d-none d-sm-block">
         <span>{{ $store.getters['auth/profile'].name }}</span>
-        <button class="btn-blank" @click="showUserModal = true" title="Профиль"><i class="far fa-user"></i></button>
+        <button class="btn-blank" @click="showUserModal = true" title="Профиль"><i class="fal fa-user"></i></button>
         <user-modal v-if="showUserModal" @close="showUserModal = false"></user-modal>
-        <button class="btn-blank" @click="$root.logout"><i class="fas fa-sign-out-alt" title="Выйти"></i></button>
+        <button class="btn-blank" @click="$root.logout"><i class="fal fa-sign-out-alt" title="Выйти"></i></button>
       </div>
     </nav>
     <transition name="fade">

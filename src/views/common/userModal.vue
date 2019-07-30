@@ -3,10 +3,10 @@
     <div class="user-modal">
       <div class="modal-header">
         <div @click="$emit('close')">
-          <router-link :to="{ name: 'profile'}" class="btn-blank"><i class="fas fa-cog" title="Профиль"></i></router-link>
+          <router-link :to="{ name: 'profile'}" class="btn-blank"><i class="fal fa-cog" title="Профиль"></i></router-link>
         </div>
         <div>
-          <button class="btn-blank" @click="$emit('close')" title="Закрыть"><i class="fas fa-times"></i></button>
+          <button class="btn-blank" @click="$emit('close')" title="Закрыть"><i class="fal fa-times"></i></button>
         </div>
       </div>
       <div class="modal-body" @click="$emit('close')">
