@@ -6,7 +6,7 @@
       <div v-if="data">
         <div class="clearfix">
           <div class="float-left">
-            <h3><b>{{title}}</b></h3>
+            <h1>{{title}}</h1>
             <p>Группа:
             <template v-if="parent.name">{{parent.name}}</template>
             <template v-else>нет</template>

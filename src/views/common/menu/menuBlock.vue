@@ -1,9 +1,5 @@
 <template>
   <div>
-    <div class="left-menu-item" style="padding: 5px;">
-      <router-link to="/profile"><img src="/img/icon-user-default.png" class="full-rounded" style="width: 100%;"></router-link>
-    </div>
-    <hr>
     <div class="left-menu">
         <MenuItem
           class="left-menu-item"
@@ -11,8 +7,8 @@
           :key="index"
           :element="el">
         </MenuItem>
-        <div class="left-menu-item">
-          <button class="btn-blank" @click="$root.logout"><i class="fal fa-sign-out-alt" title="Выйти"></i></button>
+        <div class="left-menu-item" style="position: absolute; bottom: 0;">
+          <button class="btn-blank" style="padding: 22px 38px;" @click="$root.logout"><i class="fal fa-sign-out-alt" title="Выйти"></i></button>
         </div>
     </div>
   </div>
@@ -30,7 +26,7 @@ export default {
 
 <style lang="scss">
 .left-menu-item>a, .left-menu-item>button {
-  color: #777;
+  color: #303030;
   display: block;
   padding: 16px 8px;
   text-align: center;
@@ -38,15 +34,19 @@ export default {
   border: none;
   margin: auto;
   outline: none;
+  border-bottom: 1px solid #f3f3f3;
   i {
     font-size: 24px;
   }
   &:hover {
     background: #eee;
+    text-decoration: none;
   }
   &.router-link-active {
-    color: var(--primary);
-    background: #eee;
+    color: #fff;
+    background: #7cb342;
+    text-decoration: none;
   }
 }
+
 </style>

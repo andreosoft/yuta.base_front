@@ -41,25 +41,27 @@ export default {
 
 <style lang="less">
   .navbar {
-    color: #fff;
+    color: #303030;
     padding: 2px;
+    height: 70px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
     button {
-      color: #fff;
+      color: #303030;
     }
     a {
       display: inline-block;
-      color: #fff;
+      color: #303030;
     }
     .menu-title {
       display: inline-block;
-      color: #fff;
+      color: #303030;
       font-size: 20px;
       padding: 0 10px 0 10px;;
     }
     .store-bock {
       display: inline-block;
       margin-left: 20px;
-      color: #fff;
+      color: #303030;
     }
     .store-icon {
       font-size: 26px;

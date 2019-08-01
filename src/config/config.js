@@ -1,6 +1,6 @@
 export default {
     data: {
-        appName: 'YUTA.BASE',
+        appName: 'Yuta.Base',
         info: {
             visible: false,
             text: ''

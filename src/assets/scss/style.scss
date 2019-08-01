@@ -285,9 +285,8 @@ form {
   right: 10px;
   position: fixed;
   background: var(--primary);
-  border: 2px solid #fff;
-  border-radius: 3px;
-  width: 300px;
+  border-radius: 10px;
+  width: 245px;
   transition: all 0.3s ease;
   .modal-header {
     position: absolute;
@@ -296,7 +295,7 @@ form {
     z-index: 1;
   }
   .modal-body {
-    margin: 20px 0 0 0;
+    margin: 0;
   }
 }
 .modal-enter {
@@ -343,4 +342,26 @@ form {
       background: #eee;
     }
   }
+}
+.bg-primary {
+    background-color: #fff !important;
+}
+.mar-0{
+  margin: 0;
+}
+.breadcrumb {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 8px 0px 0px 25px;
+  margin-bottom: 1rem;
+  list-style: none;
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+.separator {
+  border-bottom: 1px solid #d7d7d7;
+  margin-bottom: 15px;
 }

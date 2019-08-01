@@ -35,16 +35,16 @@ export default {
 .left-side {
   transition: all .5s;
   display: block;
-  width: 60px;
+  width: 100px;
   margin: 0;
-  padding-top: 20px;
+  padding-top: 30px;
   bottom: 0;
   position: absolute;
   top: 0px;
-  left: -60px;
+  left: -100px;
   overflow: auto;
   background: #fff;
-  border-right: 1px solid #d2d6de;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
 }
 
 .menu-active {
@@ -52,11 +52,11 @@ export default {
     left: 0;
   }
   .right-side {
-    left: 60px;
+    left: 100px;
   }
 }
 .right-side {
-  margin: 10px 10px 10px 10px;
+  margin: 40px 10px 10px 10px;
   padding: 20px;
   bottom: 0;
   position: absolute;
@@ -73,7 +73,7 @@ export default {
 //     left: 0;
 //   }
 //   .right-side {
-//     left: 60px;
+//     left: 100px;
 //   }
 // }
 </style>

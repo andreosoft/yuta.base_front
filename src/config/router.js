@@ -54,6 +54,18 @@ var router = new Router({
                     component: () =>
                         import ('@/views/users/form.vue'),
                 },
+                {
+                    path: '/objects',
+                    name: 'objects',
+                    meta: {'title': 'Объекты', auth: [1, 50, 100]},
+                    component: () => import('@/views/objects/index.vue')
+                },
+                {
+                    path: '/objects/view',
+                    name: 'objects_view',
+                    meta: {'title': 'Объект', auth: [1, 50, 100]},
+                    component: () => import('@/views/objects/view.vue')
+                },
 
 
                 {
