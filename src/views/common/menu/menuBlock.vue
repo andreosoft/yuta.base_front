@@ -7,6 +7,9 @@
           :key="index"
           :element="el">
         </MenuItem>
+        <div class="left-menu-item">
+          <button class="btn-blank" style="padding: 22px 38px;"><i class="fal fa-cogs" title="настройки"></i></button>
+        </div>
         <div class="left-menu-item" style="position: absolute; bottom: 0;">
           <button class="btn-blank" style="padding: 22px 38px;" @click="$root.logout"><i class="fal fa-sign-out-alt" title="Выйти"></i></button>
         </div>
