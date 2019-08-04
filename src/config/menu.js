@@ -1,10 +1,24 @@
 export default {
     data: [{
             route: '/index',
-            icon: 'fal fa-home',
-            title: 'Главная страница',
-            name: 'Главная',
+            icon: 'fal fa-tachometer-alt-slow',
+            title: 'Рабочий стол',
+            name: 'Рабочий стол',
             auth: [1, 50, 100]
+        },
+        {
+            route: '/contacts',
+            icon: 'fal fa-address-book',
+            title: 'Контакты',
+            name: 'Контакты',
+            auth: [50, 100]
+        },
+        {
+            route: '/deals',
+            icon: 'fal fa-briefcase',
+            title: 'Сделки',
+            name: 'Сделки',
+            auth: [50, 100]
         },
         {
             route: '/objects',

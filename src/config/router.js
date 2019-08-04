@@ -66,6 +66,18 @@ var router = new Router({
                     meta: {'title': 'Объект', auth: [1, 50, 100]},
                     component: () => import('@/views/objects/view.vue')
                 },
+                {
+                    path: '/contacts',
+                    name: 'contacts',
+                    meta: {'title': 'Контакты', auth: [1, 50, 100]},
+                    component: () => import('@/views/contacts/index.vue')
+                },
+                {
+                    path: '/deals',
+                    name: 'deals',
+                    meta: {'title': 'Сделки', auth: [1, 50, 100]},
+                    component: () => import('@/views/deals/index.vue')
+                },
 
 
                 {
