@@ -1,8 +1,6 @@
 <template>
   <div class="" >
-    <div v-if="loading" class="loading-block">
-      <div class="loader"></div>
-    </div>
+    
     <div class="clearfix">
       <div class="float-left">
         <div class="row mar-0">
@@ -17,6 +15,7 @@
 </div>
     
 </template>
+<script>
 export default {
   components: {  }
 }
