@@ -1,25 +1,26 @@
 <template>
-  <div class="">
+  <div>
+    <loader v-if="loading"></loader>
     <div class="clearfix">
       <div class="float-left">
         <div class="row mar-0">
-          <h1>Мои Объекты</h1>
-
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="#">Настройки</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">Мои Объекты</li>
-          </ol>
+          <h1>{{title}}</h1>
+          <breadcrumb v-bind:data="[{url: '/', title: 'Домой'}, {url: '', title: title}]"></breadcrumb>
         </div>
       </div>
       <div class="float-right">
         <button
-          title="Выберите дату когда перезвонить"
+          title="Добавить объек"
           class="btn btn-primary"
           style="margin: 4px 0px 0px 4px;"
+          @click="create_form = true"
         >Добавить объект</button>
       </div>
+      <form-create
+        v-if="create_form"
+        @close-menu="create_form = false"
+        @data-update="fitch_data()"
+      ></form-create>
     </div>
     <div class="separator"></div>
     <div class="row">
@@ -53,7 +54,46 @@
           </div>
         </div>
       </div>
-      
     </div>
   </div>
 </template>
+
+<script>
+import api from "@/config/api";
+import loader from "@/views/common/loader.vue";
+import breadcrumb from "@/views/common/breadcrumb.vue";
+import formCreate from "./form.vue";
+import router from "@/config/router";
+
+export default {
+  components: {
+    loader,
+    breadcrumb,
+    formCreate
+  },
+  data: function() {
+    return {
+      loading: false,
+      title: "Мои Объекты",
+      create_form: false
+    };
+  },
+  created() {
+    // this.fetchData();
+  },
+  methods: {
+    fetchData() {
+      this.loading = true;
+      axios
+        .get(api, { params: {} })
+        .then(response => {
+          this.loading = false;
+          this.fields = response.data.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  }
+};
+</script>

@@ -26,7 +26,7 @@ export default {
             title: 'Объекты',
             name: 'Объекты',
             auth: [50, 100]
-        }, 
+        },
         {
             route: '/content/0',
             icon: 'fal fa-file-alt',
@@ -46,6 +46,13 @@ export default {
             icon: 'fal fa-question-circle',
             title: 'Помощь',
             name: 'Помощь',
+            auth: [1, 50, 100]
+        },
+        {
+            route: '/config',
+            icon: 'fal fa-cogs',
+            title: 'Настройки',
+            name: 'Настройки',
             auth: [1, 50, 100]
         },
     ]
