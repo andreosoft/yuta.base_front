@@ -31,6 +31,7 @@
 
 <script>
 import axios from "axios";
+import api from '@/config/api';
 
 export default {
   props: {
@@ -50,7 +51,7 @@ export default {
   },
   data() {
     return {
-      url_upload: '',
+      url_upload: api.url_upload,
       id: null,
       image: null,
       status: 0
