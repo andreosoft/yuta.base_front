@@ -66,13 +66,14 @@
 import api from "@/config/api";
 import axios from "axios";
 import mixingValidator from "@/libs/validators";
+import submit_and_validate from "@/libs/mixings/submit_and_validate";
 import BaseImage from "@/widgets/inputs/BaseImage.vue";
 
 export default {
   components: {
     "v-image": BaseImage
   },
-  mixins: [mixingValidator],
+  mixins: [mixingValidator, submit_and_validate],
   data: function() {
     return {
       api: "",
@@ -90,47 +91,11 @@ export default {
       errors: {
         name: null,
         address: null
-      },
-      loading: false
+      }
     };
   },
   methods: {
-    submitForm: function() {
-      if (this.validateAll(this.fields)) {
-        this.submit(this.fields, this.api);
-        return true;
-      }
-      return false;
-    },
-    submit: function(fields, api) {
-      this.loading = true;
-      axios
-        .post(api, fields)
-        .then(response => {
-          this.loading = false;
-          this.fields = response.data.data;
-        })
-        .catch(e => {
-          console.log(e);
-        });
-    },
-    validateAll: function(fields) {
-      var noerror = true;
-      for (var index in fields) {
-        if (this.validate(index, fields[index])) {
-          noerror = false;
-        }
-      }
-      return noerror;
-    },
-    validate: function(field, value) {
-      if (this.validators[field]) {
-        return (this.errors[field] = this.validator(
-          this.validators[field],
-          value
-        ));
-      }
-    }
+    
   }
 };
 </script>
