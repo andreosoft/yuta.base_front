@@ -76,8 +76,8 @@ export default {
   mixins: [mixingValidator, submit_and_validate],
   data: function() {
     return {
-      api: "",
-      api_upload_image: "",
+      api: api.object,
+      api_upload_image: api.uploads,
       fields: {
         name: null,
         address: null,
