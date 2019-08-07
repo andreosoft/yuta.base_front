@@ -20,8 +20,8 @@
     </div>
     <div class="separator"></div>
     <div class="row">
-      <div v-for="(el, key) of data" :key="key">
-        <div class="col-md-3">
+      <div class="col-md-3" v-for="(el, key) of data" :key="key">
+        <div >
           <div class="card">
             <img src="img/1-1.jpg" class="card-img-top" alt />
             <div class="card-body">
