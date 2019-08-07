@@ -42,17 +42,17 @@ export default {
             auth: [100]
         },
         {
-            route: '/help',
-            icon: 'fal fa-question-circle',
-            title: 'Помощь',
-            name: 'Помощь',
-            auth: [1, 50, 100]
-        },
-        {
             route: '/config',
             icon: 'fal fa-cogs',
             title: 'Настройки',
             name: 'Настройки',
+            auth: [1, 50, 100]
+        },
+        {
+            route: '/help',
+            icon: 'fal fa-question-circle',
+            title: 'Помощь',
+            name: 'Помощь',
             auth: [1, 50, 100]
         },
     ]
