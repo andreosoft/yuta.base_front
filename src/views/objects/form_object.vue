@@ -2,7 +2,10 @@
   <transition name="right-modal">
     <div class="r-modal">
       <div class="r-header">
-        <div class="r-header-title">Создать новый объект</div>
+        <div class="r-header-title">
+          <div v-if="fields.id == null">Создать новый объект</div>
+          <div v-else>Обновить объект</div>
+        </div>
         <div class="r-header-close">
           <button @click="$emit('close-menu')" title="Закрыть окно">
             <i class="fas fa-times"></i>
@@ -10,6 +13,7 @@
         </div>
       </div>
       <div class="r-body">
+        <loader v-if="loading"></loader>
         <div>
           <div class="form-group">
             <label>Наименование объекта</label>
@@ -66,24 +70,32 @@
 import api from "@/config/api";
 import axios from "axios";
 import mixingValidator from "@/libs/validators";
-import submit_and_validate from "@/libs/mixings/submit_and_validate";
+import submit_and_validate from "@/libs/mixings/modal_submit_and_validate";
 import BaseImage from "@/widgets/inputs/BaseImage.vue";
+import loader from "@/views/common/loader.vue";
 
 export default {
   components: {
-    "v-image": BaseImage
+    "v-image": BaseImage,
+    loader
   },
   mixins: [mixingValidator, submit_and_validate],
-  data: function() {
-    return {
-      api: api.object,
-      api_upload_image: api.uploads,
-      fields: {
+  props: {
+    data: {
+      type: Object,
+      default: {
         name: null,
         address: null,
         class: null,
         image: null
-      },
+      }
+    }
+  },
+  data: function() {
+    return {
+      api: api.object,
+      api_upload_image: api.uploads,
+      fields: this.data,
       validators: {
         name: ["req"],
         address: ["req"]
@@ -94,8 +106,6 @@ export default {
       }
     };
   },
-  methods: {
-    
-  }
+  methods: {}
 };
 </script>

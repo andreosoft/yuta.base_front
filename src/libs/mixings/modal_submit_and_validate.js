@@ -26,6 +26,8 @@ export default {
                 .then(response => {
                     this.loading = false;
                     this.fields = response.data.data;
+                    this.$emit('close-menu')
+                    this.$emit('data-update')
                 })
                 .catch(e => {
                     console.log(e);

@@ -1,49 +1,27 @@
 import axios from "axios";
-import func from '@/libs/func'
 
 export default {
     data: function() {
         return {
             api: null,
-            error: null,
             loading: false,
-            data: []
+            fields: {}
         };
     },
     created() {
-        this.updateRoute()
-    },
-    watch: {
-        '$route': 'updateRoute',
+        this.fetchData()
     },
     methods: {
-        updateRoute: function() {
-            this.fetchData()
-        },
         fetchData() {
-            var params = {}
-            if (this.$route.query.q) {
-                params = func.url_decode(this.$route.query.q)
-                if (params.sort) {
-                    this.sort = params.sort
-                }
-                if (params.filters) {
-                    this.filters = params.filters
-                }
-            }
-            this.error = null
+            var id = this.$route.params.id
             this.loading = true
             axios
-                .get(this.api, { params: params })
+                .get(this.api, { params: { id: id } })
                 .then(response => {
                     this.loading = false
-                    if (response.data.data == null) {
-                        this.data = []
-                    } else {
-                        this.data = response.data.data
-                    }
+                    this.fields = response.data.data
                 })
                 .catch(error => { console.log(error) })
-        }
+        },
     }
 };

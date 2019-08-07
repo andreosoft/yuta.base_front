@@ -57,26 +57,30 @@ var router = new Router({
                 {
                     path: '/objects',
                     name: 'objects',
-                    meta: {'title': 'Объекты', auth: [1, 50, 100]},
-                    component: () => import('@/views/objects/index.vue')
+                    meta: { 'title': 'Объекты', auth: [1, 50, 100] },
+                    component: () =>
+                        import ('@/views/objects/index.vue')
                 },
                 {
-                    path: '/objects/view',
+                    path: '/objects/:id',
                     name: 'objects_view',
-                    meta: {'title': 'Объект', auth: [1, 50, 100]},
-                    component: () => import('@/views/objects/view.vue')
+                    meta: { 'title': 'Объект', auth: [1, 50, 100] },
+                    component: () =>
+                        import ('@/views/objects/view.vue')
                 },
                 {
                     path: '/contacts',
                     name: 'contacts',
-                    meta: {'title': 'Контакты', auth: [1, 50, 100]},
-                    component: () => import('@/views/contacts/index.vue')
+                    meta: { 'title': 'Контакты', auth: [1, 50, 100] },
+                    component: () =>
+                        import ('@/views/contacts/index.vue')
                 },
                 {
                     path: '/deals',
                     name: 'deals',
-                    meta: {'title': 'Сделки', auth: [1, 50, 100]},
-                    component: () => import('@/views/deals/index.vue')
+                    meta: { 'title': 'Сделки', auth: [1, 50, 100] },
+                    component: () =>
+                        import ('@/views/deals/index.vue')
                 },
 
 
