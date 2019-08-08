@@ -16,6 +16,17 @@
       </div>
     </div>
     <div class="separator"></div>
+    <div>
+      <button class="btn btn-primary" title="Добавить подъезд" @click="form_section = true">
+        <i class="far fa-plus"></i> Добавить подъезд
+      </button>
+    </div>
+    <form-section
+      v-if="form_section"
+      :data="{building_id: $route.params.id}"
+      @close-menu="form_section = false"
+      @data-update="updateRoute()"
+    ></form-section>
   </div>
 </template>
 
@@ -25,13 +36,15 @@ import loader from "@/views/common/loader.vue";
 import breadcrumb from "@/views/common/breadcrumb.vue";
 import fitch_one_1 from "@/libs/mixings/fitch_one_1.js";
 import router from "@/config/router";
+import formSection from "./form_section.vue";
 import axios from "axios";
 
 export default {
   mixins: [fitch_one_1],
   components: {
     loader,
-    breadcrumb
+    breadcrumb,
+    formSection
   },
   data: function() {
     return {
@@ -43,7 +56,7 @@ export default {
           name: null
         }
       },
-      form_building: false
+      form_section: false
     };
   },
   created() {

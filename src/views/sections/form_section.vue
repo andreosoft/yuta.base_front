@@ -3,8 +3,8 @@
     <div class="r-modal">
       <div class="r-header">
         <div class="r-header-title">
-          <div v-if="fields.id == null">Добавить новый дом</div>
-          <div v-else>Обновить дом</div>
+          <div v-if="fields.id == null">Добавить новый подъезд</div>
+          <div v-else>Обновить подъезд</div>
         </div>
         <div class="r-header-close">
           <button @click="$emit('close-menu')" title="Закрыть окно">
@@ -16,7 +16,7 @@
         <loader v-if="loading"></loader>
         <div>
           <div class="form-group">
-            <label>Наименование дома</label>
+            <label>Наименование подъезда</label>
             <input
               class="form-control"
               @change="validate('name', fields.name)"
@@ -25,15 +25,6 @@
               type="text"
             />
             <div v-if="errors.name" class="invalid-feedback">{{errors.name}}</div>
-          </div>
-          <div class="form-group">
-            <label>Главное изображение объекта</label>
-            <v-image
-              v-model="fields.image"
-              :api="api_upload_image"
-              v-on:change-model="validate('image', fields.image)"
-            ></v-image>
-            <div v-if="errors.image" class="invalid-feedback">{{errors.image}}</div>
           </div>
           <div>
             <button @click="submitForm()" class="btn btn-primary" style="width: 100%">Записать</button>
@@ -49,12 +40,10 @@ import api from "@/config/api";
 import axios from "axios";
 import mixingValidator from "@/libs/validators";
 import submit_and_validate from "@/libs/mixings/modal_submit_and_validate";
-import BaseImage from "@/widgets/inputs/BaseImage.vue";
 import loader from "@/views/common/loader.vue";
 
 export default {
   components: {
-    "v-image": BaseImage,
     loader
   },
   mixins: [mixingValidator, submit_and_validate],
@@ -62,22 +51,19 @@ export default {
     data: {
       type: Object,
       default: {
-        name: null,
-        image: null
+        name: null
       }
     }
   },
   data: function() {
     return {
-      api: api.building,
-      api_upload_image: api.uploads,
+      api: api.section,
       fields: this.data,
       validators: {
         name: ["req"]
       },
       errors: {
-        name: null,
-        address: null
+        name: null
       }
     };
   },
