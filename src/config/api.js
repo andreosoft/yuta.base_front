@@ -9,7 +9,7 @@ if (match !== null && typeof match[1] !== 'undefined' && match[1] !== 'undefined
 }
 
 const BASE_URL = 'http://' + usr_id + '.api.yb.andreyonweb.ru';
-const BASE_UPLOAD = 'http://' + usr_id + '.upload.yb.andreyonweb.ru';
+const BASE_UPLOAD = 'http://' + usr_id + '.uploads.yb.andreyonweb.ru';
 
 export default {
     url_upload: BASE_UPLOAD,

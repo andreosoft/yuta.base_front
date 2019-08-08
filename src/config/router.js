@@ -69,6 +69,20 @@ var router = new Router({
                         import ('@/views/objects/view.vue')
                 },
                 {
+                    path: '/sections/:id',
+                    name: 'sections_view',
+                    meta: { 'title': 'Шахматка', auth: [1, 50, 100] },
+                    component: () =>
+                        import ('@/views/sections/view.vue')
+                },
+                {
+                    path: '/building/:id',
+                    name: 'building_view',
+                    meta: { 'title': 'Дом', auth: [1, 50, 100] },
+                    component: () =>
+                        import ('@/views/building/view.vue')
+                },
+                {
                     path: '/contacts',
                     name: 'contacts',
                     meta: { 'title': 'Контакты', auth: [1, 50, 100] },

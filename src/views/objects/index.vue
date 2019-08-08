@@ -24,7 +24,7 @@
     <div class="row">
       <div class="col-md-3" v-for="(el, key) of data" :key="key">
         <div class="card">
-          <img src="img/1-1.jpg" class="card-img-top" alt />
+          <img :src="url_upload + el.image" class="card-img-top" alt />
           <div class="card-body">
             <h5 class="card-title text-center">{{el.name}}</h5>
             <router-link
@@ -55,6 +55,7 @@ export default {
   },
   data: function() {
     return {
+      url_upload: api.url_upload,
       api: api.object,
       loading: false,
       title: "Мои Объекты",

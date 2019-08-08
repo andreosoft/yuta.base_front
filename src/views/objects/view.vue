@@ -71,11 +71,11 @@
       <div class="row">
         <div class="col-md-3" v-for="(el, key) of data_buildings" :key="key">
           <div class="card">
-            <img src="img/1-1.jpg" class="card-img-top" alt />
+            <img :src="url_upload + el.image" class="card-img-top" alt />
             <div class="card-body">
               <h5 class="card-title text-center">{{el.name}}</h5>
               <router-link
-                :to="{ name: 'objects_view', params: { id: el.id }}"
+                :to="{ name: 'building_view', params: { id: el.id }}"
                 class="btn btn-primary btn-block"
               >Открыть</router-link>
             </div>
@@ -92,7 +92,7 @@ import loader from "@/views/common/loader.vue";
 import breadcrumb from "@/views/common/breadcrumb.vue";
 import fitch_one_1 from "@/libs/mixings/fitch_one_1.js";
 import formObject from "./form_object.vue";
-import formBuilding from "./building/form_building.vue";
+import formBuilding from "@/views/building/form_building.vue";
 import router from "@/config/router";
 import axios from "axios";
 
@@ -106,6 +106,7 @@ export default {
   },
   data: function() {
     return {
+      url_upload: api.url_upload,
       api: api.object,
       loading: false,
       fields: {},

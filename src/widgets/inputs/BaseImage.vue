@@ -1,8 +1,8 @@
 <template>
   <div>
     <div v-if="value">
-      <a :href="url_upload+value" target="_blank">
-        <img :src="url_upload+value" style="height: 100px" />
+      <a :href="url_upload + value" target="_blank">
+        <img :src="url_upload + value" style="height: 100px" />
       </a>
       <button
         @click="$emit('input', ''); image = null"
@@ -31,7 +31,7 @@
 
 <script>
 import axios from "axios";
-import api from '@/config/api';
+import api from "@/config/api";
 
 export default {
   props: {
@@ -54,7 +54,7 @@ export default {
       url_upload: api.url_upload,
       id: null,
       image: null,
-      status: 0
+      status: 0,
     };
   },
   mounted() {
@@ -70,7 +70,9 @@ export default {
       formData.append("name", this.image.name);
       axios
         .post(this.api, formData, {
-          headers: { "Content-Type": "multipart/form-data" },
+          headers: {
+            "Content-Type": "multipart/form-data"
+          },
           onUploadProgress: progressEvent => {
             this.status = parseInt(
               (progressEvent.loaded / progressEvent.total) * 100
@@ -78,7 +80,7 @@ export default {
           }
         })
         .then(response => {
-          this.$emit("input", response.data.data);
+          this.$emit("input", response.data.data.file);
         })
         .catch(function() {
           console.log("FAILURE!!");

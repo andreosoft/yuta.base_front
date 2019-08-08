@@ -26,7 +26,15 @@
             />
             <div v-if="errors.name" class="invalid-feedback">{{errors.name}}</div>
           </div>
-        
+          <div class="form-group">
+            <label>Главное изображение объекта</label>
+            <v-image
+              v-model="fields.image"
+              :api="api_upload_image"
+              v-on:change-model="validate('image', fields.image)"
+            ></v-image>
+            <div v-if="errors.image" class="invalid-feedback">{{errors.image}}</div>
+          </div>
           <div>
             <button @click="submitForm()" class="btn btn-primary" style="width: 100%">Записать</button>
           </div>
@@ -54,7 +62,8 @@ export default {
     data: {
       type: Object,
       default: {
-        name: null
+        name: null,
+        image: null
       }
     }
   },

@@ -83,11 +83,13 @@ export default {
   props: {
     data: {
       type: Object,
-      default: {
-        name: null,
-        address: null,
-        class: null,
-        image: null
+      default: function() {
+        return {
+          name: null,
+          address: null,
+          class: null,
+          image: null
+        };
       }
     }
   },
