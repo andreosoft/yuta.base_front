@@ -26,11 +26,10 @@
     <div>
       <ul class="nav nav-tabs">
         <li class="nav-item" v-for="(el, key) of data_sections" :key="key">
-          <a
+          <div
             class="nav-link"
             :class="{active: tab_active_sections == key}"
             @click="set_active_tab_sections(el, key)"
-            href="#"
           >
             Подъезд {{el.name}}
             <span style="margin: 0 0 0 20px">
@@ -45,7 +44,7 @@
                 </button>
               </span>
             </span>
-          </a>
+          </div>
         </li>
       </ul>
       <view-floors v-if="tad_active_section_id" :section_id="tad_active_section_id"></view-floors>

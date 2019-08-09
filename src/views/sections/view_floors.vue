@@ -17,7 +17,7 @@
           <div class="float-left">{{el.floor}}</div>
           <div class="float-right">
             <span>
-              <button class="btn" title="Добавить квартиру" @click="addApartment(el, key)">
+              <button class="btn" title="Добавить квартиру" @click="$root.$emit('create-new-apartment', {floor_id: el.id})">
                 <i class="far fa-plus color-primary"></i>
               </button>
             </span>
@@ -44,12 +44,6 @@
       @close-menu="form_floor = false"
       @data-update="update()"
     ></form-floor>
-    <form-apartment
-      v-if="form_apartment"
-      :data="form_data_apartment"
-      @close-menu="form_apartment = false"
-      @data-update="update()"
-    ></form-apartment>
   </div>
 </template>
 
@@ -78,8 +72,6 @@ export default {
       form_floor: false,
       data_floors: [],
       form_data_floor: {},
-      form_data_apartment: {},
-      form_apartment: false
     };
   },
   created() {
@@ -89,10 +81,6 @@ export default {
     section_id: "update"
   },
   methods: {
-    addApartment: function(el, key) {
-      this.form_data_apartment = { floor_id: el.id };
-      this.form_apartment = true;
-    },
     addNewFloor: function() {
       this.form_data_floor = { section_id: this.section_id };
       this.form_floor = true;
@@ -106,7 +94,6 @@ export default {
     },
     fetchData: function() {
       this.loading = true;
-      this.data_floors = [];
       axios
         .get(api.floor, { params: { parent_id: this.section_id } })
         .then(response => {

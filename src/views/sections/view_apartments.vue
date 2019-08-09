@@ -41,7 +41,8 @@ export default {
   },
   props: {
     floor_id: String,
-    apartments: Array
+    apartments: Array,
+    newAratment: Boolean
   },
   data: function() {
     return {
@@ -51,8 +52,19 @@ export default {
       form_apartment: false
     };
   },
+  created() {
+    this.update();
+    this.$root.$on("create-new-apartment", data => {
+      if (data.floor_id === this.floor_id) {
+        this.addApartment();
+      }
+    });
+  },
+  watch: {
+    floor_id: "update"
+  },
   methods: {
-    addApartment: function(el, key) {
+    addApartment: function() {
       this.form_data_apartment = { floor_id: this.floor_id };
       this.form_apartment = true;
     },
