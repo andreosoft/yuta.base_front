@@ -7,7 +7,21 @@ export default {
             api: null,
             error: null,
             loading: false,
-            data: []
+            data: [],
+            sort: {
+                key: "",
+                order: ""
+            },
+            pager: {
+                page: 0,
+                count: 0,
+                limit: 20
+            },
+            pages: {
+                current: 0,
+                page: []
+            },
+            filters: {}
         };
     },
     created() {
@@ -17,6 +31,45 @@ export default {
         '$route': 'updateRoute',
     },
     methods: {
+        maxPage: function() {
+            return Math.ceil(this.pager.count / this.pager.limit)
+        },
+        setPage: function(item) {
+            if (item < 0) {
+                item = 0;
+            }
+            if (item >= this.maxPage()) {
+                item = this.maxPage() - 1
+            }
+            this.pager.page = item;
+            this.push();
+        },
+        updatePages: function() {
+            let num = 6
+            this.pages = {
+                current: this.pager.page,
+                page: []
+            };
+            var start = 0,
+                stop = this.maxPage()
+                // this.pages.page.push(0)
+            if (this.maxPage() > num) {
+                if (this.pager.page < Math.floor(num / 2)) {
+                    stop = num
+                } else if (this.maxPage() - this.pager.page < Math.floor(num / 2)) {
+                    start = this.maxPage() - num
+                } else {
+                    start = this.pager.page - Math.floor(num / 2)
+                    stop = this.pager.page + Math.floor(num / 2)
+                }
+
+
+
+            }
+            for (var i = start; i < stop; i++) {
+                this.pages.page.push(i)
+            }
+        },
         updateRoute: function() {
             this.fetchData()
         },

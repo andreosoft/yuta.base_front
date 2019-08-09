@@ -82,6 +82,7 @@ var router = new Router({
                     component: () =>
                         import ('@/views/building/view.vue')
                 },
+
                 {
                     path: '/contacts',
                     name: 'contacts',
@@ -90,11 +91,34 @@ var router = new Router({
                         import ('@/views/contacts/index.vue')
                 },
                 {
+                    path: '/contacts/:id',
+                    name: 'contacts_view',
+                    meta: { 'title': 'Контакт', auth: [1, 50, 100] },
+                    component: () =>
+                        import ('@/views/contacts/view.vue')
+                },
+
+                {
                     path: '/deals',
                     name: 'deals',
                     meta: { 'title': 'Сделки', auth: [1, 50, 100] },
                     component: () =>
                         import ('@/views/deals/index.vue')
+                },
+                {
+                    path: '/deals/:id',
+                    name: 'deals_view',
+                    meta: { 'title': 'Сделки', auth: [1, 50, 100] },
+                    component: () =>
+                        import ('@/views/deals/view.vue')
+                },
+
+                {
+                    path: '/config',
+                    name: 'config',
+                    meta: { 'title': 'Конфигурация', auth: [1, 50, 100] },
+                    component: () =>
+                        import ('@/views/config/index.vue')
                 },
 
 
