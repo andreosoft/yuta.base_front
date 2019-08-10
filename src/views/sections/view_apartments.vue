@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loader v-if="loading"></loader>
     <div>
       <span v-for="(el, key) of data_apartmets" :key="key">
         <span>{{el.number}}</span>

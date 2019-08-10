@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loader v-if="loading"></loader>
     <div class="clearfix">
       <div class="float-left">
         <div class="row mar-0">
@@ -18,11 +17,7 @@
           <i class="far fa-plus"></i> Новая сделка
         </button>
       </div>
-      <form-deal
-        v-if="form_deal"
-        @close-menu="form_deal = false"
-        @data-update="fetchData()"
-      ></form-deal>
+      <form-deal v-if="form_deal" @close-menu="form_deal = false" @data-update="fetchData()"></form-deal>
     </div>
     <div class="separator"></div>
     <div v-if="data">
@@ -84,9 +79,7 @@
             </span>
           </div>
 
-          <div class="tbl-col col-2" @click="sortBy('info')">
-            Информация
-          </div>
+          <div class="tbl-col col-2" @click="sortBy('info')">Информация</div>
 
           <div class="tbl-col col-2 sortable" @click="sortBy('status')">
             Статус
@@ -118,6 +111,7 @@
           </div>
           <div class="tbl-col col-2"></div>
         </div>
+        <loader v-if="loading"></loader>
         <div class="tbl-body" style="top: 64px;">
           <div v-for="(el, key) in data" :key="key" class="row tbl-row">
             <div class="tbl-col col-2">{{el.createdon}}</div>

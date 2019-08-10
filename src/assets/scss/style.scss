@@ -81,12 +81,12 @@ form {
 }
 
 .loading-block {
-    position: absolute;
-    top: 0;
-    bottom: 0;
+    position: relative;
+    top: 100px;
+    bottom: 100px;
     left: 0;
     right: 0;
-    background: #ffffff99;
+    //    background: #ffffff99;
     z-index: 100;
 }
 

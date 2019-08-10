@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loader v-if="loading"></loader>
     <div class="clearfix">
       <div class="float-left">
         <div class="row mar-0">
@@ -98,6 +97,7 @@
           </div>
           <div class="tbl-col col-2"></div>
         </div>
+        <loader v-if="loading"></loader>
         <div class="tbl-body" style="top: 64px;">
           <div v-for="(el, key) in data" :key="key" class="row tbl-row">
             <div class="tbl-col col-2">{{el.id}}</div>

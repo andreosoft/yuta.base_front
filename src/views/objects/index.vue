@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loader v-if="loading"></loader>
     <div class="clearfix">
       <div class="float-left">
         <div class="row mar-0">
@@ -21,6 +20,7 @@
       <form-object v-if="form_object" @close-menu="form_object = false" @data-update="fetchData()"></form-object>
     </div>
     <div class="separator"></div>
+    <loader v-if="loading"></loader>
     <div class="row">
       <div class="col-md-3" v-for="(el, key) of data" :key="key">
         <div class="card">

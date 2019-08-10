@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loader v-if="loading"></loader>
     <div>
       <button class="btn btn-primary" title="Добавить подъезд" @click="addNewFloor()">
         <i class="far fa-plus"></i> Добавить этаж

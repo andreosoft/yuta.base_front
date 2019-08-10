@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loader v-if="loading"></loader>
     <div class="clearfix">
       <div class="float-left">
         <div class="row mar-0">
@@ -13,6 +12,7 @@
     </div>
     <div class="separator"></div>
     <table class="table table-bordered">
+      <loader v-if="loading"></loader>
       <tr>
         <th>
           <div class="clearfix">

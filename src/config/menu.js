@@ -27,13 +27,13 @@ export default {
             name: 'Объекты',
             auth: [50, 100]
         },
-        {
-            route: '/content/0',
-            icon: 'fal fa-file-alt',
-            title: 'Контент',
-            name: 'Контент',
-            auth: [50, 100]
-        },
+        // {
+        //     route: '/content/0',
+        //     icon: 'fal fa-file-alt',
+        //     title: 'Контент',
+        //     name: 'Контент',
+        //     auth: [50, 100]
+        // },
         {
             route: '/users',
             icon: 'fal fa-users',
