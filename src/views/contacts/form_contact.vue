@@ -38,7 +38,8 @@
             <div v-if="errors.address" class="invalid-feedback">{{errors.address}}</div>
           </div>
           <div>
-            <button @click="submitForm()" class="btn btn-primary" style="width: 100%">Записать</button>
+            <button @click="submitForm()" class="btn btn-primary" style="width: 100%">
+              Записать</button>
           </div>
         </div>
       </div>
