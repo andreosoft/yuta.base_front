@@ -17,6 +17,7 @@ export default {
     },
 
     labels: {
+        id: 'id',
         login: 'Логин',
         password: 'Пароль',
         name: 'Имя',

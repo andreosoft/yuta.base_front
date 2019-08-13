@@ -93,7 +93,7 @@
 
           <div class="tbl-col col-2"></div>
         </div>
-        <div class="row tbl-row tbl-header">
+        <div class="row tbl-row tbl-header" style="height: 36px;">
           <div class="tbl-col col-2">
             <input type="text" @change="onChangeFilter('createdon')" v-model="filters.createdon" />
           </div>
@@ -112,7 +112,7 @@
           <div class="tbl-col col-2"></div>
         </div>
         <loader v-if="loading"></loader>
-        <div class="tbl-body" style="top: 64px;">
+        <div class="tbl-body" style="top: 69px;">
           <div v-for="(el, key) in data" :key="key" class="row tbl-row">
             <div class="tbl-col col-2">{{el.createdon}}</div>
             <div class="tbl-col col-2">{{el.contact}}</div>

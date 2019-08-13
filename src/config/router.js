@@ -41,18 +41,11 @@ var router = new Router({
                         import ('@/views/users/index.vue'),
                 },
                 {
-                    path: '/users/create',
-                    name: 'user_create',
-                    meta: { 'title': 'Информация о пользователе', auth: [50, 100] },
-                    component: () =>
-                        import ('@/views/users/form.vue'),
-                },
-                {
                     path: '/users/:id',
-                    name: 'user_info',
+                    name: 'users_view',
                     meta: { 'title': 'Информация о пользователе', auth: [50, 100] },
                     component: () =>
-                        import ('@/views/users/form.vue'),
+                        import ('@/views/users/view.vue'),
                 },
                 {
                     path: '/objects',
