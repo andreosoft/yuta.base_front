@@ -4,7 +4,7 @@
       <div class="float-left">
         <div class="row mar-0">
           <h1>{{title}}</h1>
-          <breadcrumb v-bind:data="[{url: '#/', title: 'Домой'}, {url: '', title: title}]"></breadcrumb>
+          <breadcrumb v-bind:data="[{url: '#/', title: 'Домой'}, {url: '#/config/objects', title: 'Настройки'}, {url: '', title: title}]"></breadcrumb>
         </div>
       </div>
       <div class="float-right">
@@ -28,7 +28,7 @@
           <div class="card-body">
             <h5 class="card-title text-center">{{el.name}}</h5>
             <router-link
-              :to="{ name: 'objects_view', params: { id: el.id }}"
+              :to="{ name: 'config_objects_view', params: { id: el.id }}"
               class="btn btn-primary btn-block"
             >Открыть</router-link>
           </div>

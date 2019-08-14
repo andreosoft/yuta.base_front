@@ -33,48 +33,6 @@ var router = new Router({
                     component: () =>
                         import ('@/views/index/index.vue'),
                 },
-                {
-                    path: '/users/',
-                    name: 'users',
-                    meta: { 'title': 'Пользователи', auth: [50, 100] },
-                    component: () =>
-                        import ('@/views/users/index.vue'),
-                },
-                {
-                    path: '/users/:id',
-                    name: 'users_view',
-                    meta: { 'title': 'Информация о пользователе', auth: [50, 100] },
-                    component: () =>
-                        import ('@/views/users/view.vue'),
-                },
-                {
-                    path: '/objects',
-                    name: 'objects',
-                    meta: { 'title': 'Объекты', auth: [1, 50, 100] },
-                    component: () =>
-                        import ('@/views/objects/index.vue')
-                },
-                {
-                    path: '/objects/:id',
-                    name: 'objects_view',
-                    meta: { 'title': 'Объект', auth: [1, 50, 100] },
-                    component: () =>
-                        import ('@/views/objects/view.vue')
-                },
-                {
-                    path: '/sections/:id',
-                    name: 'sections_view',
-                    meta: { 'title': 'Шахматка', auth: [1, 50, 100] },
-                    component: () =>
-                        import ('@/views/sections/view.vue')
-                },
-                {
-                    path: '/building/:id',
-                    name: 'building_view',
-                    meta: { 'title': 'Дом', auth: [1, 50, 100] },
-                    component: () =>
-                        import ('@/views/building/view.vue')
-                },
 
                 {
                     path: '/contacts',
@@ -109,33 +67,54 @@ var router = new Router({
                 {
                     path: '/config',
                     name: 'config',
-                    meta: { 'title': 'Конфигурация', auth: [1, 50, 100] },
+                    meta: { 'title': 'Конфигурация', auth: [50, 100] },
                     component: () =>
-                        import ('@/views/config/index.vue')
+                        import ('@/views/config/index.vue'),
+                    children: [{
+                            path: '/config/objects',
+                            name: 'config_objects',
+                            meta: { 'title': 'Объекты', auth: [50, 100] },
+                            component: () =>
+                                import ('@/views/config/objects/index.vue')
+                        },
+                        {
+                            path: '/config/objects/:id',
+                            name: 'config_objects_view',
+                            meta: { 'title': 'Объект', auth: [50, 100] },
+                            component: () =>
+                                import ('@/views/config/objects/view.vue')
+                        },
+                        {
+                            path: '/config/objects/sections/:id',
+                            name: 'config_sections_view',
+                            meta: { 'title': 'Шахматка', auth: [50, 100] },
+                            component: () =>
+                                import ('@/views/config/sections/view.vue')
+                        },
+                        {
+                            path: '/config/objects/building/:id',
+                            name: 'config_building_view',
+                            meta: { 'title': 'Дом', auth: [50, 100] },
+                            component: () =>
+                                import ('@/views/config/building/view.vue')
+                        },
+                        {
+                            path: '/config/users/',
+                            name: 'config_users',
+                            meta: { 'title': 'Пользователи', auth: [50, 100] },
+                            component: () =>
+                                import ('@/views/config/users/index.vue'),
+                        },
+                        {
+                            path: '/config/users/:id',
+                            name: 'config_users_view',
+                            meta: { 'title': 'Информация о пользователе', auth: [50, 100] },
+                            component: () =>
+                                import ('@/views/config/users/view.vue'),
+                        }
+                    ]
                 },
 
-
-                {
-                    path: '/content/:parent_id',
-                    name: 'content',
-                    meta: { 'title': 'Контент', auth: [100] },
-                    component: () =>
-                        import ('@/views/content/index.vue')
-                },
-                {
-                    path: '/content/create',
-                    name: 'content_create',
-                    meta: { 'title': 'Создать контент', auth: [100] },
-                    component: () =>
-                        import ('@/views/content/form.vue')
-                },
-                {
-                    path: '/content/update/:id',
-                    name: 'content_update',
-                    meta: { 'title': 'Изменить контент', auth: [100] },
-                    component: () =>
-                        import ('@/views/content/form.vue')
-                },
                 {
                     path: '/help',
                     name: 'help',

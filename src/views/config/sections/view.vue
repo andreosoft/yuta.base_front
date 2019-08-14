@@ -7,9 +7,10 @@
           <h1>Шахматка</h1>
           <breadcrumb
             v-bind:data="[{url: '#/', title: 'Домой'},
-              {url: '#/objects', title: 'Мои объекты'},
-              {url: '#/objects/' + fields.object_id, title: fields.object.name},
-              {url: '#/building/' + fields.id, title: fields.name},
+              {url: '#/config/objects', title: 'Настройки'},
+              {url: '#/config/objects', title: 'Мои объекты'},
+              {url: '#/config/objects/' + fields.object_id, title: fields.object.name},
+              {url: '#/config/building/' + fields.id, title: fields.name},
               {url: '', title: 'Шахматка'} ]"
           ></breadcrumb>
         </div>
@@ -148,7 +149,10 @@ export default {
             this.data_sections = [];
           } else {
             this.data_sections = response.data.data;
-            this.set_active_tab_sections(this.data_sections[this.tab_active_sections], this.tab_active_sections)
+            this.set_active_tab_sections(
+              this.data_sections[this.tab_active_sections],
+              this.tab_active_sections
+            );
           }
         })
         .catch(error => {

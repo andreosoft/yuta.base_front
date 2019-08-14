@@ -4,7 +4,7 @@
       <div class="float-left">
         <div class="row mar-0">
           <h1>{{title}}</h1>
-          <breadcrumb v-bind:data="[{url: '#/', title: 'Домой'}, {url: '', title: title}]"></breadcrumb>
+          <breadcrumb v-bind:data="[{url: '#/', title: 'Домой'}, {url: '#/config/objects', title: 'Настройки'}, {url: '', title: title}]"></breadcrumb>
         </div>
       </div>
       <div class="float-right">
@@ -149,7 +149,7 @@
             </div>
             <div class="tbl-col col-2">
               <router-link
-                :to="{ name: 'users_view', params: { id: el.id }}"
+                :to="{ name: 'config_users_view', params: { id: el.id }}"
                 title="Открыть контакт"
                 class="btn btn-primary btn-block"
               >Открыть пользователя</router-link>

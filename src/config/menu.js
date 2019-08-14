@@ -34,13 +34,13 @@ export default {
         //     name: 'Контент',
         //     auth: [50, 100]
         // },
-        {
-            route: '/users',
-            icon: 'fal fa-users',
-            title: 'Пользователи',
-            name: 'Пользователи',
-            auth: [100]
-        },
+        // {
+        //     route: '/users',
+        //     icon: 'fal fa-users',
+        //     title: 'Пользователи',
+        //     name: 'Пользователи',
+        //     auth: [100]
+        // },
         {
             route: '/config',
             icon: 'fal fa-cogs',

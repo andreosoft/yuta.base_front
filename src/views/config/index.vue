@@ -1,62 +1,48 @@
 <template>
-  <div class>
-    <div v-if="loading" class="loading-block">
-      <div class="loader"></div>
+  <div>
+    <div class="tab-menu-nav">
+      <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+        <div v-for="(el, key) of data_config" :key="key">
+          <router-link
+            class="nav-link"
+            :to="el.route"
+            :title="el.title"
+          >{{el.name}}</router-link>
+        </div>
+      </div>
     </div>
-    <div class="clearfix">
-      <div class="float-left">
-        <div class="row mar-0">
-          <h1>Настройки</h1>
-        </div>
-      </div>
-      <div class="float-right"></div>
-    </div>
-    <div class="separator"></div>
-    <div class="row">
-      <div class="col-3">
-        <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
-          <div v-for="(el, key) of data_config" :key="key">
-            <div
-              class="nav-link"
-              :class="{active: tab_active_sections == key}"
-              @click="set_active_tab_sections(el, key)"
-            >{{el.name}}</div>
-          </div>
-        </div>
-      </div>
-      <div class="col-9">
-        <div>
-          <div v-if="tab_active_sections == 0">Конфиг1</div>
-          <div v-if="tab_active_sections == 1">Конфиг2</div>
-          <div v-if="tab_active_sections == 2">Конфиг3</div>
-        </div>
-      </div>
+    <div class="tab-menu-content">
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
+import router from '@/config/router'
+
 export default {
+  components: {},
   data: function() {
     return {
       data_config: [
         {
-          name: "Конфиг1"
+          name: "Объекты",
+          route: "/config/objects",
+          title: "Объекты"
         },
         {
-          name: "Конфиг2"
-        },
-        {
-          name: "Конфиг3"
+          name: "Пользователи",
+          route: "/config/users",
+          title: "Пользователи"
         }
-      ],
-      tab_active_sections: 0
+      ]
     };
   },
-  methods: {
-    set_active_tab_sections: function(el, key) {
-      this.tab_active_sections = key;
+  created() {
+    if (this.$route.name == 'config') {
+      router.push({ path: this.data_config[0].route})
     }
-  }
+  },
+  methods: {}
 };
 </script>
