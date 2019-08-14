@@ -275,7 +275,7 @@ form {
 .tbl {
     border-top: 1px solid #eee;
     .tbl-header {
-        background: rgb(206, 206, 206);
+        background:#fff;
         padding: 15px 0;
         .tbl-col {
             align-self: center;
@@ -319,20 +319,9 @@ form {
     margin-bottom: 15px;
 }
 
-.sub-menu {
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
-    display: block;
-    width: 100px;
-    margin: 0;
-    padding-top: 30px;
-    bottom: 0;
-    position: absolute;
-    top: 0px;
-    left: -100px;
-    overflow: auto;
-    background: #fff;
-    box-shadow: 5px 0 3px -3px rgba(0, 0, 0, 0.25);
-    border-left: 1px solid #f3f3f3;
-    z-index: 1;
+.nav-pills {
+    .nav-link {
+        border-radius: 0px;
+        border-bottom: 1px solid #f3f3f3;
+    }
 }

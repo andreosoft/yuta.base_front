@@ -21,8 +21,9 @@
     </div>
     <div class="separator"></div>
     <loader v-if="loading"></loader>
-    <div class="row">
-      <div class="col-md-3" v-for="(el, key) of data" :key="key">
+    <div class="container-fluid">
+    <div class="row justify-content-start">
+      <div class="col-md-6 col-lg-3 col-xl-3" v-for="(el, key) of data" :key="key">
         <div class="card">
           <img :src="url_upload + el.image" class="card-img-top" alt />
           <div class="card-body">
@@ -34,6 +35,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>
