@@ -31,4 +31,8 @@ export default {
     report: BASE_URL + '/crm/report',
     section: BASE_URL + '/crm/section',
     uploads: BASE_URL + '/uploads/index',
+
+    manager: {
+        buildings: BASE_URL + '/crm/manager/buildings',
+    }
 }

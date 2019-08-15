@@ -35,6 +35,57 @@ var router = new Router({
                 },
 
                 {
+                    path: '/buildings',
+                    name: 'buildings',
+                    meta: { 'title': 'Здания', auth: [1, 50, 100] },
+                    component: () =>
+                        import ('@/views/buildings/index.vue')
+                },
+                {
+                    path: '/buildings/:id',
+                    name: 'buildings_view',
+                    meta: { 'title': 'Здания', auth: [1, 50, 100] },
+                    component: () =>
+                        import ('@/views/buildings/view.vue'),
+                    children: [{
+                            path: '/buildings/:id/list',
+                            name: 'buildings_list',
+                            meta: { 'title': 'Список', auth: [1, 50, 100] },
+                            component: () =>
+                                import ('@/views/buildings/list.vue')
+                        },
+                        {
+                            path: '/buildings/:id/floors',
+                            name: 'buildings_floors',
+                            meta: { 'title': 'Этажи', auth: [1, 50, 100] },
+                            component: () =>
+                                import ('@/views/buildings/floors.vue')
+                        },
+                        {
+                            path: '/buildings/:id/plans',
+                            name: 'buildings_plans',
+                            meta: { 'title': 'Планировки', auth: [1, 50, 100] },
+                            component: () =>
+                                import ('@/views/buildings/plans.vue')
+                        },
+                        {
+                            path: '/buildings/:id/tile',
+                            name: 'buildings_tile',
+                            meta: { 'title': 'Плитка', auth: [1, 50, 100] },
+                            component: () =>
+                                import ('@/views/buildings/tile.vue')
+                        },
+                        {
+                            path: '/buildings/:id/facades',
+                            name: 'buildings_facades',
+                            meta: { 'title': 'Фасады', auth: [1, 50, 100] },
+                            component: () =>
+                                import ('@/views/buildings/facades.vue')
+                        },
+                    ]
+                },
+
+                {
                     path: '/contacts',
                     name: 'contacts',
                     meta: { 'title': 'Контакты', auth: [1, 50, 100] },

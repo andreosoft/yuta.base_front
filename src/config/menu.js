@@ -21,7 +21,7 @@ export default {
             auth: [50, 100]
         },
         {
-            route: '/objects',
+            route: '/buildings',
             icon: 'fal fa-hotel',
             title: 'Объекты',
             name: 'Объекты',
