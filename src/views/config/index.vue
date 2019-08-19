@@ -7,7 +7,7 @@
             class="nav-link"
             :to="el.route"
             :title="el.title"
-          >{{el.name}}</router-link>
+          ><i :class="el.icon"></i> {{el.name}}</router-link>
         </div>
       </div>
     </div>
@@ -28,11 +28,13 @@ export default {
         {
           name: "Объекты",
           route: "/config/objects",
+          icon: 'fal fa-hotel',
           title: "Объекты"
         },
         {
           name: "Пользователи",
           route: "/config/users",
+          icon: 'fal fa-users',
           title: "Пользователи"
         }
       ]

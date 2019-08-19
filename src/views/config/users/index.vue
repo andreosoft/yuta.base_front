@@ -19,34 +19,9 @@
       </div>
       <form-user v-if="form_user" @close-menu="form_user = false" @data-update="fetchData()"></form-user>
     </div>
-    <div class="separator"></div>
+    
     <div v-if="data">
-      <div class="row" style="margin-bottom: 3px;">
-        <div class="col"></div>
-        <div class="col">Показано: {{data.length}} из {{pager.count}}</div>
-        <div class="col text-right">
-          <div style="margin:-13px 0px 0px 0px; white-space: nowrap;">
-            <button class="btn btn-secondary btn-round" style="margin: 2px;" @click="setPage(0)">
-              <i class="fas fa-chevron-left"></i>
-            </button>
-            <button
-              v-for="(item, key) in pages.page"
-              :key="key"
-              @click="setPage(item)"
-              class="btn btn-round"
-              :class="item == pages.current ? 'btn-primary' : 'btn-secondary'"
-              style="margin: 2px;"
-            >{{item + 1}}</button>
-            <button
-              class="btn btn-secondary btn-round"
-              style="margin: 2px;"
-              @click="setPage(maxPage())"
-            >
-              <i class="fas fa-chevron-right"></i>
-            </button>
-          </div>
-        </div>
-      </div>
+      
       <div class="tbl fixed" style="top:60px; min-width: 500px;">
         <div class="row tbl-row tbl-header">
           <div class="tbl-col col-2 sortable" @click="sortBy('id')">

@@ -68,8 +68,9 @@
           :data="{object_id: $route.params.id}"
         ></form-building>
       </div>
-      <div class="row">
-        <div class="col-md-3" v-for="(el, key) of data_buildings" :key="key">
+      <div class="container-fluid">
+       <div class="row justify-content-start">
+        <div class="col-md-6 col-lg-4 col-xl-3" v-for="(el, key) of data_buildings" :key="key">
           <div class="card">
             <img :src="url_upload + el.image" class="card-img-top" alt />
             <div class="card-body">
@@ -81,6 +82,7 @@
             </div>
           </div>
         </div>
+       </div>
       </div>
     </div>
   </div>
