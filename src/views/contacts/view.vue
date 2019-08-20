@@ -9,17 +9,7 @@
           ></breadcrumb>
         </div>
       </div>
-    </div>
-    <div class="separator"></div>
-    <div class="row">
-      <div class="col-md-6">
-        <table class="table table-bordered">
-          <loader v-if="loading"></loader>
-          <tr>
-            <th>
-              <div class="clearfix">
-                <div class="float-left">Информация об контакте</div>
-                <div class="float-right">
+      <div class="float-right">
                   <span style="padding-left: 4px; position: relative; display: inline-block;">
                     <button
                       class="btn btn-primary"
@@ -41,23 +31,21 @@
                     </button>
                   </span>
                 </div>
-              </div>
-            </th>
-          </tr>
-          <tr>
-            <th>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="row">
+    </div>
+    <div class="separator"></div>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="my-3 p-3 bg-white rounded shadow">
+          <h5 class="border-bottom border-gray pb-2 mb-0">Информация об контакте</h5>
+          <loader v-if="loading"></loader>
+          <div class="media text-muted pt-3 border-bottom">
+          <div class="row">
                     <div class="col-md-12">ФИО: {{fields.name}}</div>
                     <div class="col-md-12">Адрес: {{fields.address}}</div>
                   </div>
-                </div>
-              </div>
-            </th>
-          </tr>
-        </table>
-        <h1>Список сделок</h1>
+          
+          </div>
+          <h5 class="pb-2 mb-0">Список сделок</h5>
         <div>
           <div>
             <button class="btn btn-primary" title="Добавить сделку" @click="form_deal = true">
@@ -71,7 +59,7 @@
             ></form-deal>
           </div>
           <div>
-            <div class="row" v-for="(el, key) of fields.deals" :key="key">
+            <div class="row border-bottom border-gray" v-for="(el, key) of fields.deals" :key="key">
               <div class="col-4">{{el.id}}</div>
               <div class="col-4">{{el.createdon}}</div>
               <div class="col-4">
@@ -84,8 +72,9 @@
             </div>
           </div>
         </div>
+        </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-7">
         <div class="my-3 p-3 bg-white rounded shadow">
           <h6 class="border-bottom border-gray pb-2 mb-0">Комментарии</h6>
           <div class="media text-muted pt-3">
@@ -162,6 +151,8 @@
           </div>
         </div>
       </div>
+    
+      
     </div>
   </div>
 </template>
