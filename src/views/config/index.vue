@@ -34,9 +34,16 @@ export default {
         {
           name: "Пользователи",
           route: "/config/users",
-          icon: 'fal fa-users',
+          icon: 'fas fa-users',
           title: "Пользователи"
+        },
+        {
+          name: "Поля",
+          route: "/config/string",
+          icon: 'fal fa-ballot-check', 
+          title: "Поля"
         }
+        
       ]
     };
   },
