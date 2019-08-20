@@ -21,8 +21,7 @@
     </div>
     <div class="separator"></div>
     <div v-if="data">
-      <div class="row" style="margin-bottom: 3px;">
-        <div class="col"></div>
+      <div class="row" style="margin-top: 10px;">
         <div class="col">Показано: {{data.length}} из {{pager.count}}</div>
         <div class="col text-right">
           <div style="margin:-13px 0px 0px 0px; white-space: nowrap;">
@@ -47,84 +46,98 @@
           </div>
         </div>
       </div>
-      <div class="tbl fixed" style="top:60px; min-width: 500px;">
-        <div class="row tbl-row tbl-header">
-          <div class="tbl-col col-2 sortable" @click="sortBy('createdon')">
-            Дата сделки
-            <span v-if="sort.key != 'createdon'">
-              <i class="fas fa-sort"></i>
-            </span>
-            <span v-else class="arrow">
-              <i class="fas" :class="sort.order == 'DESC' ? 'fa-sort-up' : 'fa-sort-down'"></i>
-            </span>
-          </div>
+      <div>
+        <div class="flex-table fixed style-1" style="top:100px; left:15px; right: 15px; min-width: 500px;">
+          <div class="flex-table-header">
+            <div class="flex-table-row">
+              <div class="flex-table-col flex-table-col-1 sortable" @click="sortBy('createdon')">
+                Дата сделки
+                <span v-if="sort.key != 'createdon'">
+                  <i class="fas fa-sort"></i>
+                </span>
+                <span v-else class="arrow">
+                  <i class="fas" :class="sort.order == 'DESC' ? 'fa-sort-up' : 'fa-sort-down'"></i>
+                </span>
+              </div>
 
-          <div class="tbl-col col-2 sortable" @click="sortBy('contact')">
-            Контакт
-            <span v-if="sort.key != 'contact'">
-              <i class="fas fa-sort"></i>
-            </span>
-            <span v-else class="arrow">
-              <i class="fas" :class="sort.order == 'DESC' ? 'fa-sort-up' : 'fa-sort-down'"></i>
-            </span>
-          </div>
+              <div class="flex-table-col flex-table-col-3 sortable" @click="sortBy('contact')">
+                Контакт
+                <span v-if="sort.key != 'contact'">
+                  <i class="fas fa-sort"></i>
+                </span>
+                <span v-else class="arrow">
+                  <i class="fas" :class="sort.order == 'DESC' ? 'fa-sort-up' : 'fa-sort-down'"></i>
+                </span>
+              </div>
 
-          <div class="tbl-col col-2 sortable" @click="sortBy('apartment')">
-            Квартира
-            <span v-if="sort.key != 'apartment'">
-              <i class="fas fa-sort"></i>
-            </span>
-            <span v-else class="arrow">
-              <i class="fas" :class="sort.order == 'DESC' ? 'fa-sort-up' : 'fa-sort-down'"></i>
-            </span>
-          </div>
+              <div class="flex-table-col flex-table-col-3 sortable" @click="sortBy('apartment')">
+                Квартира
+                <span v-if="sort.key != 'apartment'">
+                  <i class="fas fa-sort"></i>
+                </span>
+                <span v-else class="arrow">
+                  <i class="fas" :class="sort.order == 'DESC' ? 'fa-sort-up' : 'fa-sort-down'"></i>
+                </span>
+              </div>
 
-          <div class="tbl-col col-2" @click="sortBy('info')">Информация</div>
+              <div class="flex-table-col flex-table-col-2" @click="sortBy('info')">Информация</div>
 
-          <div class="tbl-col col-2 sortable" @click="sortBy('status')">
-            Статус
-            <span v-if="sort.key != 'status'">
-              <i class="fas fa-sort"></i>
-            </span>
-            <span v-else class="arrow">
-              <i class="fas" :class="sort.order == 'DESC' ? 'fa-sort-up' : 'fa-sort-down'"></i>
-            </span>
-          </div>
+              <div class="flex-table-col flex-table-col-2 sortable" @click="sortBy('status')">
+                Статус
+                <span v-if="sort.key != 'status'">
+                  <i class="fas fa-sort"></i>
+                </span>
+                <span v-else class="arrow">
+                  <i class="fas" :class="sort.order == 'DESC' ? 'fa-sort-up' : 'fa-sort-down'"></i>
+                </span>
+              </div>
 
-          <div class="tbl-col col-2"></div>
-        </div>
-        <div class="row tbl-row tbl-header" style="height: 36px;">
-          <div class="tbl-col col-2">
-            <input type="text" @change="onChangeFilter('createdon')" v-model="filters.createdon" />
+              <div class="flex-table-col flex-table-col-1"></div>
+            </div>
+            <div class="flex-table-row" style="height: 44px;">
+              <div class="flex-table-col flex-table-col-1">
+                <input
+                class="form-control" 
+                  type="text"
+                  @change="onChangeFilter('createdon')"
+                  v-model="filters.createdon"
+                />
+              </div>
+              <div class="flex-table-col flex-table-col-3">
+                <input class="form-control" type="text" @change="onChangeFilter('contact')" v-model="filters.contact" />
+              </div>
+              <div class="flex-table-col flex-table-col-3">
+                <input
+                class="form-control" 
+                  type="text"
+                  @change="onChangeFilter('apartment')"
+                  v-model="filters.apartment"
+                />
+              </div>
+              <div class="flex-table-col flex-table-col-2">
+                <input class="form-control" type="text" @change="onChangeFilter('info')" v-model="filters.info" />
+              </div>
+              <div class="flex-table-col flex-table-col-2">
+                <input class="form-control" type="text" @change="onChangeFilter('status')" v-model="filters.status" />
+              </div>
+              <div class="flex-table-col flex-table-col-1"></div>
+            </div>
           </div>
-          <div class="tbl-col col-2">
-            <input type="text" @change="onChangeFilter('contact')" v-model="filters.contact" />
-          </div>
-          <div class="tbl-col col-2">
-            <input type="text" @change="onChangeFilter('apartment')" v-model="filters.apartment" />
-          </div>
-          <div class="tbl-col col-2">
-            <input type="text" @change="onChangeFilter('info')" v-model="filters.info" />
-          </div>
-          <div class="tbl-col col-2">
-            <input type="text" @change="onChangeFilter('status')" v-model="filters.status" />
-          </div>
-          <div class="tbl-col col-2"></div>
-        </div>
-        <loader v-if="loading"></loader>
-        <div class="tbl-body" style="top: 69px;">
-          <div v-for="(el, key) in data" :key="key" class="row tbl-row">
-            <div class="tbl-col col-2">{{el.createdon}}</div>
-            <div class="tbl-col col-2">{{el.contact}}</div>
-            <div class="tbl-col col-2">{{el.apartment}}</div>
-            <div class="tbl-col col-2">{{el.info}}</div>
-            <div class="tbl-col col-2">{{el.status}}</div>
-            <div class="tbl-col col-2">
-              <router-link
-                :to="{ name: 'deals_view', params: { id: el.id }}"
-                title="Открыть сделку"
-                class="btn btn-primary btn-block"
-              >Открыть сделку</router-link>
+          <loader v-if="loading"></loader>
+          <div class="flex-table-body" style="top: 68px;">
+            <div v-for="(el, key) in data" :key="key" class="flex-table-row">
+              <div class="flex-table-col flex-table-col-1">{{el.createdon}}</div>
+              <div class="flex-table-col flex-table-col-3">{{el.contact}}</div>
+              <div class="flex-table-col flex-table-col-3">{{el.apartment}}</div>
+              <div class="flex-table-col flex-table-col-2">{{el.info}}</div>
+              <div class="flex-table-col flex-table-col-2">{{el.status}}</div>
+              <div class="flex-table-col flex-table-col-1">
+                <router-link
+                  :to="{ name: 'deals_view', params: { id: el.id }}"
+                  title="Открыть сделку"
+                  class="btn btn-primary btn-block"
+                >Открыть сделку</router-link>
+              </div>
             </div>
           </div>
         </div>

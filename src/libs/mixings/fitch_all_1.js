@@ -122,6 +122,7 @@ export default {
                         this.data = []
                     } else {
                         this.data = response.data.data
+                        this.pager = response.data.pager
                     }
                 })
                 .catch(error => { console.log(error) })

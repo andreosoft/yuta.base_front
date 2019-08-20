@@ -25,8 +25,7 @@
     </div>
     <div class="separator"></div>
     <div v-if="data">
-      <div class="row" style="margin-bottom: 3px;">
-        <div class="col"></div>
+      <div class="row" style="margin-top: 10px;">
         <div class="col">Показано: {{data.length}} из {{pager.count}}</div>
         <div class="col text-right">
           <div style="margin:-13px 0px 0px 0px; white-space: nowrap;">
@@ -51,59 +50,79 @@
           </div>
         </div>
       </div>
-      <div class="tbl fixed" style="top:60px; min-width: 500px;">
-        <div class="row tbl-row tbl-header">
-          <div class="tbl-col col-2 sortable" @click="sortBy('id')">
-            #
-            <span v-if="sort.key != 'id'">
-              <i class="fas fa-sort"></i>
-            </span>
-            <span v-else class="arrow">
-              <i class="fas" :class="sort.order == 'DESC' ? 'fa-sort-up' : 'fa-sort-down'"></i>
-            </span>
-          </div>
+      <div
+        class="flex-table fixed style-1"
+        style="top:100px; left:15px; right: 15px; min-width: 500px;"
+      >
+        <div class="flex-table-header">
+          <div class="flex-table-row">
+            <div class="flex-table-col flex-table-col-2 sortable" @click="sortBy('id')">
+              #
+              <span v-if="sort.key != 'id'">
+                <i class="fas fa-sort"></i>
+              </span>
+              <span v-else class="arrow">
+                <i class="fas" :class="sort.order == 'DESC' ? 'fa-sort-up' : 'fa-sort-down'"></i>
+              </span>
+            </div>
 
-          <div class="tbl-col col-2 sortable" @click="sortBy('name')">
-            ФИО
-            <span v-if="sort.key != 'name'">
-              <i class="fas fa-sort"></i>
-            </span>
-            <span v-else class="arrow">
-              <i class="fas" :class="sort.order == 'DESC' ? 'fa-sort-up' : 'fa-sort-down'"></i>
-            </span>
-          </div>
+            <div class="flex-table-col flex-table-col-4 sortable" @click="sortBy('name')">
+              ФИО
+              <span v-if="sort.key != 'name'">
+                <i class="fas fa-sort"></i>
+              </span>
+              <span v-else class="arrow">
+                <i class="fas" :class="sort.order == 'DESC' ? 'fa-sort-up' : 'fa-sort-down'"></i>
+              </span>
+            </div>
 
-          <div class="tbl-col col-2 sortable" @click="sortBy('address')">
-            Адрес
-            <span v-if="sort.key != 'address'">
-              <i class="fas fa-sort"></i>
-            </span>
-            <span v-else class="arrow">
-              <i class="fas" :class="sort.order == 'DESC' ? 'fa-sort-up' : 'fa-sort-down'"></i>
-            </span>
-          </div>
+            <div class="flex-table-col flex-table-col-4 sortable" @click="sortBy('address')">
+              Адрес
+              <span v-if="sort.key != 'address'">
+                <i class="fas fa-sort"></i>
+              </span>
+              <span v-else class="arrow">
+                <i class="fas" :class="sort.order == 'DESC' ? 'fa-sort-up' : 'fa-sort-down'"></i>
+              </span>
+            </div>
 
-          <div class="tbl-col col-2"></div>
-        </div>
-        <div class="row tbl-row tbl-header" style="height: 36px;">
-          <div class="tbl-col col-2">
-            <input type="text" @change="onChangeFilter('id')" v-model="filters.id" />
+            <div class="flex-table-col flex-table-col-2"></div>
           </div>
-          <div class="tbl-col col-2">
-            <input type="text" @change="onChangeFilter('name')" v-model="filters.name" />
+          <div class="flex-table-row" style="height: 44px;">
+            <div class="flex-table-col flex-table-col-2">
+              <input
+                class="form-control"
+                type="text"
+                @change="onChangeFilter('id')"
+                v-model="filters.id"
+              />
+            </div>
+            <div class="flex-table-col flex-table-col-4">
+              <input
+                class="form-control"
+                type="text"
+                @change="onChangeFilter('name')"
+                v-model="filters.name"
+              />
+            </div>
+            <div class="flex-table-col flex-table-col-4">
+              <input
+                class="form-control"
+                type="text"
+                @change="onChangeFilter('address')"
+                v-model="filters.address"
+              />
+            </div>
+            <div class="flex-table-col flex-table-col-2"></div>
           </div>
-          <div class="tbl-col col-2">
-            <input type="text" @change="onChangeFilter('address')" v-model="filters.address" />
-          </div>
-          <div class="tbl-col col-2"></div>
         </div>
         <loader v-if="loading"></loader>
-        <div class="tbl-body" style="top: 69px;">
-          <div v-for="(el, key) in data" :key="key" class="row tbl-row">
-            <div class="tbl-col col-2">{{el.id}}</div>
-            <div class="tbl-col col-2">{{el.name}}</div>
-            <div class="tbl-col col-2">{{el.address}}</div>
-            <div class="tbl-col col-2">
+        <div class="flex-table-body" style="top: 68px;">
+          <div v-for="(el, key) in data" :key="key" class="flex-table-row">
+            <div class="flex-table-col flex-table-col-2">{{el.id}}</div>
+            <div class="flex-table-col flex-table-col-4">{{el.name}}</div>
+            <div class="flex-table-col flex-table-col-4">{{el.address}}</div>
+            <div class="flex-table-col flex-table-col-2">
               <router-link
                 :to="{ name: 'contacts_view', params: { id: el.id }}"
                 title="Открыть контакт"
