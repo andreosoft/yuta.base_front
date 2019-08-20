@@ -123,11 +123,13 @@
             <div class="flex-table-col flex-table-col-4">{{el.name}}</div>
             <div class="flex-table-col flex-table-col-4">{{el.address}}</div>
             <div class="flex-table-col flex-table-col-2">
+              <div style="text-align: center;">
               <router-link
                 :to="{ name: 'contacts_view', params: { id: el.id }}"
                 title="Открыть контакт"
                 class="btn btn-primary btn-block"
               >Открыть контакт</router-link>
+              </div>
             </div>
           </div>
         </div>
