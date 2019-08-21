@@ -32,18 +32,22 @@
     <div class="row">
       <div class="col-md-5">
         <div class="my-3 p-3 bg-white rounded shadow">
-          <h5 class="border-bottom border-gray pb-2 mb-0">Информация об контакте</h5>
+          <h5 class="border-bottom border-gray pb-2 mb-0">Информация о контакте</h5> 
           <loader v-if="loading"></loader>
-          <div class="media text-muted pt-3 border-bottom">
+          <div class="media text-muted pt-3">
             <div class="row">
               <div class="col-md-12">ФИО: {{fields.name}}</div>
               <div class="col-md-12">Адрес: {{fields.address}}</div>
             </div>
           </div>
-          <h5 class="pb-2 mb-0">Список сделок</h5>
+          <h5 class="pt-3 pb-2 mb-0 border-bottom">Список сделок</h5>
           <div>
-            <div>
-              <button class="btn btn-primary" title="Добавить сделку" @click="form_deal = true">
+            <div class="pt-2 pb-2 border-bottom border-gray">
+              <button
+                class="btn btn-primary btn-block"
+                title="Добавить сделку"
+                @click="form_deal = true"
+              >
                 <i class="far fa-plus"></i> Добавить сделку
               </button>
               <form-deal
@@ -53,20 +57,23 @@
                 :data="{contact_id: $route.params.id}"
               ></form-deal>
             </div>
-            <div>
-              <div
-                class="row border-bottom border-gray"
-                v-for="(el, key) of fields.deals"
-                :key="key"
-              >
-                <div class="col-4">{{el.id}}</div>
-                <div class="col-4">{{el.createdon}}</div>
-                <div class="col-4">
-                  <router-link
-                    :to="{ name: 'deals_view', params: { id: el.id }}"
-                    title="Открыть сделку"
-                    class="btn btn-primary btn-block"
-                  >Открыть сделку</router-link>
+            <div class="pb-2">
+              <div class="container">
+                <div
+                  class="pb-2 pt-2 row border-bottom border-gray align-items-center"
+                  v-for="(el, key) of fields.deals"
+                  :key="key"
+                >
+                  <div class="col-1">{{el.id}}</div>
+                  <div class="col-4">{{el.createdon}}</div>
+                  <div class="col-3">{{el.status}}</div>
+                  <div class="col-4">
+                    <router-link
+                      :to="{ name: 'deals_view', params: { id: el.id }}"
+                      title="Открыть сделку"
+                      class="btn btn-primary btn-block"
+                    >Открыть сделку</router-link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -90,7 +97,7 @@
               <title>@d.povazhnyy</title>
               <rect fill="#007bff" width="100%" height="100%" />
             </svg>
-            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <p class="media-body pb-3 mb-0 lh-125 border-bottom border-gray">
               <strong class="d-block text-gray-dark">2019/08/10 11:12 @d.povazhnyy</strong>
               Интересует однокомнатная квартира в микрорайонах под самоотделку
             </p>
@@ -109,7 +116,7 @@
               <title>@username</title>
               <rect fill="#e83e8c" width="100%" height="100%" />
             </svg>
-            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <p class="media-body pb-3 mb-0 lh-125 border-bottom border-gray">
               <strong class="d-block text-gray-dark">2019/08/10 11:12 @username</strong>
               Передумала, ищет квартиру с ремонтом
             </p>
@@ -128,7 +135,7 @@
               <title>@admin</title>
               <rect fill="#6f42c1" width="100%" height="100%" />
             </svg>
-            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <p class="media-body pb-3 mb-0 lh-125 border-bottom border-gray">
               <strong class="d-block text-gray-dark">2019/08/10 11:12 @admin</strong>
               В понедельник прийдет в офис к 16:00
             </p>
