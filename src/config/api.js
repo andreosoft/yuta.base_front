@@ -34,6 +34,7 @@ export default {
 
     manager: {
         buildings: BASE_URL + '/crm/manager/buildings',
-        list: BASE_URL + '/crm/manager/list'
+        list: BASE_URL + '/crm/manager/list',
+        tile: BASE_URL + '/crm/manager/tile'
     }
 }
