@@ -9,75 +9,141 @@
           ></breadcrumb>
         </div>
       </div>
+      <div class="float-right">
+        <span style="padding-left: 4px; position: relative; display: inline-block;">
+          <button class="btn btn-primary" title="Редактировать" @click="form_contact = true">
+            <i class="far fa-save"></i> Редактировать
+          </button>
+        </span>
+        <form-contact
+          v-if="form_contact"
+          :data="fields"
+          @close-menu="form_contact = false"
+          @data-update="fetchData()"
+        ></form-contact>
+        <span style="padding-left: 4px;">
+          <button class="btn btn-danger" title="Закрыть" @click="remove()">
+            <i class="far fa-times-circle"></i> Удалить
+          </button>
+        </span>
+      </div>
     </div>
     <div class="separator"></div>
-    <table class="table table-bordered">
-      <loader v-if="loading"></loader>
-      <tr>
-        <th>
-          <div class="clearfix">
-            <div class="float-left">Информация об контакте</div>
-            <div class="float-right">
-              <span style="padding-left: 4px; position: relative; display: inline-block;">
-                <button class="btn btn-primary" title="Редактировать" @click="form_contact = true">
-                  <i class="far fa-save"></i> Редактировать
-                </button>
-              </span>
-              <form-contact
-                v-if="form_contact"
-                :data="fields"
-                @close-menu="form_contact = false"
-                @data-update="fetchData()"
-              ></form-contact>
-              <span style="padding-left: 4px;">
-                <button class="btn btn-danger" title="Закрыть" @click="remove()">
-                  <i class="far fa-times-circle"></i> Удалить
-                </button>
-              </span>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="my-3 p-3 bg-white rounded shadow">
+          <h5 class="border-bottom border-gray pb-2 mb-0">Информация об контакте</h5>
+          <loader v-if="loading"></loader>
+          <div class="media text-muted pt-3 border-bottom">
+            <div class="row">
+              <div class="col-md-12">ФИО: {{fields.name}}</div>
+              <div class="col-md-12">Адрес: {{fields.address}}</div>
             </div>
           </div>
-        </th>
-      </tr>
-      <tr>
-        <th>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="row">
-                <div class="col-4">ФИО:</div>
-                <div class="col-8">{{fields.name}}</div>
-              </div>
-              <div class="row">
-                <div class="col-4">Адрес:</div>
-                <div class="col-8">{{fields.address}}</div>
+          <h5 class="pb-2 mb-0">Список сделок</h5>
+          <div>
+            <div>
+              <button class="btn btn-primary" title="Добавить сделку" @click="form_deal = true">
+                <i class="far fa-plus"></i> Добавить сделку
+              </button>
+              <form-deal
+                v-if="form_deal"
+                @close-menu="form_deal = false"
+                @data-update="updateRoute()"
+                :data="{contact_id: $route.params.id}"
+              ></form-deal>
+            </div>
+            <div>
+              <div
+                class="row border-bottom border-gray"
+                v-for="(el, key) of fields.deals"
+                :key="key"
+              >
+                <div class="col-4">{{el.id}}</div>
+                <div class="col-4">{{el.createdon}}</div>
+                <div class="col-4">
+                  <router-link
+                    :to="{ name: 'deals_view', params: { id: el.id }}"
+                    title="Открыть сделку"
+                    class="btn btn-primary btn-block"
+                  >Открыть сделку</router-link>
+                </div>
               </div>
             </div>
           </div>
-        </th>
-      </tr>
-    </table>
-    <h1>Список сделок</h1>
-    <div>
-      <div>
-        <button class="btn btn-primary" title="Добавить сделку" @click="form_deal = true">
-          <i class="far fa-plus"></i> Добавить сделку
-        </button>
-        <form-deal
-          v-if="form_deal"
-          @close-menu="form_deal = false"
-          @data-update="updateRoute()"
-          :data="{contact_id: $route.params.id}"
-        ></form-deal>
+        </div>
       </div>
-      <div>
-        <div class="row" v-for="(el, key) of fields.deals" :key="key">
-          <div class="col-2">{{el.id}}</div>
-          <div class="col-2">{{el.createdon}}</div>
-          <div class="col-2">
-            <router-link
-              :to="{ name: 'deals_view', params: { id: el.id }}"
-              title="Открыть сделку"
-              class="btn btn-primary btn-block"
-            >Открыть сделку</router-link>
+      <div class="col-md-7">
+        <div class="my-3 p-3 bg-white rounded shadow">
+          <h5 class="border-bottom border-gray pb-2 mb-0">Комментарии</h5>
+          <div class="media text-muted pt-3">
+            <svg
+              class="bd-placeholder-img mr-2 rounded"
+              width="32"
+              height="32"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+              role="img"
+              aria-label="Placeholder: 32x32"
+            >
+              <title>@d.povazhnyy</title>
+              <rect fill="#007bff" width="100%" height="100%" />
+            </svg>
+            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+              <strong class="d-block text-gray-dark">2019/08/10 11:12 @d.povazhnyy</strong>
+              Интересует однокомнатная квартира в микрорайонах под самоотделку
+            </p>
+          </div>
+          <div class="media text-muted pt-3">
+            <svg
+              class="bd-placeholder-img mr-2 rounded"
+              width="32"
+              height="32"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+              role="img"
+              aria-label="Placeholder: 32x32"
+            >
+              <title>@username</title>
+              <rect fill="#e83e8c" width="100%" height="100%" />
+            </svg>
+            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+              <strong class="d-block text-gray-dark">2019/08/10 11:12 @username</strong>
+              Передумала, ищет квартиру с ремонтом
+            </p>
+          </div>
+          <div class="media text-muted pt-3">
+            <svg
+              class="bd-placeholder-img mr-2 rounded"
+              width="32"
+              height="32"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+              role="img"
+              aria-label="Placeholder: 32x32"
+            >
+              <title>@admin</title>
+              <rect fill="#6f42c1" width="100%" height="100%" />
+            </svg>
+            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+              <strong class="d-block text-gray-dark">2019/08/10 11:12 @admin</strong>
+              В понедельник прийдет в офис к 16:00
+            </p>
+          </div>
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Напишите комментарий к контакту"
+              aria-label="Напишите комментарий к контакту"
+              aria-describedby="button-addon2"
+            />
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2">Написать</button>
+            </div>
           </div>
         </div>
       </div>
