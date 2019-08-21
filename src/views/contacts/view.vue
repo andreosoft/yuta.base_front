@@ -10,27 +10,23 @@
         </div>
       </div>
       <div class="float-right">
-                  <span style="padding-left: 4px; position: relative; display: inline-block;">
-                    <button
-                      class="btn btn-primary"
-                      title="Редактировать"
-                      @click="form_contact = true"
-                    >
-                      <i class="far fa-save"></i> Редактировать
-                    </button>
-                  </span>
-                  <form-contact
-                    v-if="form_contact"
-                    :data="fields"
-                    @close-menu="form_contact = false"
-                    @data-update="fetchData()"
-                  ></form-contact>
-                  <span style="padding-left: 4px;">
-                    <button class="btn btn-danger" title="Закрыть" @click="remove()">
-                      <i class="far fa-times-circle"></i> Удалить
-                    </button>
-                  </span>
-                </div>
+        <span style="padding-left: 4px; position: relative; display: inline-block;">
+          <button class="btn btn-primary" title="Редактировать" @click="form_contact = true">
+            <i class="far fa-save"></i> Редактировать
+          </button>
+        </span>
+        <form-contact
+          v-if="form_contact"
+          :data="fields"
+          @close-menu="form_contact = false"
+          @data-update="fetchData()"
+        ></form-contact>
+        <span style="padding-left: 4px;">
+          <button class="btn btn-danger" title="Закрыть" @click="remove()">
+            <i class="far fa-times-circle"></i> Удалить
+          </button>
+        </span>
+      </div>
     </div>
     <div class="separator"></div>
     <div class="row">
@@ -39,44 +35,47 @@
           <h5 class="border-bottom border-gray pb-2 mb-0">Информация об контакте</h5>
           <loader v-if="loading"></loader>
           <div class="media text-muted pt-3 border-bottom">
-          <div class="row">
-                    <div class="col-md-12">ФИО: {{fields.name}}</div>
-                    <div class="col-md-12">Адрес: {{fields.address}}</div>
-                  </div>
-          
+            <div class="row">
+              <div class="col-md-12">ФИО: {{fields.name}}</div>
+              <div class="col-md-12">Адрес: {{fields.address}}</div>
+            </div>
           </div>
           <h5 class="pb-2 mb-0">Список сделок</h5>
-        <div>
           <div>
-            <button class="btn btn-primary" title="Добавить сделку" @click="form_deal = true">
-              <i class="far fa-plus"></i> Добавить сделку
-            </button>
-            <form-deal
-              v-if="form_deal"
-              @close-menu="form_deal = false"
-              @data-update="updateRoute()"
-              :data="{contact_id: $route.params.id}"
-            ></form-deal>
-          </div>
-          <div>
-            <div class="row border-bottom border-gray" v-for="(el, key) of fields.deals" :key="key">
-              <div class="col-4">{{el.id}}</div>
-              <div class="col-4">{{el.createdon}}</div>
-              <div class="col-4">
-                <router-link
-                  :to="{ name: 'deals_view', params: { id: el.id }}"
-                  title="Открыть сделку"
-                  class="btn btn-primary btn-block"
-                >Открыть сделку</router-link>
+            <div>
+              <button class="btn btn-primary" title="Добавить сделку" @click="form_deal = true">
+                <i class="far fa-plus"></i> Добавить сделку
+              </button>
+              <form-deal
+                v-if="form_deal"
+                @close-menu="form_deal = false"
+                @data-update="updateRoute()"
+                :data="{contact_id: $route.params.id}"
+              ></form-deal>
+            </div>
+            <div>
+              <div
+                class="row border-bottom border-gray"
+                v-for="(el, key) of fields.deals"
+                :key="key"
+              >
+                <div class="col-4">{{el.id}}</div>
+                <div class="col-4">{{el.createdon}}</div>
+                <div class="col-4">
+                  <router-link
+                    :to="{ name: 'deals_view', params: { id: el.id }}"
+                    title="Открыть сделку"
+                    class="btn btn-primary btn-block"
+                  >Открыть сделку</router-link>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        </div>
       </div>
       <div class="col-md-7">
         <div class="my-3 p-3 bg-white rounded shadow">
-          <h6 class="border-bottom border-gray pb-2 mb-0">Комментарии</h6>
+          <h5 class="border-bottom border-gray pb-2 mb-0">Комментарии</h5>
           <div class="media text-muted pt-3">
             <svg
               class="bd-placeholder-img mr-2 rounded"
@@ -88,12 +87,11 @@
               role="img"
               aria-label="Placeholder: 32x32"
             >
-              <title>Placeholder</title>
+              <title>@d.povazhnyy</title>
               <rect fill="#007bff" width="100%" height="100%" />
-              <text fill="#007bff" dy=".3em" x="50%" y="50%">32x32</text>
             </svg>
             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-              <strong class="d-block text-gray-dark">@d.povazhnyy</strong>
+              <strong class="d-block text-gray-dark">2019/08/10 11:12 @d.povazhnyy</strong>
               Интересует однокомнатная квартира в микрорайонах под самоотделку
             </p>
           </div>
@@ -108,12 +106,11 @@
               role="img"
               aria-label="Placeholder: 32x32"
             >
-              <title>Placeholder</title>
+              <title>@username</title>
               <rect fill="#e83e8c" width="100%" height="100%" />
-              <text fill="#e83e8c" dy=".3em" x="50%" y="50%">32x32</text>
             </svg>
             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-              <strong class="d-block text-gray-dark">@username</strong>
+              <strong class="d-block text-gray-dark">2019/08/10 11:12 @username</strong>
               Передумала, ищет квартиру с ремонтом
             </p>
           </div>
@@ -128,12 +125,11 @@
               role="img"
               aria-label="Placeholder: 32x32"
             >
-              <title>Placeholder</title>
+              <title>@admin</title>
               <rect fill="#6f42c1" width="100%" height="100%" />
-              <text fill="#6f42c1" dy=".3em" x="50%" y="50%">32x32</text>
             </svg>
             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-              <strong class="d-block text-gray-dark">@admin</strong>
+              <strong class="d-block text-gray-dark">2019/08/10 11:12 @admin</strong>
               В понедельник прийдет в офис к 16:00
             </p>
           </div>
@@ -151,8 +147,6 @@
           </div>
         </div>
       </div>
-    
-      
     </div>
   </div>
 </template>
