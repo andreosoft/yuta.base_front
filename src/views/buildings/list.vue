@@ -179,7 +179,7 @@
           </div>-->
         </div>
         <loader v-if="loading"></loader>
-        <div class="flex-table-body" style="top: 25px;">
+        <div class="flex-table-body" style="top: 28px;">
           <div v-for="(el, key) in data" :key="key" class="flex-table-row">
             <div class="flex-table-col flex-table-col-2">{{el.apartment}}</div>
             <div class="flex-table-col flex-table-col-1">{{el.price}}</div>
