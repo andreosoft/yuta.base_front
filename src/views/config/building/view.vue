@@ -12,12 +12,19 @@
     </div>
     <div class="separator"></div>
 
-    <div>
-      <div class="row">
-        <div class="col-md-2">
-          <div class="card">
-            <h1>Помещения</h1>
+    <div class="container-fluid">
+      <div class="row card-columns justify-content-start">
+        
+        <div class="col-md-6 col-lg-3 col-xl-3">
+          <div class="card text-center">
+            <img
+              src="/img/sections.png"
+              style=" height: 50px; width: 50px; align-items: center; margin-top: 15px;"
+              alt
+              class="card-img-top"
+            />
             <div class="card-body">
+              <h5 class="card-title text-center">Помещения</h5>
               <router-link
                 :to="{ name: 'config_sections_view', params: { id: fields.id }}"
                 class="btn btn-primary btn-block"
@@ -25,48 +32,95 @@
             </div>
           </div>
         </div>
+        <div class="col-md-6 col-lg-3 col-xl-3">
+          <div class="card text-center">
+            <img
+              src="/img/plans.png"
+              style=" height: 50px; width: 50px; align-items: center; margin-top: 15px;"
+              alt
+              class="card-img-top"
+            />
+            <div class="card-body">
+              <h5 class="card-title text-center">Планировки помещений</h5>
+              <router-link
+                :to="{ name: 'config_sections_view', params: { id: fields.id }}"
+                class="btn btn-primary btn-block"
+              >Открыть</router-link>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 col-xl-3">
+          <div class="card text-center">
+            <img
+              src="/img/floor.png"
+              style=" height: 50px; width: 50px; align-items: center; margin-top: 15px;"
+              alt
+              class="card-img-top"
+            />
+            <div class="card-body">
+              <h5 class="card-title text-center">Планировки этажей</h5>
+              <button type="button" class="btn btn-lm btn-primary btn-block" disabled>Скоро</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 col-xl-3">
+          <div class="card text-center">
+            <img
+              src="/img/facade.png"
+              style=" height: 50px; width: 50px; align-items: center; margin-top: 15px;"
+              alt
+              class="card-img-top"
+            />
+            <div class="card-body">
+              <h5 class="card-title text-center">Фасады</h5>
+              <button type="button" class="btn btn-lm btn-primary btn-block" disabled>Скоро</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+      <div class="card">
+        <div class="clearfix card-header">
+          <div class="float-left">
+            <h4>Информация о доме</h4>
+          </div>
+          <div class="float-right">
+            <span style="padding-left: 4px; position: relative; display: inline-block;">
+              <button class="btn btn-primary" title="Редактировать" @click="form_building = true">
+                <i class="far fa-save"></i> Редактировать
+              </button>
+            </span>
+            <form-building
+              v-if="form_building"
+              :data="fields"
+              @close-menu="form_building = false"
+              @data-update="fetchData()"
+            ></form-building>
+            <span style="padding-left: 4px;">
+              <button class="btn btn-danger" title="Закрыть" @click="remove()">
+                <i class="far fa-times-circle"></i> Удалить
+              </button>
+            </span>
+          </div>
+        </div>
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img :src="url_upload + fields.image" class="card-img" alt />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h6 class="card-text">Название дома: {{fields.name}}</h6>
+              <h6 class="card-text">Жилой комплекс: {{fields.object.name}}</h6 >
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
       </div>
     </div>
     <loader v-if="loading"></loader>
-    <table class="table table-bordered">
-      <tr>
-        <th>
-          <div class="clearfix">
-            <div class="float-left">Информация об доме</div>
-            <div class="float-right">
-              <span style="padding-left: 4px; position: relative; display: inline-block;">
-                <button class="btn btn-primary" title="Редактировать" @click="form_building = true">
-                  <i class="far fa-save"></i> Редактировать
-                </button>
-              </span>
-              <form-building
-                v-if="form_building"
-                :data="fields"
-                @close-menu="form_building = false"
-                @data-update="fetchData()"
-              ></form-building>
-              <span style="padding-left: 4px;">
-                <button class="btn btn-danger" title="Закрыть" @click="remove()">
-                  <i class="far fa-times-circle"></i> Удалить
-                </button>
-              </span>
-            </div>
-          </div>
-        </th>
-      </tr>
-      <tr>
-        <th>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="row">
-                <div class="col-4">Название дома:</div>
-                <div class="col-8">{{fields.name}}</div>
-              </div>
-            </div>
-          </div>
-        </th>
-      </tr>
-    </table>
+    
   </div>
 </template>
 
@@ -88,6 +142,7 @@ export default {
   },
   data: function() {
     return {
+      url_upload: api.url_upload,
       api: api.building,
       loading: false,
       fields: {
@@ -122,7 +177,10 @@ export default {
               text: "Дом удален",
               class: "alert"
             });
-            router.push({ name: "config_objects_view", params: {id: this.fields.object_id} });
+            router.push({
+              name: "config_objects_view",
+              params: { id: this.fields.object_id }
+            });
           })
           .catch(error => {
             console.log(error);
@@ -131,7 +189,7 @@ export default {
     },
     updateRoute: function() {
       this.fetchData();
-    },
+    }
   }
 };
 </script>

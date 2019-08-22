@@ -16,7 +16,7 @@
       <tr>
         <th>
           <div class="clearfix">
-            <div class="float-left">Информация об объекте</div>
+            <div class="float-left">Информация о объекте</div>
             <div class="float-right">
               <span style="padding-left: 4px; position: relative; display: inline-block;">
                 <button class="btn btn-primary" title="Редактировать" @click="form_object = true">
@@ -57,19 +57,28 @@
     </table>
     <h1>Список домов</h1>
     <div>
-      <div>
-        <button class="btn btn-primary" title="Добавить дом" @click="form_building = true">
-          <i class="far fa-plus"></i> Добавить дом
-        </button>
-        <form-building
-          v-if="form_building"
-          @close-menu="form_building = false"
-          @data-update="fetchBuildings()"
-          :data="{object_id: $route.params.id}"
-        ></form-building>
-      </div>
       <div class="container-fluid">
-       <div class="row justify-content-start">
+       <div class="row card-columns justify-content-start">
+         <div class="col-md-6 col-lg-4 col-xl-3 ">
+          <div class="card text-center">
+            <img
+              src="/img/building.png"
+              style=" height: 70px; width: 70px; align-items: center; margin-top: 15px;"
+              alt
+              class="card-img-top"
+            />
+            <div class="card-body">
+              <button
+                title="Добавить объект"
+                class="btn btn-primary btn-block"
+                style="margin: 4px 0px 0px 4px;"
+                @click="form_building = true"
+              >
+                <i class="far fa-plus"></i> Добавить дом
+              </button>
+            </div>
+          </div>
+        </div>
         <div class="col-md-6 col-lg-4 col-xl-3" v-for="(el, key) of data_buildings" :key="key">
           <div class="card">
             <img :src="url_upload + el.image" class="card-img-top" alt />
