@@ -40,7 +40,7 @@ export default {
     return {
       url_upload: api.url_upload,
       loading: false,
-      title: "Мои Здания",
+      title: "Мои Объекты",
       data_tabs: [
         {
           name: "Список",
