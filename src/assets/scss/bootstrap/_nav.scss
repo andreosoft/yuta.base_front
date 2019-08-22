@@ -11,6 +11,7 @@
 }
 
 .nav-link {
+    cursor: pointer;
     display: block;
     padding: $nav-link-padding-y $nav-link-padding-x;
     @include hover-focus {

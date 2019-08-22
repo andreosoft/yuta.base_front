@@ -43,7 +43,7 @@
             <div class="card-body">
               <h5 class="card-title text-center">Планировки помещений</h5>
               <router-link
-                :to="{ name: 'config_sections_view', params: { id: fields.id }}"
+                :to="{ name: 'config_plans_apart_view', params: { id: fields.id }}"
                 class="btn btn-primary btn-block"
               >Открыть</router-link>
             </div>

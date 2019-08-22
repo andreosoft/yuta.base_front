@@ -104,7 +104,7 @@ import loader from "@/views/common/loader.vue";
 import breadcrumb from "@/views/common/breadcrumb.vue";
 import fitch_one_1 from "@/libs/mixings/fitch_one_1.js";
 import formObject from "./form_object.vue";
-import formBuilding from "@/views/config/building/form_building.vue";
+import formBuilding from "@/views/config/objects/building/form_building.vue";
 import router from "@/config/router";
 import axios from "axios";
 

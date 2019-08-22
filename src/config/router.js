@@ -143,14 +143,21 @@ var router = new Router({
                             name: 'config_sections_view',
                             meta: { 'title': 'Шахматка', auth: [50, 100] },
                             component: () =>
-                                import ('@/views/config/sections/view.vue')
+                                import ('@/views/config/objects/building/sections/view.vue')
+                        },
+                        {
+                            path: '/config/objects/plans_apart/:id',
+                            name: 'config_plans_apart_view',
+                            meta: { auth: [50, 100] },
+                            component: () =>
+                                import ('@/views/config/objects/building/plans_apartments/view.vue')
                         },
                         {
                             path: '/config/objects/building/:id',
                             name: 'config_building_view',
                             meta: { 'title': 'Дом', auth: [50, 100] },
                             component: () =>
-                                import ('@/views/config/building/view.vue')
+                                import ('@/views/config/objects/building/view.vue')
                         },
                         {
                             path: '/config/users/',

@@ -152,4 +152,29 @@
             }
         }
     }
+    &.style-2 {
+        border-top: 1px solid #d9d9d9;
+        border-left: 1px solid #d9d9d9;
+        border-right: 1px solid #d9d9d9;
+        .flex-table-header {
+            border-bottom: 1px solid #000;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .flex-table-body {
+            .flex-table-row {
+                background: #ffffff;
+                border-bottom: 1px solid #d9d9d9;
+                &:hover {
+                    background: #e4e4e4;
+                }
+            }
+            .flex-table-row:nth-child(odd) {
+                background: #f4f2f1;
+                &:hover {
+                    background: #dadada;
+                }
+            }
+        }
+    }
 }

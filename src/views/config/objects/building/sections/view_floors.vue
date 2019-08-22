@@ -7,8 +7,8 @@
     </div>
     <div>
       <div
-        class=""
-        style="width: 100%; margin: 5px 0; border: 1px solid #eee;"
+        class="floor-block"
+        style=""
         v-for="(el, key) of data_floors"
         :key="key"
       >
@@ -32,7 +32,7 @@
             </span>
           </div>
         </div>
-        <div>
+        <div class="floor-block-body">
             <view-apartments :floor_id="el.id" :apartments="el.apartments"></view-apartments>
         </div>
       </div>
@@ -132,3 +132,14 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.floor-block {
+  width: 100%; 
+  margin: 5px 0; 
+  border: 1px solid #eee;
+}
+.floor-block-body {
+  padding: 10px
+}
+</style>
