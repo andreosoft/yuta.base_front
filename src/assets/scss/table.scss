@@ -134,7 +134,7 @@
     }
     &.style-1 {
         .flex-table-header {
-            border-bottom: 1px solid #000;
+            border-bottom: 1px solid #d9d9d9;
         }
         .flex-table-body {
             .flex-table-row {
@@ -145,7 +145,7 @@
                 }
             }
             .flex-table-row:nth-child(odd) {
-                background: #f4f2f1;
+                background: #eee;
                 &:hover {
                     background: #dadada;
                 }

@@ -79,7 +79,7 @@
         </div>
         <div class="col-sm-6">
       <div class="card">
-        <div class="clearfix card-header">
+        <div class="clearfix card-header bg-transparent">
           <div class="float-left">
             <h4>Информация о доме</h4>
           </div>

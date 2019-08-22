@@ -15,7 +15,9 @@
         <div class="card">
           <img :src="url_upload + el.image" class="card-img-top" alt />
           <div class="card-body">
+            <h5 class="card-text text-center">Жилой комплекс: Ботанический сад</h5 >
             <h5 class="card-title text-center">{{el.name}}</h5>
+            
             <router-link
               :to="{ name: 'buildings_list', params: { id: el.id }}"
               class="btn btn-primary btn-block"
@@ -45,7 +47,7 @@ export default {
       url_upload: api.url_upload,
       api: api.manager.buildings,
       loading: false,
-      title: "Мои Здания",
+      title: "Мои Объекты",
       form_object: false,
       data: []
     };
