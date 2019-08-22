@@ -39,7 +39,7 @@ export default {
         },
         {
           name: "Поля",
-          route: "/config/string",
+          route: "/config/fields",
           icon: 'fal fa-ballot-check', 
           title: "Поля"
         }

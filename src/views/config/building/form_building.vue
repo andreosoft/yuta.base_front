@@ -51,9 +51,11 @@ export default {
   props: {
     data: {
       type: Object,
-      default: {
-        name: null,
-        image: null
+      default: function() {
+        return {
+          name: null,
+          image: null
+        };
       }
     }
   },

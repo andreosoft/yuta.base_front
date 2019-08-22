@@ -5,7 +5,7 @@
         <div class="row mar-0">
           <h1>{{title}}</h1>
           <breadcrumb
-            v-bind:data="[{url: '#/', title: 'Домой'}, {url: '#/config/objects', title: 'Настройки'}, {url: '', title: title}]"
+            v-bind:data="[{url: '#/', title: 'Домой'}, {url: '', title: 'Настройки'}]"
           ></breadcrumb>
         </div>
       </div>
@@ -46,17 +46,17 @@ export default {
       data_tabs: [
         {
           name: "Контакты",
-          route: "string_contacts",
+          route: "fields_contacts",
           title: "Открыть настройки полей контактов"
         },
         {
           name: "Сделки",
-          route: "string_deals",
+          route: "fields_deals",
           title: "Открыть настройки полей сделок"
         },
         {
           name: "Объекты",
-          route: "string_objects",
+          route: "fields_objects",
           title: "Открыть настройки полей объектов"
         }
       ]

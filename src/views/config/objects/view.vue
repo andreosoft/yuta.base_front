@@ -79,6 +79,7 @@
             </div>
           </div>
         </div>
+        <form-building v-if="form_building" @close-menu="form_building = false" @data-update="fetchBuildings()"></form-building>
         <div class="col-md-6 col-lg-4 col-xl-3" v-for="(el, key) of data_buildings" :key="key">
           <div class="card">
             <img :src="url_upload + el.image" class="card-img-top" alt />

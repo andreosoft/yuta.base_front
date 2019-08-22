@@ -5,7 +5,7 @@
         <div class="row mar-0">
           <h1>{{title}}</h1>
           <breadcrumb
-            v-bind:data="[{url: '#/', title: 'Домой'}, {url: '#/config/objects', title: 'Настройки'}, {url: '', title: title}]"
+            v-bind:data="[{url: '#/', title: 'Домой'}, {url: '', title: 'Настройки'}]"
           ></breadcrumb>
         </div>
       </div>
