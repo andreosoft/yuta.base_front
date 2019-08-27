@@ -13,7 +13,7 @@
         :key="key"
       >
         <div class="clearfix">
-          <div class="float-left">{{el.floor}}</div>
+          <div class="float-left">Этаж № {{el.floor}}</div>
           <div class="float-right">
             <span>
               <button class="btn" title="Добавить квартиру" @click="$root.$emit('create-new-apartment', {floor_id: el.id})">
