@@ -114,6 +114,13 @@ var router = new Router({
                     component: () =>
                         import ('@/views/deals/view.vue')
                 },
+                {
+                    path: '/calls',
+                    name: 'calls',
+                    meta: { 'title': 'Звонки', auth: [1, 50, 100] },
+                    component: () =>
+                        import ('@/views/calls/index.vue')
+                },
 
                 {
                     path: '/config',

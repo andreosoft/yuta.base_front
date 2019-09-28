@@ -27,6 +27,13 @@ export default {
             name: 'Объекты',
             auth: [50, 100]
         },
+        {
+            route: '/calls',
+            icon: 'fal fa-phone',
+            title: 'Звонки',
+            name: 'Звонки',
+            auth: [50, 100]
+        },
         // {
         //     route: '/content/0',
         //     icon: 'fal fa-file-alt',
