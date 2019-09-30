@@ -50,7 +50,7 @@
         <div class="flex-table fixed style-1" style="top:100px; left:15px; right: 15px; min-width: 500px;">
           <div class="flex-table-header">
             <div class="flex-table-row">
-              <div class="flex-table-col flex-table-col-1 sortable" @click="sortBy('createdon')">
+              <div class="flex-table-col flex-table-col-2 sortable" @click="sortBy('createdon')">
                 Дата сделки
                 <span v-if="sort.key != 'createdon'">
                   <i class="fas fa-sort"></i>
@@ -60,7 +60,7 @@
                 </span>
               </div>
 
-              <div class="flex-table-col flex-table-col-3 sortable" @click="sortBy('contact')">
+              <div class="flex-table-col flex-table-col-2 sortable" @click="sortBy('contact')">
                 Контакт
                 <span v-if="sort.key != 'contact'">
                   <i class="fas fa-sort"></i>
@@ -70,7 +70,7 @@
                 </span>
               </div>
 
-              <div class="flex-table-col flex-table-col-3 sortable" @click="sortBy('apartment')">
+              <div class="flex-table-col flex-table-col-2 sortable" @click="sortBy('apartment')">
                 Квартира
                 <span v-if="sort.key != 'apartment'">
                   <i class="fas fa-sort"></i>
@@ -92,10 +92,10 @@
                 </span>
               </div>
 
-              <div class="flex-table-col flex-table-col-1"></div>
+              <div class="flex-table-col flex-table-col-2"></div>
             </div>
             <div class="flex-table-row" style="height: 44px;">
-              <div class="flex-table-col flex-table-col-1">
+              <div class="flex-table-col flex-table-col-2">
                 <input
                 class="form-control" 
                   type="text"
@@ -103,10 +103,10 @@
                   v-model="filters.createdon"
                 />
               </div>
-              <div class="flex-table-col flex-table-col-3">
+              <div class="flex-table-col flex-table-col-2">
                 <input class="form-control" type="text" @change="onChangeFilter('contact')" v-model="filters.contact" />
               </div>
-              <div class="flex-table-col flex-table-col-3">
+              <div class="flex-table-col flex-table-col-2">
                 <input
                 class="form-control" 
                   type="text"
@@ -120,18 +120,18 @@
               <div class="flex-table-col flex-table-col-2">
                 <input class="form-control" type="text" @change="onChangeFilter('status')" v-model="filters.status" />
               </div>
-              <div class="flex-table-col flex-table-col-1"></div>
+              <div class="flex-table-col flex-table-col-2"></div>
             </div>
           </div>
           <loader v-if="loading"></loader>
           <div class="flex-table-body" style="top: 68px;">
             <div v-for="(el, key) in data" :key="key" class="flex-table-row">
-              <div class="flex-table-col flex-table-col-1">{{el.createdon}}</div>
-              <div class="flex-table-col flex-table-col-3">{{el.contact}}</div>
-              <div class="flex-table-col flex-table-col-3">{{el.apartment}}</div>
+              <div class="flex-table-col flex-table-col-2">{{el.createdon}}</div>
+              <div class="flex-table-col flex-table-col-2">{{el.contact}}</div>
+              <div class="flex-table-col flex-table-col-2">{{el.apartment}}</div>
               <div class="flex-table-col flex-table-col-2">{{el.info}}</div>
               <div class="flex-table-col flex-table-col-2">{{el.status}}</div>
-              <div class="flex-table-col flex-table-col-1">
+              <div class="flex-table-col flex-table-col-2">
                 <router-link
                   :to="{ name: 'deals_view', params: { id: el.id }}"
                   title="Открыть сделку"
