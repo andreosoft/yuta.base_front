@@ -10,9 +10,9 @@
     </div>
     <div class="separator"></div>
     <loader v-if="loading"></loader>
-    <div class="row">
-      <div class="col-md-3" v-for="(el, key) of data" :key="key">
-        <div class="card">
+    <div class="row card-group card-columns justify-content-start">
+      <div class="col-md-6 col-lg-6 col-xl-3" v-for="(el, key) of data" :key="key">
+        <div class="card ">
           <img :src="url_upload + el.image" class="card-img-top" alt />
           <div class="card-body">
             <h5 class="card-text text-center">Жилой комплекс: Ботанический сад</h5 >
