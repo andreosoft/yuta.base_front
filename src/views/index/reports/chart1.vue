@@ -5,7 +5,7 @@
     </div>
     <div style="margin-bottom: 3px;">
       <div>
-        <b>Отчет 1</b>
+        <b>Объем продаж</b>
       </div>
     </div>
     <div>
@@ -35,8 +35,9 @@ export default {
   methods: {
     fillData(data) {
       let dataset1 = {
-        label: "Количество 1",
-        backgroundColor: "#f87979",
+        label: "Объем продаж",
+        backgroundColor: "#8BC34A85",
+        borderColor: "#8BC34A",
         data: []
       };
       let res = {
@@ -52,12 +53,18 @@ export default {
     fetchData: function() {
       this.loading = false;
       let d = [
-        { x: 1, y1: 1 },
-        { x: 2, y1: 4 },
-        { x: 3, y1: 2 },
-        { x: 4, y1: 5 },
-        { x: 5, y1: 3 },
-        { x: 6, y1: 6 }
+        { x: "Январь", y1: 8 },
+        { x: "Февраль", y1: 12 },
+        { x: "Март", y1: 11 },
+        { x: "Апрель", y1: 15 },
+        { x: "Май", y1: 16 },
+        { x: "Июнь", y1: 18 },
+        { x: "Июль", y1: 19 },
+        { x: "Август", y1: 17 },
+        { x: "Сентябрь", y1: 20 },
+        { x: "Октябрь", y1: 17 },
+        { x: "Ноябрь", y1: 15 },
+        { x: "Декабрь", y1: 11 }
       ];
       this.data = this.fillData(d);
     }
