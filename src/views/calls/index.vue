@@ -65,7 +65,7 @@
             <div class="flex-table-col flex-table-col-1">18:32 21.07.2019</div>
             <div class="flex-table-col flex-table-col-1"><span class="status-label badge-pill badge-success"><i class="fas fa-arrow-up"></i> Завершен</span></div>
             <div class="flex-table-col flex-table-col-2">Поважный Денис</div>
-            <div class="flex-table-col flex-table-col-2">Иванов Дмитрий Сергеевич</div>
+            <div class="flex-table-col flex-table-col-2"><a href="#/contacts/4">Иванов Дмитрий Сергеевич</a></div>
             <div class="flex-table-col flex-table-col-2">0 555 333333</div>
             <div class="flex-table-col flex-table-col-3"><audio style="calls-audio" controls><source src="calls.mp3" type="audio/mpeg"></audio></div>
           </div>
