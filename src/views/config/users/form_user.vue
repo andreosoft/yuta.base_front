@@ -63,11 +63,7 @@
           <div class="form-group">
             <label>{{labels.role}}</label>
             <select class="form-control" @change="validate('role')" v-model="fields.role">
-              <option
-                v-for="(el, key) in user_model.role"
-                :key="key"
-                :value="el.value"
-              >{{el.text}}</option>
+              <option v-for="(el, key) in user_model.role" :key="key" :value="el.value">{{el.text}}</option>
             </select>
           </div>
           <div class="form-group">
@@ -80,6 +76,13 @@
               type="text"
             />
             <div v-if="errors.password" class="invalid-feedback">{{errors.password}}</div>
+          </div>
+          <div class="form-group">
+            <label>Ключ для доступа по api</label>
+            <input class="form-control" v-model="fields.api_key" type="text" />
+          </div>
+          <div style="margin: 0 0 15px 0;">
+            <button @click="gen_new_api_key()" class="btn btn-primary">Сгенерировать новый ключ</button>
           </div>
           <div>
             <button @click="submitForm()" class="btn btn-primary" style="width: 100%">Записать</button>
@@ -123,6 +126,25 @@ export default {
       user_model: user_model
     };
   },
-  methods: {}
+  methods: {
+    gen_new_api_key: function() {
+      var d = new Date().getTime();
+
+      if (window.performance && typeof window.performance.now === "function") {
+        d += performance.now();
+      }
+
+      var uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+        /[xy]/g,
+        function(c) {
+          var r = (d + Math.random() * 16) % 16 | 0;
+          d = Math.floor(d / 16);
+          return (c == "x" ? r : (r & 0x3) | 0x8).toString(16);
+        }
+      );
+      
+      this.fields.api_key = uuid;
+    }
+  }
 };
 </script>

@@ -6,7 +6,8 @@ export default {
             login: null,
             password: null,
             name: null,
-            surname: null
+            surname: null,
+            api_key: null
         }
     },
 
