@@ -9,7 +9,7 @@
       </div>
       <div class="float-right">
         <button
-          title="Добавить объект"
+          title="Добавить контакт"
           class="btn btn-primary"
           style="margin: 4px 0px 0px 4px;"
           @click="form_contact = true"

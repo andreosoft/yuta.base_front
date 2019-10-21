@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loader v-if="loading"></loader>
     <div class="clearfix">
       <div class="float-left">
         <div class="row mar-0">
@@ -10,76 +9,56 @@
           ></breadcrumb>
         </div>
       </div>
+      <div class="float-right">
+        <span style="padding-left: 4px; position: relative; display: inline-block;">
+          <button class="btn btn-primary" title="Редактировать" @click="form_deal = true">
+            <i class="far fa-save"></i> Редактировать
+          </button>
+        </span>
+        <form-deal
+          v-if="form_deal"
+          :data="fields"
+          @close-menu="form_deal = false"
+          @data-update="fetchData()"
+        ></form-deal>
+        <span style="padding-left: 4px;">
+          <button class="btn btn-danger" title="Закрыть" @click="remove()">
+            <i class="far fa-times-circle"></i> Удалить
+          </button>
+        </span>
+      </div>
     </div>
     <div class="separator"></div>
-    <table class="table table-bordered">
-      <tr>
-        <th>
-          <div class="clearfix">
-            <div class="float-left">Информация о сделке</div>
-            <div class="float-right">
-              <span style="padding-left: 4px; position: relative; display: inline-block;">
-                <button class="btn btn-primary" title="Редактировать" @click="form_deal = true">
-                  <i class="far fa-save"></i> Редактировать
-                </button>
-              </span>
-              <form-deal
-                v-if="form_deal"
-                :data="fields"
-                @close-menu="form_deal = false"
-                @data-update="fetchData()"
-              ></form-deal>
-              <span style="padding-left: 4px;">
-                <button class="btn btn-danger" title="Закрыть" @click="remove()">
-                  <i class="far fa-times-circle"></i> Удалить
-                </button>
-              </span>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="my-3 p-3 bg-white rounded shadow">
+          <h5 class="border-bottom border-gray pb-2 mb-0">Информация о сделке</h5>
+          <loader v-if="loading"></loader>
+          <div class="media text-muted pt-3">
+            <div class="row">
+              <div class="col-md-12">Дата: {{fields.createdon}}</div>
+              <div class="col-md-12">
+                Контакт: {{fields.contact.name}}
+                <router-link
+                  :to="{ name: 'contacts_view', params: { id: fields.contact.id }}"
+                  title="Открыть контакт"
+                  class
+                >
+                  <i class="far fa-eye color-primary"></i>
+                </router-link>
+              </div>
+              <div class="col-md-12">
+                Квартира:
+                <i v-if="fields.apartment">{{fields.apartment.number}}</i>
+                <i v-else>не задано</i>
+              </div>
+              <div class="col-md-12">Информация: {{fields.info}}</div>
+              <div class="col-md-12">Статус: {{fields.status}}</div>
             </div>
           </div>
-        </th>
-      </tr>
-      <tr>
-        <th>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="row">
-                <div class="col-4">Дата:</div>
-                <div class="col-8">{{fields.createdon}}</div>
-              </div>
-              <div class="row">
-                <div class="col-4">Контакт:</div>
-                <div class="col-8">
-                  {{fields.contact.name}}
-                  <router-link
-                    :to="{ name: 'contacts_view', params: { id: fields.contact.id }}"
-                    title="Открыть контакт"
-                    class="btn"
-                  >
-                    <i class="far fa-eye color-primary"></i>
-                  </router-link>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-4">Квартира:</div>
-                <div class="col-8">
-                  <div v-if="fields.apartment">{{fields.apartment.number}}</div>
-                  <div v-else>не задано</div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-4">Информация:</div>
-                <div class="col-8">{{fields.info}}</div>
-              </div>
-              <div class="row">
-                <div class="col-4">Статус:</div>
-                <div class="col-8">{{fields.status}}</div>
-              </div>
-            </div>
-          </div>
-        </th>
-      </tr>
-    </table>
-    <div></div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
