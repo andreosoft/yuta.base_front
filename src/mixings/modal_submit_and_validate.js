@@ -1,5 +1,5 @@
 import axios from "axios";
-import mixingValidator from "@/libs/validators";
+import mixingValidator from "./validators";
 
 export default {
     data: function() {

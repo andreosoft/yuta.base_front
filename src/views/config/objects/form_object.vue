@@ -69,8 +69,8 @@
 <script>
 import api from "@/config/api";
 import axios from "axios";
-import mixingValidator from "@/libs/validators";
-import submit_and_validate from "@/libs/mixings/modal_submit_and_validate";
+import mixingValidator from "@/mixings/validators";
+import submit_and_validate from "@/mixings/modal_submit_and_validate";
 import BaseImage from "@/widgets/inputs/BaseImage.vue";
 import loader from "@/views/common/loader.vue";
 

@@ -39,7 +39,7 @@ import model from '@/models/login'
 import api from '@/config/api'
 import axios from 'axios'
 import Vue from 'vue'
-import mixingValidator from '@/libs/validators'
+import mixingValidator from '@/mixings/validators'
 
 export default {
   mixins: [mixingValidator],

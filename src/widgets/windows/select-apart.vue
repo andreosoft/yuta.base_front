@@ -225,7 +225,7 @@
 import api from "@/config/api";
 import loader from "@/views/common/loader.vue";
 import router from "@/config/router";
-import fitch_all_1 from "@/libs/mixings/fitch_all_2";
+import fitch_all_1 from "@/mixings/fitch_all_2";
 
 export default {
   mixins: [fitch_all_1],

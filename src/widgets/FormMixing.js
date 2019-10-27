@@ -8,7 +8,7 @@ import BaseTextarea from '@/widgets/inputs/BaseTextarea.vue'
 import BaseDate from '@/widgets/inputs/BaseDate.vue'
 import BaseTime from '@/widgets/inputs/BaseTime.vue'
 import BasePanel from '@/widgets/panel/BasePanel.vue'
-import mixingValidator from '@/libs/validators'
+import mixingValidator from '@/mixings/validators'
 
 export default {
   data: function() {

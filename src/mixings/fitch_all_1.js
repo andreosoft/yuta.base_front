@@ -123,6 +123,7 @@ export default {
                     } else {
                         this.data = response.data.data
                         this.pager = response.data.pager
+                        this.updatePages();
                     }
                 })
                 .catch(error => { console.log(error) })

@@ -85,7 +85,7 @@
 import api from "@/config/api";
 import loader from "@/views/common/loader.vue";
 import breadcrumb from "@/views/common/breadcrumb.vue";
-import fitch_one_1 from "@/libs/mixings/fitch_one_1.js";
+import fitch_one_1 from "@/mixings/fitch_one_1.js";
 import router from "@/config/router";
 import axios from "axios";
 

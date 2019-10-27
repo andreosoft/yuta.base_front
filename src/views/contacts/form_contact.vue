@@ -1,57 +1,37 @@
 <template>
-  <transition name="right-modal">
-    <div class="r-modal">
-      <div class="r-header">
-        <div class="r-header-title">
-          <div v-if="fields.id == null">Создать новый контакт</div>
-          <div v-else>Обновить контакт</div>
-        </div>
-        <div class="r-header-close">
-          <button @click="$emit('close-menu')" title="Закрыть окно">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-      </div>
-      <div class="r-body">
-        <loader v-if="loading"></loader>
-        <div>
-          <div class="form-group">
-            <label>ФИО клиента</label>
-            <input
-              class="form-control"
-              @change="validate('name', fields.name)"
-              v-model="fields.name"
-              :class="{'is-invalid': errors.name}"
-              type="text"
-            />
-            <div v-if="errors.name" class="invalid-feedback">{{errors.name}}</div>
-          </div>
-          <div class="form-group">
-            <label>Адрес клиента</label>
-            <input
-              class="form-control"
-              @change="validate('address', fields.address)"
-              v-model="fields.address"
-              :class="{'is-invalid': errors.address}"
-              type="text"
-            />
-            <div v-if="errors.address" class="invalid-feedback">{{errors.address}}</div>
-          </div>
-          <div>
-            <button @click="submitForm()" class="btn btn-primary" style="width: 100%">
-              Записать</button>
-          </div>
+  <form-modal @close-menu="$emit('close-menu')" :loading="loading">
+    <template v-slot:title>
+      <div v-if="fields.id == null">Создать новый контакт</div>
+      <div v-else>Обновить контакт</div>
+    </template>
+    <template v-slot:body>
+      <div>
+        <input-text
+          label="ФИО клиента"
+          @change="validate('name', fields.name)"
+          v-model="fields.name"
+          :error="errors.name"
+        ></input-text>
+        <input-text
+          label="Адрес клиент"
+          @change="validate('address', fields.address)"
+          v-model="fields.address"
+          :error="errors.address"
+        ></input-text>
+        <div class="btn-block">
+          <button @click="submitForm()" class="btn btn-primary" style="width: 100%">Записать</button>
         </div>
       </div>
-    </div>
-  </transition>
+    </template>
+  </form-modal>
 </template>
     
 <script>
 import api from "@/config/api";
 import axios from "axios";
-import mixingValidator from "@/libs/validators";
-import submit_and_validate from "@/libs/mixings/modal_submit_and_validate";
+import base_input_modal1 from "@/mixings/base_input_modal1.js";
+import mixingValidator from "@/mixings/validators";
+import submit_and_validate from "@/mixings/modal_submit_and_validate";
 import BaseImage from "@/widgets/inputs/BaseImage.vue";
 import loader from "@/views/common/loader.vue";
 
@@ -59,14 +39,14 @@ export default {
   components: {
     loader
   },
-  mixins: [mixingValidator, submit_and_validate],
+  mixins: [base_input_modal1, mixingValidator, submit_and_validate],
   props: {
     data: {
       type: Object,
       default: function() {
         return {
           name: null,
-          address: null,
+          address: null
         };
       }
     }

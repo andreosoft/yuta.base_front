@@ -10,6 +10,7 @@
 @import "fontawesome/regular.scss";
 @import "fontawesome/solid.scss";
 @import "fontawesome/v4-shims.scss";
+
 body {
     overflow: hidden;
 }
@@ -48,9 +49,11 @@ form {
     margin: 2px;
     cursor: pointer;
     outline: none;
+
     &:focus {
         outline: none;
     }
+
     &:hover {
         opacity: 0.5;
     }
@@ -123,6 +126,7 @@ form {
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
     }
+
     100% {
         -webkit-transform: rotate(360deg);
         transform: rotate(360deg);
@@ -134,6 +138,7 @@ form {
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
     }
+
     100% {
         -webkit-transform: rotate(360deg);
         transform: rotate(360deg);
@@ -205,25 +210,31 @@ form {
 
 .tree {
     position: relative;
+
     ul {
         padding: 0;
     }
+
     li {
         padding-left: 20px;
         list-style: none;
+
         div {
             &:hover {
                 font-weight: bold;
             }
         }
     }
+
     ul:hover,
     li:hover {
         cursor: pointer;
     }
+
     .folder {
         font-weight: bold;
     }
+
     i {
         color: var(--primary);
     }
@@ -236,12 +247,14 @@ form {
     border-radius: 10px;
     width: 245px;
     transition: all 0.3s ease;
+
     .modal-header {
         position: absolute;
         width: 100%;
         border-bottom: none;
         z-index: 1;
     }
+
     .modal-body {
         margin: 0;
     }
@@ -274,19 +287,24 @@ form {
 
 .tbl {
     border-top: 1px solid #eee;
+
     .tbl-header {
         background: #fff;
         padding: 15px 0;
+
         .tbl-col {
             align-self: center;
         }
     }
+
     .tbl-row {
         padding: 5px 0;
         border-bottom: 1px solid #eee;
+
         .tbl-col {
             align-self: center;
         }
+
         &:hover {
             background: #eee;
         }
@@ -325,6 +343,7 @@ form {
         border-bottom: 1px solid #f3f3f3;
     }
 }
+
 .layout-card__rooms {
     display: inline-block;
     font-size: 13px;
@@ -339,13 +358,25 @@ form {
     font-weight: 600;
     color: #888;
 }
+
 .status-label {
     display: inline-block;
     padding: 0.25em 0.4em;
     font-size: 85%;
     font-weight: 700;
 }
-audio{
+
+audio {
     width: 100%;
     height: 37px;
+}
+
+.modal-background {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 10000;
+    background: #0005;
 }

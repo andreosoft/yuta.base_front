@@ -37,9 +37,9 @@
 <script>
 import api from "@/config/api";
 import axios from "axios";
-import mixingValidator from "@/libs/validators";
-import submit_and_validate from "@/libs/mixings/modal_submit_and_validate";
-import base_input_2 from "@/libs/mixings/base_input_2";
+import mixingValidator from "@/mixings/validators";
+import submit_and_validate from "@/mixings/modal_submit_and_validate";
+import base_input_2 from "@/mixings/base_input_2";
 import BaseImage from "@/widgets/inputs/BaseImage.vue";
 import loader from "@/views/common/loader.vue";
 

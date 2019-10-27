@@ -150,7 +150,7 @@ import loader from "@/views/common/loader.vue";
 import breadcrumb from "@/views/common/breadcrumb.vue";
 import formUser from "./form_user.vue";
 import router from "@/config/router";
-import fitch_all_1 from "@/libs/mixings/fitch_all_1";
+import fitch_all_1 from "@/mixings/fitch_all_1";
 
 export default {
   mixins: [fitch_all_1],

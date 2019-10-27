@@ -1,21 +1,11 @@
 <template>
-  <div>
-    <div class="clearfix">
-      <div class="float-left">
-        <div class="row mar-0">
-          <h1>{{title}}</h1>
-          <breadcrumb v-bind:data="[{url: '#/', title: 'Домой'}, {url: '', title: title}]"></breadcrumb>
-        </div>
-      </div>
-      <div class="float-right"></div>
-      <form-deal v-if="form_deal" @close-menu="form_deal = false" @data-update="fetchData()"></form-deal>
-    </div>
-    <div class="separator"></div>
-    <div>
+  <form1 :breadcrumbs="[{url: '#/', title: 'Домой'}, {url: '', title: title}]" :loading="loading">
+    <template v-slot:title>{{title}}</template>
+    <template v-slot:body>
       <div class="row" style="margin-top: 10px;">
         <div class="col">Показано: {{data.length}} из {{pager.count}}</div>
         <div class="col text-right">
-          <div v-if="pages.page > 1" style="margin:-13px 0px 0px 0px; white-space: nowrap;">
+          <div v-if="pages.page.length > 0" style="margin:-13px 0px 0px 0px; white-space: nowrap;">
             <button class="btn btn-secondary btn-round" style="margin: 2px;" @click="setPage(0)">
               <i class="fas fa-chevron-left"></i>
             </button>
@@ -39,31 +29,17 @@
       </div>
       <div
         class="flex-table fixed style-1"
-        style="top: 100px; left: 15px; right: 15px; min-width: 500px;"
+        style="top: 115px; left: 15px; right: 15px; min-width: 500px;"
       >
         <div class="flex-table-header">
           <div class="flex-table-row">
-            <div class="flex-table-col flex-table-col-2">
-                Время Звонка
-            </div>
-            <div class="flex-table-col flex-table-col-1 ">
-              Статус
-            </div>
-            <div class="flex-table-col flex-table-col-2 ">
-              Ответственный
-            </div>
-            <div class="flex-table-col flex-table-col-2 ">
-              Клиент
-            </div>
-            <div class="flex-table-col flex-table-col-2 ">
-                Номер телефона
-            </div>
-            <div class="flex-table-col flex-table-col-3 ">
-                Запись разговора
-            </div>
-            
+            <div class="flex-table-col flex-table-col-2">Время Звонка</div>
+            <div class="flex-table-col flex-table-col-1">Статус</div>
+            <div class="flex-table-col flex-table-col-2">Ответственный</div>
+            <div class="flex-table-col flex-table-col-2">Клиент</div>
+            <div class="flex-table-col flex-table-col-2">Номер телефона</div>
+            <div class="flex-table-col flex-table-col-3">Запись разговора</div>
           </div>
-          
         </div>
         <!---->
         <div class="flex-table-body">
@@ -72,40 +48,39 @@
             <div class="flex-table-col flex-table-col-1">
               <span v-if="el.status == 'BUSY'" class="status-label badge-pill badge-warning">
                 <i v-if="el.direction == 1" class="fas fa-arrow-down"></i>
-                <i v-if="el.direction == 0" class="fas fa-arrow-up"></i> Занято</span>
+                <i v-if="el.direction == 0" class="fas fa-arrow-up"></i> Занято
+              </span>
               <span v-if="el.status == 'SUCCESS'" class="status-label badge-pill badge-success">
                 <i v-if="el.direction == 1" class="fas fa-arrow-down"></i>
-                <i v-if="el.direction == 0" class="fas fa-arrow-up"></i> Завершен</span>
+                <i v-if="el.direction == 0" class="fas fa-arrow-up"></i> Завершен
+              </span>
               <span v-if="el.status == 'CANCEL'" class="status-label badge-pill badge-danger">
                 <i v-if="el.direction == 1" class="fas fa-arrow-down"></i>
-                <i v-if="el.direction == 0" class="fas fa-arrow-up"></i> Нет ответа</span>  
+                <i v-if="el.direction == 0" class="fas fa-arrow-up"></i> Нет ответа
+              </span>
             </div>
             <div class="flex-table-col flex-table-col-2">Ответственный не задан</div>
-            <div class="flex-table-col flex-table-col-2"><a href="">Клинет не найден</a></div>
+            <div class="flex-table-col flex-table-col-2">
+              <a href>Клинет не найден</a>
+            </div>
             <div class="flex-table-col flex-table-col-2">{{el.phone}}</div>
-            <div class="flex-table-col flex-table-col-3"><audio v-if="el.uuid" style="calls-audio" controls><source :src="'http://212.112.116.211:8081/api/rec?token=9e00e59a-fe18-47ad-9f72-731e3cb1953f&rec='+el.uuid" type="audio/mpeg"></audio></div>
+            <div class="flex-table-col flex-table-col-3" v-html="player(el.uuid)"></div>
           </div>
-          
-          
         </div>
       </div>
-    </div>
-  </div>
+    </template>
+  </form1>
 </template>
 
 <script>
 import api from "@/config/api";
-import loader from "@/views/common/loader.vue";
-import breadcrumb from "@/views/common/breadcrumb.vue";
+import base_input_1 from "@/mixings/base_input_1.js";
 import router from "@/config/router";
-import fitch_all_1 from "@/libs/mixings/fitch_all_1";
+import fitch_all_1 from "@/mixings/fitch_all_1";
 
 export default {
-  mixins: [fitch_all_1],
-  components: {
-    loader,
-    breadcrumb
-  },
+  mixins: [fitch_all_1, base_input_1],
+  components: {},
   data: function() {
     return {
       api: api.calls,
@@ -113,6 +88,17 @@ export default {
       title: "Звонки",
       data: []
     };
+  },
+  methods: {
+    player: function(url) {
+      return (
+        '<audio style="calls-audio" controls>' +
+        '<source src="http://212.112.116.211:8081/api/rec?token=9e00e59a-fe18-47ad-9f72-731e3cb1953f&rec=' +
+        url +
+        '"' +
+        ' type="audio/mpeg"/></audio>'
+      );
+    }
   }
 };
 </script>
