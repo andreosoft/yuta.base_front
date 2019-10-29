@@ -380,3 +380,9 @@ audio {
     z-index: 10000;
     background: #0005;
 }
+
+.btn-block {
+    .btn {
+        margin: 0 0 5px 5px;
+    }
+}

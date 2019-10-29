@@ -16,7 +16,7 @@
       <div>
         <ul class="nav nav-tabs">
           <li class="nav-item" v-for="(el, key) of data_tabs" :key="key">
-            <router-link class="nav-link" :to="{name: el.route}" :title="el.title">{{el.name}}</router-link>
+            <router-link class="nav-link" :to="{name: 'config_fields_view', params: {name: key}}" :title="el.a_title">{{el.name}}</router-link>
           </li>
         </ul>
       </div>
@@ -32,6 +32,7 @@ import api from "@/config/api";
 import loader from "@/views/common/loader.vue";
 import breadcrumb from "@/views/common/breadcrumb.vue";
 import router from "@/config/router";
+import structure from "@/models/structure";
 
 export default {
   components: {
@@ -43,23 +44,7 @@ export default {
       url_upload: api.url_upload,
       loading: false,
       title: "Настройки полей",
-      data_tabs: [
-        {
-          name: "Контакты",
-          route: "fields_contacts",
-          title: "Открыть настройки полей контактов"
-        },
-        {
-          name: "Сделки",
-          route: "fields_deals",
-          title: "Открыть настройки полей сделок"
-        },
-        {
-          name: "Объекты",
-          route: "fields_objects",
-          title: "Открыть настройки полей объектов"
-        }
-      ]
+      data_tabs: structure.categories
     };
   }
 };

@@ -33,11 +33,9 @@ import base_input_modal1 from "@/mixings/base_input_modal1.js";
 import mixingValidator from "@/mixings/validators";
 import submit_and_validate from "@/mixings/modal_submit_and_validate";
 import BaseImage from "@/widgets/inputs/BaseImage.vue";
-import loader from "@/views/common/loader.vue";
 
 export default {
   components: {
-    loader
   },
   mixins: [base_input_modal1, mixingValidator, submit_and_validate],
   props: {

@@ -26,6 +26,9 @@ new Vue({
         phone_number: ''
     },
     methods: {
+        errors: function(typ, error) {
+            console.log(error);
+        },
         logout: function() {
             this.$store.commit('auth/authLogout')
             window.location.href = '/';

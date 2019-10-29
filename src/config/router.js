@@ -184,31 +184,17 @@ var router = new Router({
                             path: '/config/fields/',
                             name: 'config_fields',
                             redirect: to => {
-                                return { name: 'fields_contacts' }
+                                return { name: 'config_fields_view', params: {name: 'crm_contacts'} }
                             },
-                            meta: { 'title': 'Поля', auth: [50, 100] },
+                            meta: { title: 'Поля', auth: [50, 100] },
                             component: () =>
                                 import ('@/views/config/fields/index.vue'),
                             children: [{
-                                    path: '/config/fields/contacts',
-                                    name: 'fields_contacts',
-                                    meta: { auth: [1, 50, 100] },
+                                    path: '/config/fields/view/:name',
+                                    name: 'config_fields_view',
+                                    meta: { title: 'Натройка полей', auth: [1, 50, 100] },
                                     component: () =>
-                                        import ('@/views/config/fields/contacts.vue')
-                                },
-                                {
-                                    path: '/config/fields/deals',
-                                    name: 'fields_deals',
-                                    meta: { auth: [1, 50, 100] },
-                                    component: () =>
-                                        import ('@/views/config/fields/deals.vue')
-                                },
-                                {
-                                    path: '/config/fields/objects',
-                                    name: 'fields_objects',
-                                    meta: { auth: [1, 50, 100] },
-                                    component: () =>
-                                        import ('@/views/config/fields/objects.vue')
+                                        import ('@/views/config/fields/view.vue')
                                 },
                             ]
                         },

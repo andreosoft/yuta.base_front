@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default {
-    data: function() {
+    data: function () {
         return {
             api: null,
             loading: false,
@@ -14,6 +14,9 @@ export default {
     methods: {
         fetchData() {
             var id = this.$route.params.id
+            this.fetch(id)
+        },
+        fetch(id) {
             this.loading = true
             axios
                 .get(this.api, { params: { id: id } })
@@ -22,6 +25,6 @@ export default {
                     this.fields = response.data.data
                 })
                 .catch(error => { console.log(error) })
-        },
+        }
     }
 };
