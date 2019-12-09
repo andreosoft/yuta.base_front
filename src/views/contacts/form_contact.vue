@@ -6,18 +6,33 @@
     </template>
     <template v-slot:body>
       <div>
-        <input-text
-          label="ФИО клиента"
-          @change="validate('name', fields.name)"
-          v-model="fields.name"
-          :error="errors.name"
-        ></input-text>
-        <input-text
-          label="Адрес клиент"
-          @change="validate('address', fields.address)"
-          v-model="fields.address"
-          :error="errors.address"
-        ></input-text>
+        <div v-for="(el, key) in $store.getters['db/structure'].crm_contacts" :key="key">
+          <div v-if="el.type == 'string' || el.type == 'int' || el.type == 'money'">
+            <input-text
+              :label="el.name"
+              @change="validate('name', fields[el.field_name])"
+              v-model="fields[el.field_name]"
+              :error="errors[el.field_name]"
+            ></input-text>
+          </div>
+          <div v-if="el.type == 'text'">
+            <input-textarea
+              :label="el.name"
+              @change="validate('name', fields[el.field_name])"
+              v-model="fields[el.field_name]"
+              :error="errors[el.field_name]"
+            ></input-textarea>
+          </div>
+          <div v-if="el.type == 'select'">
+            <input-select
+              :label="el.name"
+              v-model="fields[el.field_name]"
+              :options="el.data.options"
+              @change="validate('name', fields[el.field_name])"
+              :error="errors[el.field_name]"
+            ></input-select>
+          </div>
+        </div>
         <div class="btn-block">
           <button @click="submitForm()" class="btn btn-primary" style="width: 100%">Записать</button>
         </div>
@@ -35,17 +50,13 @@ import submit_and_validate from "@/mixings/modal_submit_and_validate";
 import BaseImage from "@/widgets/inputs/BaseImage.vue";
 
 export default {
-  components: {
-  },
+  components: {},
   mixins: [base_input_modal1, mixingValidator, submit_and_validate],
   props: {
     data: {
       type: Object,
       default: function() {
-        return {
-          name: null,
-          address: null
-        };
+        return this.$store.getters["db/fields"]("crm_contacts");
       }
     }
   },

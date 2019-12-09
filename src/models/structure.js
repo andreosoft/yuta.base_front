@@ -1,7 +1,14 @@
 export default {
-    fields: {
-        name: '',
-        type: '',
+    Fields() {
+        this.fields = {
+            name: '',
+            type: '',
+            data: {
+                options: [],
+                showtable: false,
+                moneytype: {}
+            }
+        }
     },
 
     validators: {
@@ -11,7 +18,8 @@ export default {
 
     labels: {
         name: 'Наименование поля',
-        type: 'Тип поля'
+        type: 'Тип поля',
+        showtable: 'Показывать в таблице'
     },
 
     categories: {
@@ -30,8 +38,20 @@ export default {
     },
 
     types: [
-        {value: 'TEXT', text: 'Текстовое'},
-        {value: 'INT', text: 'Числовое'},
-        {value: 'SELECT', text: 'Выбор'},
+        { value: 'string', text: 'Текстовое поле' },
+        { value: 'text', text: 'Текстовая область' },
+        { value: 'int', text: 'Цифровое поле' },
+        { value: 'money', text: 'Денежное поле' },
+        { value: 'select', text: 'Список' },
+        { value: 'selectmany', text: 'Мульти список' },
+        { value: 'checkbox', text: 'Флаг' },
+        { value: 'radiobox', text: 'Переключатель' },
+        { value: 'data', text: 'Дата' },
+        { value: 'href', text: 'Ссылка' }
+    ],
+
+    can_edits: [
+        { value: '0', text: 'Основное' },
+        { value: '1', text: 'Дополнительное' },
     ]
 }

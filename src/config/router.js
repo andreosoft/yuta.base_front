@@ -192,7 +192,7 @@ var router = new Router({
                             children: [{
                                     path: '/config/fields/view/:name',
                                     name: 'config_fields_view',
-                                    meta: { title: 'Натройка полей', auth: [1, 50, 100] },
+                                    meta: { title: 'Настройка полей', auth: [1, 50, 100] },
                                     component: () =>
                                         import ('@/views/config/fields/view.vue')
                                 },

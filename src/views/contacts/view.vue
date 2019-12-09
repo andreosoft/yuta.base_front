@@ -32,12 +32,18 @@
     <div class="row">
       <div class="col-md-5">
         <div class="my-3 p-3 bg-white rounded shadow">
-          <h5 class="border-bottom border-gray pb-2 mb-0">Информация о контакте</h5> 
+          <h5 class="border-bottom border-gray pb-2 mb-0">Информация о контакте</h5>
           <loader v-if="loading"></loader>
           <div class="media text-muted pt-3">
             <div class="row">
-              <div class="col-md-12">ФИО: {{fields.name}}</div>
-              <div class="col-md-12">Адрес: {{fields.address}}</div>
+              <div
+                class="col-md-12"
+                v-for="(el, key) in $store.getters['db/structure'].crm_contacts"
+                :key="key"
+              >
+                {{el.name}}:
+                <b><view-element :el="el" :fields="fields"></view-element></b>
+              </div>
             </div>
           </div>
           <h5 class="pt-3 pb-2 mb-0 border-bottom">Список сделок</h5>
@@ -163,6 +169,7 @@ import api from "@/config/api";
 import loader from "@/views/common/loader.vue";
 import breadcrumb from "@/views/common/breadcrumb.vue";
 import fitch_one_1 from "@/mixings/fitch_one_1.js";
+import viewElement from "@/widgets/viewElement.vue";
 import formContact from "./form_contact.vue";
 import formDeal from "@/views/deals/form_deal.vue";
 import router from "@/config/router";
@@ -174,7 +181,8 @@ export default {
     loader,
     breadcrumb,
     formContact,
-    formDeal
+    formDeal,
+    viewElement
   },
   data: function() {
     return {

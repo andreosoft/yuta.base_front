@@ -1,7 +1,7 @@
 <template>
   <div class="modal-background" @click="$emit('close-menu')">
     <transition name="right-modal">
-      <div class="r-modal" @click.prevent="clickBody">
+      <div class="r-modal" @click="clickBody">
         <div class="r-header">
           <div class="r-header-title">
             <div>
@@ -46,6 +46,7 @@ export default {
       } else {
         evt.cancelBubble = true;
       }
+      evt.cancelBubble = true;
       return false;
     }
   }

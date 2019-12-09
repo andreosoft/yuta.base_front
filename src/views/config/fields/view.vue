@@ -6,7 +6,11 @@
       </div>
       <div class="float-right">
         <div class="btn-block">
-          <button title="Добавое поле" class="btn btn-primary" @click="form_edit = true; form_id = null">
+          <button
+            title="Добавое поле"
+            class="btn btn-primary"
+            @click="form_edit = true; form_id = null"
+          >
             <i class="far fa-plus"></i> Новое поле
           </button>
         </div>
@@ -15,11 +19,19 @@
     <hr />
     <div>
       <loader v-if="loading"></loader>
-      <form-edit v-if="form_edit" :table_name="table_name" :form_id="form_id" @close-menu="form_edit = false" @data-update="fetchData()"></form-edit>
+      <form-edit
+        v-if="form_edit"
+        :table_name="table_name"
+        :form_id="form_id"
+        @close-menu="form_edit = false"
+        @data-update="fetchData()"
+      ></form-edit>
       <table class="table table-bordered">
         <thead>
           <tr>
             <th>Имя поля в базе</th>
+            <th>Вид поля</th>
+            <th>Показывать в таблице</th>
             <th>Наименование поля</th>
             <th>Тип поля</th>
             <th>Действия</th>
@@ -28,15 +40,21 @@
         <tbody>
           <tr v-for="(el, key) in data" :key="key">
             <td>{{el.field_name}}</td>
+            <td>{{structure.can_edits.getTextByValue(el.can_edit)}}</td>
+            <td>{{el.data.showtable ? 'Да' : 'Нет'}}</td>
             <td>{{el.name}}</td>
-            <td>{{el.type}}</td>
+            <td>{{structure.types.getTextByValue(el.type)}}</td>
             <td>
               <div class="btn-block">
-                <button title="Добавое поле" class="btn btn-primary" @click="form_edit = true; form_id = el.id">
+                <button
+                  title="Добавое поле"
+                  class="btn btn-primary"
+                  @click="form_edit = true; form_id = el.id"
+                >
                   <i class="far fa-edit"></i> Обновить
-              </button>
-              <button
-                  v-if="parseInt($store.getters['auth/profile'].role) >= 100"
+                </button>
+                <button
+                  v-if="el.can_edit == '1' && parseInt($store.getters['auth/profile'].role) >= 100"
                   title="Удалить"
                   class="btn btn-danger"
                   @click="remove(el.id)"
@@ -70,7 +88,8 @@ export default {
       struct: {},
       loading: false,
       form_edit: false,
-      data: []
+      data: [],
+      structure: structure
     };
   },
   created() {
@@ -90,7 +109,7 @@ export default {
       this.loading = true;
       axios
         .get(this.api, {
-          params: { name: this.table_name}
+          params: { name: this.table_name }
         })
         .then(response => {
           this.loading = false;

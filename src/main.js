@@ -9,6 +9,14 @@ import { log } from 'util';
 
 Vue.config.productionTip = false
 
+Array.prototype.getTextByValue = function (el) {
+    return this.find(x => x.value == el)
+        ? this.find(x => x.value == el).text
+        : ""
+
+}
+
+
 const token = localStorage.getItem('user-token')
 if (token) {
     axios.defaults.headers.common['Authorization'] = token
@@ -26,17 +34,17 @@ new Vue({
         phone_number: ''
     },
     methods: {
-        errors: function(typ, error) {
+        errors: function (typ, error) {
             console.log(error);
         },
-        logout: function() {
+        logout: function () {
             this.$store.commit('auth/authLogout')
             window.location.href = '/';
         },
-        goBack: function() {
+        goBack: function () {
             router.go(-1)
         },
-        showInfo: function(message) {
+        showInfo: function (message) {
             this.info.text = message
             this.info.visible = true
             setTimeout(() => {
@@ -53,9 +61,9 @@ new Vue({
     created() {
 
     },
-    mounted: function() {
-        axios.interceptors.response.use(undefined, function(err) {
-            return new Promise(function(resolve, reject) {
+    mounted: function () {
+        axios.interceptors.response.use(undefined, function (err) {
+            return new Promise(function (resolve, reject) {
                 if (err.response.status === 403) {
                     localStorage.removeItem('user-token')
                     localStorage.removeItem('user-profile')

@@ -33,6 +33,7 @@ export default {
     uploads: BASE_URL + '/uploads/index',
     calls: BASE_URL + '/crm/calls',
     structure: BASE_URL + '/db/structure',
+    structure_data: BASE_URL + '/db/structure/data',
 
     manager: {
         buildings: BASE_URL + '/crm/manager/buildings',

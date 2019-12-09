@@ -1,16 +1,17 @@
 <template>
   <div class="form-group">
     <label>{{label}}</label>
-    <input
+    <select
       class="form-control"
       :class="{'is-invalid': error}"
       :disabled="disabled"
-      v-on:change="$emit('change', $event.target.value)"
-      v-bind:value="value"
-      v-on:input="$emit('input', $event.target.value)"
-      :type="type"
+      @change="$emit('change', $event.target.value)"
+      @input="$emit('input', $event.target.value)"
+      :value="value"
       :placeholder="placeholder"
-    />
+    >
+      <option v-for="(el, key) in options" :key="key" :value="el.value">{{el.text}}</option>
+    </select>
     <div v-if="error != null" class="invalid-feedback">{{error}}</div>
   </div>
 </template>
@@ -19,6 +20,7 @@
 export default {
   props: {
     value: String,
+    options: Array,
     type: {
       type: String,
       default: "text"

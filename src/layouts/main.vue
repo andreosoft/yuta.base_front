@@ -27,6 +27,9 @@ export default {
     'menu-block': MenuBlock,
     'header-block': Header,
     'v-info': Info
+  },
+  created() {
+    this.$store.dispatch('db/structure')
   }
 }
 </script>
