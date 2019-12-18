@@ -54,6 +54,7 @@
               </div>
               <div class="col-md-12">Информация: {{fields.info}}</div>
               <div class="col-md-12">Статус: {{fields.status}}</div>
+              
             </div>
           </div>
         </div>

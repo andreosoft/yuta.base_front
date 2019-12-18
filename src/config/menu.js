@@ -21,6 +21,20 @@ export default {
             auth: [50, 100]
         },
         {
+            route: '/finance',
+            icon: 'fal fa-sack-dollar',
+            title: 'Финансы',
+            name: 'Финансы',
+            auth: [50, 100]
+        },
+        {
+            route: '/tasks',
+            icon: 'fal fa-tasks',
+            title: 'Задачи',
+            name: 'Задачи',
+            auth: [50, 100]
+        },
+        {
             route: '/buildings',
             icon: 'fal fa-hotel',
             title: 'Объекты',
@@ -34,20 +48,6 @@ export default {
             name: 'Звонки',
             auth: [50, 100]
         },
-        // {
-        //     route: '/content/0',
-        //     icon: 'fal fa-file-alt',
-        //     title: 'Контент',
-        //     name: 'Контент',
-        //     auth: [50, 100]
-        // },
-        // {
-        //     route: '/users',
-        //     icon: 'fal fa-users',
-        //     title: 'Пользователи',
-        //     name: 'Пользователи',
-        //     auth: [100]
-        // },
         {
             route: '/config',
             icon: 'fal fa-cogs',

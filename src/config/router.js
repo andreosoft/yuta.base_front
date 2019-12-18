@@ -237,6 +237,20 @@ var router = new Router({
                         },
                     ]
                 },
+                {
+                    path: '/finance',
+                    name: 'finance',
+                    meta: { 'title': 'Финансы', auth: [1, 50, 100] },
+                    component: () =>
+                        import ('@/views/finance/index.vue')
+                },
+                {
+                    path: '/tasks',
+                    name: 'tasks',
+                    meta: { 'title': 'Задачи', auth: [1, 50, 100] },
+                    component: () =>
+                        import ('@/views/tasks/index.vue')
+                },
 
                 {
                     path: '/help',
