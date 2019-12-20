@@ -1,5 +1,5 @@
 var domain = window.location.hostname;
-var regexp = /(.*)\.yb.andreyonweb.ru/g;
+var regexp = /(.*)\.yuta.pro/g;
 var match = regexp.exec(domain);
 var usr_id;
 if (match !== null && typeof match[1] !== 'undefined' && match[1] !== 'undefined') {
@@ -8,8 +8,8 @@ if (match !== null && typeof match[1] !== 'undefined' && match[1] !== 'undefined
     usr_id = 'dev';
 }
 
-const BASE_URL = 'http://' + usr_id + '.api.yb.andreyonweb.ru';
-const BASE_UPLOAD = 'http://' + usr_id + '.uploads.yb.andreyonweb.ru';
+const BASE_URL = 'http://' + usr_id + '.api.yuta.pro';
+const BASE_UPLOAD = 'http://' + usr_id + '.uploads.yuta.pro';
 
 export default {
     url_upload: BASE_UPLOAD,
@@ -34,7 +34,8 @@ export default {
     calls: BASE_URL + '/crm/calls',
     structure: BASE_URL + '/db/structure',
     structure_data: BASE_URL + '/db/structure/data',
-
+    structure_order: BASE_URL + '/db/structure/order',
+    
     manager: {
         buildings: BASE_URL + '/crm/manager/buildings',
         list: BASE_URL + '/crm/manager/list',

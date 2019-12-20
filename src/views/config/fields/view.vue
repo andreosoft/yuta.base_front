@@ -29,6 +29,7 @@
       <table class="table table-bordered">
         <thead>
           <tr>
+            <th></th>
             <th>Имя поля в базе</th>
             <th>Вид поля</th>
             <th>Показывать в таблице</th>
@@ -38,7 +39,19 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(el, key) in data" :key="key">
+          <tr
+            v-for="(el, key) in data"
+            :key="key"
+            draggable="true"
+            @dragstart="dragstart(key, $event)"
+            @dragover.prevent
+            @drop="dragdrop(key, $event)"
+          >
+            <td>
+              <span style="color: #777;">
+                <i style="padding: 0 10px;" class="fas fa-arrows-alt" title="Переместить"></i>
+              </span>
+            </td>
             <td>{{el.field_name}}</td>
             <td>{{structure.can_edits.getTextByValue(el.can_edit)}}</td>
             <td>{{el.data.showtable ? 'Да' : 'Нет'}}</td>
@@ -82,6 +95,7 @@ export default {
   },
   data: function() {
     return {
+      drag_src_el: null,
       form_id: null,
       table_name: null,
       api: api.structure,
@@ -100,6 +114,44 @@ export default {
     $route: "updateRoute"
   },
   methods: {
+    dragstart: function(i, e) {
+      this.drag_src_el = i;
+      e.srcElement.set;
+      e.dataTransfer.effectAllowed = "move";
+    },
+    dragdrop: function(i, e) {
+      if (e.stopPropagation) {
+        e.stopPropagation();
+      }
+      let array = this.data;
+      if (this.drag_src_el != i) {
+        let data = array[this.drag_src_el];
+        array.splice(this.drag_src_el, 1);
+        array.splice(i, 0, data);
+        self.drag_src_el = null;
+      }
+      this.updateOrder();
+    },
+    updateOrder: function() {
+      this.loading = true;
+      let order = [];
+      for (let i = 0; i < this.data.length; i++) {
+        order.push({ id: this.data[i].id, sort: i });
+      }
+      axios({
+        method: "post",
+        url: api.structure_order,
+        data: { order: order },
+        params: {}
+      })
+        .then(response => {
+          this.loading = false;
+          this.updateRoute();
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
     updateRoute: function() {
       this.table_name = this.$route.params.name;
       this.struct = structure.categories[this.table_name];

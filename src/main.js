@@ -13,7 +13,6 @@ Array.prototype.getTextByValue = function (el) {
     return this.find(x => x.value == el)
         ? this.find(x => x.value == el).text
         : ""
-
 }
 
 
