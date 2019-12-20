@@ -91,13 +91,50 @@ var router = new Router({
                     meta: { 'title': 'Контакты', auth: [1, 50, 100] },
                     component: () =>
                         import ('@/views/contacts/index.vue')
+                        
                 },
                 {
-                    path: '/contacts/:id',
+                    path: '/contacts/:id/comments',
                     name: 'contacts_view',
                     meta: { 'title': 'Контакт', auth: [1, 50, 100] },
                     component: () =>
-                        import ('@/views/contacts/view.vue')
+                        import ('@/views/contacts/view.vue'),
+                        children: [{
+                            path: '/contacts/:id/comments',
+                            name: 'contacts_comments',
+                            meta: { 'title': 'Комментарии', auth: [1, 50, 100] },
+                            component: () =>
+                                import ('@/views/contacts/comments.vue')
+                        },
+                        {
+                            path: '/contacts/:id/tasks',
+                            name: 'contacts_tasks',
+                            meta: { 'title': 'Задачи', auth: [1, 50, 100] },
+                            component: () =>
+                                import ('@/views/contacts/tasks.vue')
+                        },
+                        {
+                            path: '/contacts/:id/deals',
+                            name: 'contacts_deals',
+                            meta: { 'title': 'Сделки', auth: [1, 50, 100] },
+                            component: () =>
+                                import ('@/views/contacts/deals.vue')
+                        },
+                        {
+                            path: '/contacts/:id/finance',
+                            name: 'contacts_finance',
+                            meta: { 'title': 'Финансы', auth: [1, 50, 100] },
+                            component: () =>
+                                import ('@/views/contacts/finance.vue')
+                        },
+                        {
+                            path: '/contacts/:id/activity',
+                            name: 'contacts_activity',
+                            meta: { 'title': 'Активность', auth: [1, 50, 100] },
+                            component: () =>
+                                import ('@/views/contacts/activity.vue')
+                        },
+                    ]
                 },
 
                 {
@@ -199,6 +236,20 @@ var router = new Router({
                             ]
                         },
                     ]
+                },
+                {
+                    path: '/finance',
+                    name: 'finance',
+                    meta: { 'title': 'Финансы', auth: [1, 50, 100] },
+                    component: () =>
+                        import ('@/views/finance/index.vue')
+                },
+                {
+                    path: '/tasks',
+                    name: 'tasks',
+                    meta: { 'title': 'Задачи', auth: [1, 50, 100] },
+                    component: () =>
+                        import ('@/views/tasks/index.vue')
                 },
 
                 {

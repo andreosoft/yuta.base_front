@@ -15,7 +15,7 @@
         <div class="card">
           <img :src="url_upload + el.image" class="card-img-top" alt />
           <div class="card-body">
-            <h5 class="card-text text-center">Жилой комплекс: {{el.name}}</h5>
+            <h5 class="card-text text-center">Жилой комплекс: {{el.object}}</h5>
             <h5 class="card-title text-center">{{el.name}}</h5>
 
             <router-link

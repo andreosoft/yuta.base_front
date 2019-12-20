@@ -7,7 +7,7 @@
       </div>
 
       <div class="user-info d-none d-sm-block">
-        <span>{{ $store.getters['auth/profile'].name }}</span>
+        <span>{{$store.getters['auth/profile'].name}} {{$store.getters['auth/profile'].surname}}</span>
         <button class="btn-blank" @click="showUserModal = true" title="Профиль"><i class="fal fa-user"></i></button>
         <user-modal v-if="showUserModal" @close="showUserModal = false"></user-modal>
         <button class="btn-blank" @click="$root.logout"><i class="fal fa-sign-out-alt" title="Выйти"></i></button>
