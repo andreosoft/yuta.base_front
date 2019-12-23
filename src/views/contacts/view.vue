@@ -48,44 +48,6 @@
               </div>
             </div>
           </div>
-          <h5 class="pt-3 pb-2 mb-0 border-bottom">Список сделок</h5>
-          <div>
-            <div class="pt-2 pb-2 border-bottom border-gray">
-              <button
-                class="btn btn-primary btn-block"
-                title="Добавить сделку"
-                @click="form_deal = true"
-              >
-                <i class="far fa-plus"></i> Добавить сделку
-              </button>
-              <form-deal
-                v-if="form_deal"
-                @close-menu="form_deal = false"
-                @data-update="updateRoute()"
-                :data="{contact_id: $route.params.id}"
-              ></form-deal>
-            </div>
-            <div class="pb-2">
-              <div class="container">
-                <div
-                  class="pb-2 pt-2 row border-bottom border-gray align-items-center"
-                  v-for="(el, key) of fields.deals"
-                  :key="key"
-                >
-                  <div class="col-1">{{el.id}}</div>
-                  <div class="col-4">{{el.createdon}}</div>
-                  <div class="col-3">{{el.status}}</div>
-                  <div class="col-4">
-                    <router-link
-                      :to="{ name: 'deals_view', params: { id: el.id }}"
-                      title="Открыть сделку"
-                      class="btn btn-primary btn-block"
-                    >Открыть сделку</router-link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -116,7 +78,6 @@ import breadcrumb from "@/views/common/breadcrumb.vue";
 import fitch_one_1 from "@/mixings/fitch_one_1.js";
 import viewElement from "@/widgets/viewElement.vue";
 import formContact from "./form_contact.vue";
-import formDeal from "@/views/deals/form_deal.vue";
 import router from "@/config/router";
 import axios from "axios";
 
@@ -126,7 +87,6 @@ export default {
     loader,
     breadcrumb,
     formContact,
-    formDeal,
     viewElement
   },
   data: function() {
@@ -136,7 +96,6 @@ export default {
       loading: false,
       fields: {},
       form_contact: false,
-      form_deal: false,
       data_tabs: [
         {
           name: "Комментарии",
