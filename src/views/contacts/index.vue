@@ -115,7 +115,7 @@
           <div class="flex-table-body" style="top: 68px;">
             <div
               style="cursor: pointer;"
-              @click="$router.push({ name: 'contacts_view', params: { id: fields.id }})"
+              @click="$router.push({ name: 'contacts_comments', params: { id: fields.id }})"
               title="Открыть контакт"
               v-for="(fields, k) in data"
               :key="k"
