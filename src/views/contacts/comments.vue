@@ -1,7 +1,7 @@
 <template>
   <div>
     <loader v-if="loading"></loader>
-    <div v-if="data && data.length > 0">
+    <div class="comments-body" v-if="data && data.length > 0">
       <div v-for="(el, key) in data" :key="key">
         <div class="media text-muted pt-3">
           <img
@@ -11,7 +11,7 @@
             height="auto"
             alt
           />
-          <p class="media-body pb-3 mb-0 lh-125 border-bottom border-gray">
+          <p class="media-body pb-3 mb-0 lh-125 border-bottom border-gray text-break">
             <strong class="d-block text-gray-dark">{{el.createdon}} @{{el.users_login}}</strong>
             {{el.content}}
           </p>
@@ -114,3 +114,12 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+.comments-body{
+  max-height: 350px;
+  overflow-y: scroll;
+
+
+}
+
+</style>
