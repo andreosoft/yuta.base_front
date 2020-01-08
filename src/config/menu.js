@@ -11,9 +11,9 @@ export default {
             icon: 'fal fa-address-book',
             title: 'Контакты',
             name: 'Контакты',
-            auth: [50, 100]
+            auth: [1, 50, 100]
         },
-        {
+        /*{
             route: '/deals',
             icon: 'fal fa-briefcase',
             title: 'Сделки',
@@ -40,13 +40,13 @@ export default {
             title: 'Объекты',
             name: 'Объекты',
             auth: [50, 100]
-        },
+        },*/
         {
             route: '/calls',
             icon: 'fal fa-phone',
             title: 'Звонки',
             name: 'Звонки',
-            auth: [50, 100]
+            auth: [1, 50, 100]
         },
         {
             route: '/config',
@@ -55,12 +55,12 @@ export default {
             name: 'Настройки',
             auth: [1, 50, 100]
         },
-        {
+        /*{
             route: '/help',
             icon: 'fal fa-question-circle',
             title: 'Помощь',
             name: 'Помощь',
             auth: [1, 50, 100]
-        },
+        },*/
     ]
 }

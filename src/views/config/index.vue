@@ -25,12 +25,12 @@ export default {
   data: function() {
     return {
       data_config: [
-        {
+        /*{
           name: "Объекты",
           route: "/config/objects",
           icon: 'fal fa-hotel',
           title: "Объекты"
-        },
+        },*/
         {
           name: "Пользователи",
           route: "/config/users",
