@@ -30,7 +30,7 @@
     </div>
     <div class="separator"></div>
     <div class="row">
-      <div class="col-md-5">
+      <div class="col-md-12 col-lg-12 col-xl-5">
         <div class="my-3 p-3 bg-white rounded shadow">
           <h4 class="pb-2 mb-0">Информация о контакте</h4>
           <loader v-if="loading"></loader>
@@ -51,7 +51,7 @@
         </div>
       </div>
 
-      <div class="col-md-7">
+      <div class="col-md-12 col-lg-12 col-xl-7">
         <div class="my-3 p-3 bg-white rounded shadow">
           <div>
             <div>
@@ -102,7 +102,7 @@ export default {
           route: "contacts_comments",
           title: "Открыть комментарии"
         },
-        {
+        /*{
           name: "Задачи",
           route: "contacts_tasks",
           title: "Открыть задачи"
@@ -116,7 +116,7 @@ export default {
           name: "Финансы",
           route: "contacts_finance",
           title: "Открыть финансы"
-        },
+        },*/
         {
           name: "Активность",
           route: "contacts_activity",

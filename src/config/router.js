@@ -164,7 +164,7 @@ var router = new Router({
                     name: 'config',
                     meta: { 'title': 'Конфигурация', auth: [50, 100] },
                     redirect: to => {
-                        return { name: 'config_objects' }
+                        return { name: 'config_users' }
                     },
                     component: () =>
                         import ('@/views/config/index.vue'),

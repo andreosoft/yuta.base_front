@@ -78,6 +78,7 @@
 
 .flex-table {
     display: block;
+    overflow: auto;
     div {
         box-sizing: border-box;
     }
