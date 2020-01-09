@@ -245,6 +245,28 @@ var router = new Router({
                         import ('@/views/finance/index.vue')
                 },
                 {
+                    path: '/finance/view/:id',
+                    name: 'finance_view',
+                    meta: { 'title': 'Финансы', auth: [1, 50, 100] },
+                    component: () =>
+                        import ('@/views/finance/form.vue')
+                },
+                {
+                    path: '/finance/create',
+                    name: 'finance_create',
+                    meta: { 'title': 'Финансы', auth: [1, 50, 100] },
+                    component: () =>
+                        import ('@/views/finance/form.vue')
+                },
+                {
+                    path: '/finance/update/:id',
+                    name: 'finance_update',
+                    meta: { 'title': 'Финансы', auth: [1, 50, 100] },
+                    component: () =>
+                        import ('@/views/finance/form.vue')
+                },
+
+                {
                     path: '/tasks',
                     name: 'tasks',
                     meta: { 'title': 'Задачи', auth: [1, 50, 100] },

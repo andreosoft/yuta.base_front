@@ -34,6 +34,10 @@ export default {
         crm_objects: {
             name: "Объекты",
             a_title: "Открыть настройки полей объектов"
+        },
+        crm_finance: {
+            name: "Финансы",
+            a_title: "Открыть настройки полей Финансы"
         }
     },
 

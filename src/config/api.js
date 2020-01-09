@@ -38,7 +38,8 @@ export default {
     structure: BASE_URL + '/db/structure',
     structure_data: BASE_URL + '/db/structure/data',
     structure_order: BASE_URL + '/db/structure/order',
-    
+    finance: BASE_URL + '/crm/finance',
+
     manager: {
         buildings: BASE_URL + '/crm/manager/buildings',
         list: BASE_URL + '/crm/manager/list',
