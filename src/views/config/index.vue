@@ -42,6 +42,12 @@ export default {
           route: "/config/fields",
           icon: 'fal fa-ballot-check', 
           title: "Поля"
+        },
+        {
+          name: "Настройки",
+          route: "/config/options",
+          icon: 'fal fa-cogs', 
+          title: "ПоНастройкиля"
         }
         
       ]

@@ -210,7 +210,13 @@ form {
 
 .tree {
     position: relative;
-
+    width: max-content;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
     ul {
         padding: 0;
     }
@@ -218,12 +224,6 @@ form {
     li {
         padding-left: 20px;
         list-style: none;
-
-        div {
-            &:hover {
-                font-weight: bold;
-            }
-        }
     }
 
     ul:hover,
@@ -237,6 +237,14 @@ form {
 
     i {
         color: var(--primary);
+    }
+    .tree-value {
+        user-select: all;
+    }
+    .tree-item {
+        font-weight: bold;
+        padding-left: 5px;
+        padding-right: 5px;
     }
 }
 

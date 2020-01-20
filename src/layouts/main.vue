@@ -30,6 +30,7 @@ export default {
   },
   created() {
     this.$store.dispatch('db/structure')
+    this.$store.dispatch('options/getall')
   }
 }
 </script>

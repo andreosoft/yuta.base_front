@@ -93,7 +93,7 @@ export default {
     player: function(url) {
       return (
         '<audio style="calls-audio" controls>' +
-        '<source src="http://212.112.116.211:8081/api/rec?token=9e00e59a-fe18-47ad-9f72-731e3cb1953f&rec=' +
+        '<source src="' + this.$store.getters['options/getall'].module_calls.record_url +
         url +
         '"' +
         ' type="audio/mpeg"/></audio>'

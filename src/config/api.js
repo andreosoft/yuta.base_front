@@ -35,6 +35,8 @@ export default {
     section: BASE_URL + '/crm/section',
     uploads: BASE_URL + '/uploads/index',
     calls: BASE_URL + '/crm/calls',
+    options_data: BASE_URL + '/config/options/data',
+    options: BASE_URL + '/config/options',
     structure: BASE_URL + '/db/structure',
     structure_data: BASE_URL + '/db/structure/data',
     structure_order: BASE_URL + '/db/structure/order',

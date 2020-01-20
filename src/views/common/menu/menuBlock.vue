@@ -3,7 +3,7 @@
     <div class="left-menu">
         <MenuItem
           class="left-menu-item"
-          v-for="(el, index) in $root.mainMenu.data"
+          v-for="(el, index) in $store.getters['options/getall'].main_menu"
           :key="index"
           :element="el">
         </MenuItem>

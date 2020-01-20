@@ -57,7 +57,7 @@
             <div>
               <ul class="nav nav-tabs">
                 <li class="nav-item" v-for="(el, key) of data_tabs" :key="key">
-                  <router-link class="nav-link" :to="{name: el.route}" :title="el.title">{{el.name}}</router-link>
+                  <router-link v-if="el.show === true" class="nav-link" :to="{name: el.route}" :title="el.title">{{el.name}}</router-link>
                 </li>
               </ul>
             </div>
@@ -80,6 +80,7 @@ import viewElement from "@/widgets/viewElement.vue";
 import formContact from "./form_contact.vue";
 import router from "@/config/router";
 import axios from "axios";
+import { log } from 'util';
 
 export default {
   mixins: [fitch_one_1],
@@ -95,34 +96,7 @@ export default {
       api: api.contact,
       loading: false,
       fields: {},
-      form_contact: false,
-      data_tabs: [
-        {
-          name: "Комментарии",
-          route: "contacts_comments",
-          title: "Открыть комментарии"
-        },
-        /*{
-          name: "Задачи",
-          route: "contacts_tasks",
-          title: "Открыть задачи"
-        },
-        {
-          name: "Сделки",
-          route: "contacts_deals",
-          title: "Открыть сделки"
-        },
-        {
-          name: "Финансы",
-          route: "contacts_finance",
-          title: "Открыть финансы"
-        },*/
-        {
-          name: "Активность",
-          route: "contacts_activity",
-          title: "Открыть активность"
-        }
-      ]
+      form_contact: false
     };
   },
   created() {
@@ -130,6 +104,11 @@ export default {
   },
   watch: {
     $route: "updateRoute"
+  },
+  computed: {
+    data_tabs: function() {
+      return this.$store.getters['options/getall'].module_contacts.data_tabs
+    }
   },
   methods: {
     remove: function() {

@@ -204,6 +204,13 @@ var router = new Router({
                                 import ('@/views/config/objects/building/view.vue')
                         },
                         {
+                            path: '/config/options/',
+                            name: 'config_options',
+                            meta: { 'title': 'Настройки', auth: [100] },
+                            component: () =>
+                                import ('@/views/config/options/index.vue'),
+                        },
+                        {
                             path: '/config/users/',
                             name: 'config_users',
                             meta: { 'title': 'Пользователи', auth: [50, 100] },
