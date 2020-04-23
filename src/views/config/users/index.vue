@@ -47,7 +47,7 @@
             </div>
 
             <div class="flex-table-col flex-table-col-2 sortable" @click="sortBy('name')">
-              Имя
+              ФИО
               <span v-if="sort.key != 'name'">
                 <i class="fas fa-sort"></i>
               </span>

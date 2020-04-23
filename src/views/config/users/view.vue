@@ -55,10 +55,6 @@
                 <div class="col-8">{{fields.name}}</div>
               </div>
               <div class="row">
-                <div class="col-4">{{labels.surname}}:</div>
-                <div class="col-8">{{fields.surname}}</div>
-              </div>
-              <div class="row">
                 <div class="col-4">{{labels.status}}:</div>
                 <div class="col-8">
                   {{user_model.status.find(x => x.value == fields.status)

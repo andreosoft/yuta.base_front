@@ -93,18 +93,12 @@
                   :style="{width: $store.getters['db/width']('crm_contacts')+'%'}"
                 >
                   <div v-if="el.type == 'select'">
-                    <select
+                    <bselect
                       v-model="filters[el.field_name]"
                       @change="onChangeFilter(el.field_name)"
-                      class="form-control"
-                    >
-                      <option value>Все</option>
-                      <option
-                        v-for="(o_el, o_key) in el.data.options"
-                        :key="o_key"
-                        :value="o_el.value"
-                      >{{o_el.text}}</option>
-                    </select>
+                      :all="true"
+                      :options="el.data.options"
+                    ></bselect>
                   </div>
                   <div v-else>
                     <input
@@ -120,7 +114,7 @@
             <div class="flex-table-body" style="top: 68px;" :style="{'min-width': tableWidth+'px'}">
               <div
                 style="cursor: pointer;"
-                @click="$router.push({ name: 'contacts_comments', params: { id: fields.id }})"
+                @click="$router.push({ name: 'contacts_view', params: { id: fields.id }})"
                 title="Открыть контакт"
                 v-for="(fields, k) in data"
                 :key="k"
@@ -155,13 +149,15 @@ import router from "@/config/router";
 import fitch_all_1 from "@/mixings/fitch_all_1";
 import loader from "@/views/common/loader.vue";
 import viewElement from "@/widgets/viewElement.vue";
+import bselect from "@/widgets/binputs/select.vue";
 
 export default {
   mixins: [base_input_1, fitch_all_1],
   components: {
     loader,
     formContact,
-    viewElement
+    viewElement,
+    bselect
   },
   data: function() {
     return {
@@ -175,7 +171,10 @@ export default {
   },
   computed: {
     tableWidth: function() {
-      return this.$store.getters["db/structure"].crm_contacts.length * 200;
+      if (this.$store.getters["db/structure"].crm_contacts) {
+        return this.$store.getters["db/structure"].crm_contacts.length * 200;
+      }
+      return 0;
     }
   }
 };

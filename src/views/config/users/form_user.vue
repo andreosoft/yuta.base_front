@@ -40,17 +40,6 @@
             <div v-if="errors.name" class="invalid-feedback">{{errors.name}}</div>
           </div>
           <div class="form-group">
-            <label>{{labels.surname}}</label>
-            <input
-              class="form-control"
-              @change="validate('surname', fields.surname)"
-              v-model="fields.surname"
-              :class="{'is-invalid': errors.surname}"
-              type="text"
-            />
-            <div v-if="errors.surname" class="invalid-feedback">{{errors.surname}}</div>
-          </div>
-          <div class="form-group">
             <label>{{labels.status}}</label>
             <select class="form-control" @change="validate('status')" v-model="fields.status">
               <option

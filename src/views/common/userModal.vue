@@ -15,7 +15,7 @@
           <div style="padding-top: 20px;">
             <p><b>{{$store.getters['auth/profile'].login}}</b><br>
             <b>ID: {{$store.getters['auth/profile'].id}}</b><br>
-            <b>{{$store.getters['auth/profile'].name}} {{$store.getters['auth/profile'].surname}}</b></p>
+            <b>{{$store.getters['auth/profile'].name}}</b></p>
           </div>
         </div>
       </div>

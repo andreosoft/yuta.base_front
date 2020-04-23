@@ -12,7 +12,7 @@
             alt
           />
           <p class="media-body pb-3 mb-0 lh-125 border-bottom border-gray text-break">
-            <strong class="d-block text-gray-dark">{{el.createdon}} @{{el.users_login}}</strong>
+            <strong class="d-block text-gray-dark">{{el.createdon}} @{{el.user}}</strong>
             {{el.content}}
           </p>
         </div>

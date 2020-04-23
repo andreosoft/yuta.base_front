@@ -1,23 +1,24 @@
 <template>
   <div class="form-group">
     <label>{{label}}</label>
-    <select
-      class="form-control"
-      :class="{'is-invalid': error}"
+    <bselect
+      :error="error"
       :disabled="disabled"
-      @change="$emit('change', $event.target.value)"
-      @input="$emit('input', $event.target.value)"
+      :options="options"
+      @change="$emit('change', $event)"
+      @input="$emit('input', $event)"
       :value="value"
       :placeholder="placeholder"
-    >
-      <option v-for="(el, key) in options" :key="key" :value="el.value">{{el.text}}</option>
-    </select>
+    ></bselect>
     <div v-if="error != null" class="invalid-feedback">{{error}}</div>
   </div>
 </template>
 
 <script>
+import bselect from "@/widgets/binputs/select.vue";
+
 export default {
+  components: { bselect },
   props: {
     value: String,
     options: Array,

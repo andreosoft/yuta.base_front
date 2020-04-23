@@ -16,7 +16,7 @@ export default {
             pager: {
                 page: 0,
                 count: 0,
-                limit: 20
+                limit: 1000
             },
             pages: {
                 current: 0,

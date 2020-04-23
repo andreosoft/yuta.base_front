@@ -5,13 +5,14 @@ var usr_id;
 if (match !== null && typeof match[1] !== 'undefined' && match[1] !== 'undefined') {
     usr_id = match[1];
 } else {
-    usr_id = 'dev';
+    usr_id = 'glavstroy';//'dev';
 }
 
 const BASE_URL = 'http://' + usr_id + '.api.yuta.pro';
 const BASE_UPLOAD = 'http://' + usr_id + '.uploads.yuta.pro';
 
 export default {
+    base_url: BASE_URL,
     url_upload: BASE_UPLOAD,
     token_login: BASE_URL + '/users/signup/get_token',
     set_profile: BASE_URL + '/users/signup/set_profile',
@@ -25,6 +26,7 @@ export default {
     contact_get_deals: BASE_URL + '/crm/contact/get_deals',
     contact_get_comments: BASE_URL + '/crm/contact/get_comments',
     contact_add_comments: BASE_URL + '/crm/contact/add_comments',
+    contact_get_calls: BASE_URL + '/crm/contact/get_calls',
     deal: BASE_URL + '/crm/deal',
     floor: BASE_URL + '/crm/floor',
     object: BASE_URL + '/crm/object',
@@ -41,6 +43,7 @@ export default {
     structure_data: BASE_URL + '/db/structure/data',
     structure_order: BASE_URL + '/db/structure/order',
     finance: BASE_URL + '/crm/finance',
+    tasks: BASE_URL + '/crm/tasks',
 
     manager: {
         buildings: BASE_URL + '/crm/manager/buildings',

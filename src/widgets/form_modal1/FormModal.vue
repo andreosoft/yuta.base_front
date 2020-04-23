@@ -1,7 +1,7 @@
 <template>
   <div class="modal-background" @click="$emit('close-menu')">
     <transition name="right-modal">
-      <div class="r-modal" @click="clickBody">
+      <div class="r-modal" @click="clickBody" :class="type">
         <div class="r-header">
           <div class="r-header-title">
             <div>
@@ -36,6 +36,10 @@ export default {
     loading: {
       type: Boolean,
       default: false
+    },
+    type: {
+      type: String,
+      default: ""
     }
   },
   methods: {

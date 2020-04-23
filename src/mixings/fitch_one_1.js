@@ -8,9 +8,6 @@ export default {
             fields: {}
         };
     },
-    created() {
-        this.fetchData()
-    },
     methods: {
         fetchData() {
             var id = this.$route.params.id

@@ -59,7 +59,16 @@
               />
               <div v-if="errors.square" class="invalid-feedback">{{errors.square}}</div>
             </div>
-            <div class="form-group">
+            <div>
+              <div v-for="(el, key) in $store.getters['db/structure'].crm_apartments" :key="key">
+                <edit-element
+                  :el="el"
+                  v-model="fields[el.field_name]"
+                  :error="errors[el.field_name]"
+                ></edit-element>
+              </div>
+            </div>
+            <!-- <div class="form-group">
               <label>Статус</label>
               <select class="form-control" v-model="fields.status">
                 <option
@@ -68,7 +77,7 @@
                   :value="el.value"
                 >{{el.text}}</option>
               </select>
-            </div>
+            </div>-->
             <div class="form-group">
               <label>Стоимость</label>
               <input
@@ -132,10 +141,12 @@ import mixingValidator from "@/mixings/validators";
 import submit_and_validate from "@/mixings/modal_submit_and_validate";
 import loader from "@/views/common/loader.vue";
 import apartment_model from "@/models/apartment";
+import editElement from "@/widgets/editElement.vue";
 
 export default {
   components: {
-    loader
+    loader,
+    editElement
   },
   mixins: [mixingValidator, submit_and_validate],
   props: {
@@ -171,11 +182,11 @@ export default {
     };
   },
   watch: {
-    is_studio: function (newValue, oldValue) {
+    is_studio: function(newValue, oldValue) {
       if (newValue) {
-        this.data.is_studio = 1
+        this.data.is_studio = 1;
       } else {
-        this.data.is_studio = 0
+        this.data.is_studio = 0;
       }
     }
   },

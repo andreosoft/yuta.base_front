@@ -59,15 +59,33 @@
                 <i v-if="el.direction == 0" class="fas fa-arrow-up"></i> Нет ответа
               </span>
             </div>
-            <div class="flex-table-col flex-table-col-2">Ответственный не задан</div>
             <div class="flex-table-col flex-table-col-2">
-              <a href>Клинет не найден</a>
+              <span v-if="el.users_id">
+                <router-link
+                  :to="{name: 'config_users_view', params: { id: el.users_id }}"
+                >{{el.users_name}}</router-link>
+              </span>
+              <span v-else>Ответственный не задан</span>
+            </div>
+            <div class="flex-table-col flex-table-col-2">
+              <span v-if="el.crm_contacts_id">
+                <router-link
+                  :to="{name: 'contacts_view', params: { id: el.crm_contacts_id}}"
+                >{{el.crm_contacts_name}}</router-link>
+              </span>
+              <span v-else>
+                <span style="cursor: pointer;" title="Добавить контакт" @click="genClient(el)">Клинет не найден</span></span>
             </div>
             <div class="flex-table-col flex-table-col-2">{{el.phone}}</div>
             <div class="flex-table-col flex-table-col-3" v-html="player(el.uuid)"></div>
           </div>
         </div>
       </div>
+      <form-contact
+        v-if="form_contact"
+        :phone="phone"
+        @close-menu="form_contact = false"
+      ></form-contact>
     </template>
   </form1>
 </template>
@@ -77,27 +95,40 @@ import api from "@/config/api";
 import base_input_1 from "@/mixings/base_input_1.js";
 import router from "@/config/router";
 import fitch_all_1 from "@/mixings/fitch_all_1";
+import formContact from "@/views/contacts/form_contact.vue";
 
 export default {
   mixins: [fitch_all_1, base_input_1],
-  components: {},
+  components: { formContact },
   data: function() {
     return {
+      form_contact: false,
       api: api.calls,
       loading: false,
       title: "Звонки",
-      data: []
+      phone: "",
+      data: [],
+      pager: {
+        page: 0,
+        count: 0,
+        limit: 100
+      }
     };
   },
   methods: {
     player: function(url) {
       return (
         '<audio style="calls-audio" controls>' +
-        '<source src="' + this.$store.getters['options/getall'].module_calls.record_url +
+        '<source src="' +
+        this.$store.getters["options/getall"].module_calls.record_url +
         url +
         '"' +
         ' type="audio/mpeg"/></audio>'
       );
+    },
+    genClient(el) {
+      this.phone = el.phone;
+      this.form_contact = true;
     }
   }
 };

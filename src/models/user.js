@@ -6,7 +6,6 @@ export default {
             login: null,
             password: null,
             name: null,
-            surname: null,
             api_key: null
         }
     },
@@ -21,8 +20,7 @@ export default {
         id: 'id',
         login: 'Логин',
         password: 'Пароль',
-        name: 'Имя',
-        surname: 'Фамилия',
+        name: 'ФИО',
         role: 'Роль',
         status: 'Статус'
     },

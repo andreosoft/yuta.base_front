@@ -19,8 +19,8 @@
           <div class="flex-table-col flex-table-col-2">{{el.square}}</div>
           <div class="flex-table-col flex-table-col-2">{{el.price}}</div>
           <div class="flex-table-col flex-table-col-2">
-            {{config.apartment.status.find(x => x.value == el.status)
-            ? config.apartment.status.find(x => x.value == el.status).text
+            {{$store.getters["db/structure"].crm_apartments.find(x => x.field_name == 'status').data.options.find(x => x.value == el.status)
+            ? $store.getters["db/structure"].crm_apartments.find(x => x.field_name == 'status').data.options.find(x => x.value == el.status).text
             : ""}}
           </div>
           <div class="flex-table-col flex-table-col-2">
@@ -55,6 +55,7 @@ import loader from "@/views/common/loader.vue";
 import router from "@/config/router";
 import formApartment from "./form_apartment.vue";
 import axios from "axios";
+import { log } from "util";
 
 export default {
   components: {
@@ -71,8 +72,7 @@ export default {
       loading: false,
       data_apartmets: this.apartments,
       form_data_apartment: {},
-      form_apartment: false,
-      config: config
+      form_apartment: false
     };
   },
   created() {

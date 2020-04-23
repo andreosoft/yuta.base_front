@@ -1,100 +1,52 @@
 <template>
-  <div>
-    <transition name="right-modal">
-      <div class="r-modal">
-        <div class="r-header">
-          <div class="r-header-title">
-            <div v-if="fields.id == null">Создать новую сделку</div>
-            <div v-else>Обновить сделку</div>
-          </div>
-          <div class="r-header-close">
-            <button @click="$emit('close-menu')" title="Закрыть окно">
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
+  <form-modal @close-menu="$emit('close-menu')" :loading="loading">
+    <template v-slot:title>
+      <div v-if="fields.id == null">Создать новую сделку</div>
+      <div v-else>Обновить сделку</div>
+    </template>
+    <template v-slot:body>
+      <div>
+        <div v-for="(el, key) in $store.getters['db/structure'].crm_deals" :key="key">
+          <edit-element
+            :el="el"
+            v-model="fields[el.field_name]"
+            :view="fields[el.data.field_view]"
+            @change-view="fields[el.data.field_view]=$event"
+            :error="errors[el.field_name]"
+          ></edit-element>
         </div>
-        <div class="r-body">
-          <loader v-if="loading"></loader>
-          <div>
-            <div class="form-group">
-              <label>id клиента</label>
-              <input
-                class="form-control"
-                @change="validate('contact_id', fields.contact_id)"
-                v-model="fields.contact_id"
-                :class="{'is-invalid': errors.contact_id}"
-                type="text"
-              />
-              <div v-if="errors.contact_id" class="invalid-feedback">{{errors.contact_id}}</div>
-            </div>
-            <div class="form-group">
-              <label>id квартиры</label>
-              <input
-                class="form-control"
-                @change="validate('apartment_id', fields.apartment_id)"
-                v-model="fields.apartment_id"
-                :class="{'is-invalid': errors.apartment_id}"
-                type="text"
-              />
-              <div v-if="errors.apartment_id" class="invalid-feedback">{{errors.apartment_id}}</div>
-            </div>
-
-            <div class="form-group">
-              <label>Информация</label>
-              <input
-                class="form-control"
-                @change="validate('info', fields.info)"
-                v-model="fields.info"
-                :class="{'is-invalid': errors.info}"
-                type="text"
-              />
-              <div v-if="errors.info" class="invalid-feedback">{{errors.info}}</div>
-            </div>
-
-            <div class="form-group">
-              <label>Статус</label>
-              <input
-                class="form-control"
-                @change="validate('apartment_id', fields.status)"
-                v-model="fields.status"
-                :class="{'is-invalid': errors.status}"
-                type="text"
-              />
-              <div v-if="errors.status" class="invalid-feedback">{{errors.status}}</div>
-            </div>
-            <div>
-              <button @click="submitForm()" class="btn btn-primary" style="width: 100%">Записать</button>
-            </div>
-          </div>
+        <div class="btn-block">
+          <button @click="submitForm()" class="btn btn-primary" style="width: 100%">Записать</button>
         </div>
       </div>
-    </transition>
-  </div>
+    </template>
+  </form-modal>
 </template>
-    
+
 <script>
 import api from "@/config/api";
 import axios from "axios";
+import base_input_modal1 from "@/mixings/base_input_modal1.js";
 import mixingValidator from "@/mixings/validators";
 import submit_and_validate from "@/mixings/modal_submit_and_validate";
 import BaseImage from "@/widgets/inputs/BaseImage.vue";
-import loader from "@/views/common/loader.vue";
+import editElement from "@/widgets/editElement.vue";
 
 export default {
   components: {
-    loader
+    editElement
   },
-  mixins: [mixingValidator, submit_and_validate],
+  mixins: [base_input_modal1, mixingValidator, submit_and_validate],
   props: {
+    filters: Object,
+    sort: {
+      type: Object,
+      default: () => {}
+    },
     data: {
       type: Object,
       default: function() {
-        return {
-          client_id: null,
-          apartment_id: null,
-          info: null,
-          status: null
-        };
+        return this.$store.getters["db/fields"]("crm_deals");
       }
     }
   },
@@ -104,19 +56,60 @@ export default {
       api_upload_image: api.uploads,
       fields: this.data,
       validators: {
-        client_id: [],
-        apartment_id: [],
-        info: [],
-        status: []
+        client_id: ["req"]
       },
       errors: {
-        client_id: null,
-        apartment_id: null,
-        info: null,
-        status: null
+        client_id: null
       }
     };
   },
   methods: {}
 };
+
+// import api from "@/config/api";
+// import axios from "axios";
+// import mixingValidator from "@/mixings/validators";
+// import submit_and_validate from "@/mixings/modal_submit_and_validate";
+// import BaseImage from "@/widgets/inputs/BaseImage.vue";
+// import loader from "@/views/common/loader.vue";
+
+// export default {
+//   components: {
+//     loader
+//   },
+//   mixins: [mixingValidator, submit_and_validate],
+//   props: {
+//     data: {
+//       type: Object,
+//       default: function() {
+//         return {
+//           client_id: null,
+//           apartment_id: null,
+//           info: null,
+//           status: null
+//         };
+//       }
+//     }
+//   },
+//   data: function() {
+//     return {
+//       api: api.deal,
+//       api_upload_image: api.uploads,
+//       fields: this.data,
+//       validators: {
+//         client_id: [],
+//         apartment_id: [],
+//         info: [],
+//         status: []
+//       },
+//       errors: {
+//         client_id: null,
+//         apartment_id: null,
+//         info: null,
+//         status: null
+//       }
+//     };
+//   },
+//   methods: {}
+// };
 </script>

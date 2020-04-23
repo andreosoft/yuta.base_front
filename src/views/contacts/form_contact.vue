@@ -7,31 +7,7 @@
     <template v-slot:body>
       <div>
         <div v-for="(el, key) in $store.getters['db/structure'].crm_contacts" :key="key">
-          <div v-if="el.type == 'string' || el.type == 'int' || el.type == 'money'">
-            <input-text
-              :label="el.name"
-              @change="validate('name', fields[el.field_name])"
-              v-model="fields[el.field_name]"
-              :error="errors[el.field_name]"
-            ></input-text>
-          </div>
-          <div v-if="el.type == 'text'">
-            <input-textarea
-              :label="el.name"
-              @change="validate('name', fields[el.field_name])"
-              v-model="fields[el.field_name]"
-              :error="errors[el.field_name]"
-            ></input-textarea>
-          </div>
-          <div v-if="el.type == 'select'">
-            <input-select
-              :label="el.name"
-              v-model="fields[el.field_name]"
-              :options="el.data.options"
-              @change="validate('name', fields[el.field_name])"
-              :error="errors[el.field_name]"
-            ></input-select>
-          </div>
+          <edit-element :el="el" v-model="fields[el.field_name]" :error="errors[el.field_name]"></edit-element>
         </div>
         <div class="btn-block">
           <button @click="submitForm()" class="btn btn-primary" style="width: 100%">Записать</button>
@@ -48,9 +24,12 @@ import base_input_modal1 from "@/mixings/base_input_modal1.js";
 import mixingValidator from "@/mixings/validators";
 import submit_and_validate from "@/mixings/modal_submit_and_validate";
 import BaseImage from "@/widgets/inputs/BaseImage.vue";
+import editElement from "@/widgets/editElement.vue";
 
 export default {
-  components: {},
+  components: {
+    editElement
+  },
   mixins: [base_input_modal1, mixingValidator, submit_and_validate],
   props: {
     data: {
@@ -58,6 +37,10 @@ export default {
       default: function() {
         return this.$store.getters["db/fields"]("crm_contacts");
       }
+    },
+    phone: {
+      type: String,
+      default: ""
     }
   },
   data: function() {
@@ -74,6 +57,9 @@ export default {
         address: null
       }
     };
+  },
+  created() {
+    this.fields.phone = this.phone;
   },
   methods: {}
 };

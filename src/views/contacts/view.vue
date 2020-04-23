@@ -57,16 +57,22 @@
             <div>
               <ul class="nav nav-tabs">
                 <li class="nav-item" v-for="(el, key) of data_tabs" :key="key">
-                  <router-link v-if="el.show === true" class="nav-link" :to="{name: el.route}" :title="el.title">{{el.name}}</router-link>
+                  <router-link
+                    v-if="el.show === true"
+                    class="nav-link"
+                    :to="{name: el.route}"
+                    :title="el.title"
+                  >{{el.name}}</router-link>
                 </li>
               </ul>
             </div>
             <div>
-              <router-view />
+              <router-view :fields="{contact_id:$route.params.id, contact: fields.name}" :filters="{ contact_id: $route.params.id }" />
             </div>
           </div>
         </div>
       </div>
+      
     </div>
   </div>
 </template>
@@ -80,7 +86,7 @@ import viewElement from "@/widgets/viewElement.vue";
 import formContact from "./form_contact.vue";
 import router from "@/config/router";
 import axios from "axios";
-import { log } from 'util';
+import { log } from "util";
 
 export default {
   mixins: [fitch_one_1],
@@ -107,7 +113,10 @@ export default {
   },
   computed: {
     data_tabs: function() {
-      return this.$store.getters['options/getall'].module_contacts.data_tabs
+      if (this.$store.getters["options/getall"].module_contacts) {
+        return this.$store.getters["options/getall"].module_contacts.data_tabs;
+      }
+      return {};
     }
   },
   methods: {
