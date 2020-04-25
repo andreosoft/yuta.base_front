@@ -19,12 +19,11 @@
           <div class="tails-row" v-for="i in floor_gen">
             <div
               v-if="data.aparts[section] !== null && typeof data.aparts[section][i] !== 'undefined' && data.aparts[section][i] !== 'undefined'"
-            >
+            > 
               <div
                 class="tails-apartmet" :title='
                 get_status(apart) + "\n" +
                 "Номер квартиры: "+apart.apartment+"\n"+
-                "Цена: "+apart.price+"\n"+
                 "Площадь: "+apart.square+"\n"+
                 "Подъезд: "+apart.section+"\n"+
                 "Этаж: "+apart.floor+"\n"+
@@ -35,7 +34,7 @@
                 :key="key_apart"
                 :style="{'background-color': get_color(apart)}"
               >
-                <div>{{apart.rooms}}</div>
+                <div>{{apart.rooms}}к. {{apart.square}}м2</div>
               </div>
             </div>
           </div>
@@ -123,11 +122,14 @@ export default {
     height: 20px;
     vertical-align: middle;
     border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.125);
   }
 }
 .tails-block {
   margin: 10px 0 0 0;
   display: flex;
+  border-bottom: 1px solid #a1a6aa;
+  background: transparent url(/img/place.png) repeat-x bottom;
 }
 .tails-floors {
   display: inline-block;
@@ -145,20 +147,23 @@ export default {
 }
 .tails-apartmet {
   display: inline-block;
-  width: 20px;
-  height: 20px;
+  width: 100px;
+  height: 25px;
   margin: 0 5px;
   text-align: center;
   padding: 0px 0;
   border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
 }
 .tails-header {
   display: block;
   height: 20px;
+  text-align: center;
+
 }
 .tails-row {
   display: block;
-  height: 20px;
+  height: 25px;
   margin: 5px 0;
 }
 </style>

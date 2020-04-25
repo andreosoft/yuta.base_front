@@ -52,7 +52,7 @@ export default {
           route: "buildings_tile",
           title: "Открыть вид плитки"
         },
-        {
+        /*{
           name: "Этажи",
           route: "buildings_floors",
           title: "Открыть вид Этажи"
@@ -66,7 +66,7 @@ export default {
           name: "Фасады",
           route: "buildings_facades",
           title: "Открыть вид Фасады"
-        }
+        }*/
       ]
     };
   }

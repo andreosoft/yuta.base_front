@@ -3,8 +3,8 @@
     <template v-slot:title>{{title}}</template>
     <template v-slot:right>
       <div class="btn-block">
-        <button title="Вид картбан" class="btn btn-primary" @click="kanban = true">
-          <i class="far fa-th"></i> Вид картбан
+        <button title="Вид канбан" class="btn btn-primary" @click="kanban = true">
+          <i class="far fa-th"></i> Вид канбан
         </button>
         <button title="Вид списком" class="btn btn-primary" @click="kanban = false">
           <i class="far fa-list"></i> Вид списком
