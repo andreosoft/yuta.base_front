@@ -160,7 +160,10 @@ const secondsRE = /s+/;
 
 export default {
   props: {
-    value: String,
+    value: {
+      type: String,
+      default: ''
+    },
     template: String,
     name: {
       type: String,

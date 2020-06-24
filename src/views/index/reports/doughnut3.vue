@@ -5,7 +5,7 @@
     </div>
     <div style="margin-bottom: 3px;">
       <div>
-        <b>Квартиры по статусам общее число</b>
+        <b>По клиентам источник обращения</b>
       </div>
     </div>
     <div>
@@ -30,24 +30,25 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$store.getters['db/status']);
-    
     this.fetchData();
   },
   methods: {
     getStatus(status) {
-      return this.$store.getters["db/structure"].crm_apartments
-        .find(x => x.field_name == "status")
-        .data.options.find(x => x.value == status)
-        ? this.$store.getters["db/structure"].crm_apartments
-            .find(x => x.field_name == "status")
-            .data.options.find(x => x.value == status)
-        : {};
+      if (status) {
+        return this.$store.getters["db/structure"].crm_contacts
+          .find(x => x.field_name == "f2")
+          .data.options.find(x => x.value == status)
+          ? this.$store.getters["db/structure"].crm_contacts
+              .find(x => x.field_name == "f2")
+              .data.options.find(x => x.value == status)
+          : { text: "" };
+      }
+      return { text: "не задано" };
     },
     fetchData() {
       this.loading = true;
       axios
-        .get(api.reports.rep1, { params: {} })
+        .get(api.reports.rep3, { params: {} })
         .then(response => {
           this.loading = false;
           let els = response.data.data;
@@ -60,14 +61,13 @@ export default {
               }
             ]
           };
+
           for (let el of els) {
             let st = this.getStatus(el.x);
             res.labels.push(st.text);
-            if (st.color == "#ffffff") {
-              st.color = "#aaaaaa";
-            }
+            st.color = this.getRandomColor()
             res.datasets[0].backgroundColor.push(st.color);
-            res.datasets[0].data.push(el.y1)
+            res.datasets[0].data.push(el.y1);
           }
           this.data = res;
         })
@@ -75,6 +75,14 @@ export default {
           console.log(error);
         });
     },
+    getRandomColor() {
+      var letters = "0123456789ABCDEF";
+      var color = "#";
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
   }
 };
 </script>

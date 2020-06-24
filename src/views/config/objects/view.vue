@@ -23,12 +23,14 @@
                   <i class="far fa-save"></i> Редактировать
                 </button>
               </span>
-              <form-object
-                v-if="form_object"
-                :data="fields"
-                @close-menu="form_object = false"
-                @data-update="fetchData()"
-              ></form-object>
+              <transition name="slide-fade">
+                <form-object
+                  v-if="form_object"
+                  :data="fields"
+                  @close-menu="form_object = false"
+                  @data-update="fetchData()"
+                ></form-object>
+              </transition>
               <span style="padding-left: 4px;">
                 <button class="btn btn-danger" title="Закрыть" @click="remove()">
                   <i class="far fa-times-circle"></i> Удалить
@@ -58,41 +60,46 @@
     <h1>Список домов</h1>
     <div>
       <div class="container-fluid">
-       <div class="row card-columns justify-content-start">
-         <div class="col-md-6 col-lg-4 col-xl-3 ">
-          <div class="card text-center">
-            <img
-              src="/img/building.png"
-              style=" height: 70px; width: 70px; align-items: center; margin-top: 15px;"
-              alt
-              class="card-img-top"
-            />
-            <div class="card-body">
-              <button
-                title="Добавить объект"
-                class="btn btn-primary btn-block"
-                style="margin: 4px 0px 0px 4px;"
-                @click="form_building = true"
-              >
-                <i class="far fa-plus"></i> Добавить дом
-              </button>
+        <div class="row card-columns justify-content-start">
+          <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="card text-center">
+              <img
+                src="/img/building.png"
+                style=" height: 70px; width: 70px; align-items: center; margin-top: 15px;"
+                alt
+                class="card-img-top"
+              />
+              <div class="card-body">
+                <button
+                  title="Добавить объект"
+                  class="btn btn-primary btn-block"
+                  style="margin: 4px 0px 0px 4px;"
+                  @click="form_building = true"
+                >
+                  <i class="far fa-plus"></i> Добавить дом
+                </button>
+              </div>
+            </div>
+          </div>
+          <form-building
+            v-if="form_building"
+            :data="{object_id: $route.params.id}"
+            @close-menu="form_building = false"
+            @data-update="fetchBuildings()"
+          ></form-building>
+          <div class="col-md-6 col-lg-4 col-xl-3" v-for="(el, key) of data_buildings" :key="key">
+            <div class="card">
+              <img :src="url_upload + el.image" class="card-img-top" alt />
+              <div class="card-body">
+                <h5 class="card-title text-center">{{el.name}}</h5>
+                <router-link
+                  :to="{ name: 'config_building_view', params: { id: el.id }}"
+                  class="btn btn-primary btn-block"
+                >Открыть</router-link>
+              </div>
             </div>
           </div>
         </div>
-        <form-building v-if="form_building" :data="{object_id: $route.params.id}" @close-menu="form_building = false" @data-update="fetchBuildings()"></form-building>
-        <div class="col-md-6 col-lg-4 col-xl-3" v-for="(el, key) of data_buildings" :key="key">
-          <div class="card">
-            <img :src="url_upload + el.image" class="card-img-top" alt />
-            <div class="card-body">
-              <h5 class="card-title text-center">{{el.name}}</h5>
-              <router-link
-                :to="{ name: 'config_building_view', params: { id: el.id }}"
-                class="btn btn-primary btn-block"
-              >Открыть</router-link>
-            </div>
-          </div>
-        </div>
-       </div>
       </div>
     </div>
   </div>

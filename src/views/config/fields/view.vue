@@ -19,13 +19,15 @@
     <hr />
     <div>
       <loader v-if="loading"></loader>
-      <form-edit
-        v-if="form_edit"
-        :table_name="table_name"
-        :form_id="form_id"
-        @close-menu="form_edit = false"
-        @data-update="fetchData()"
-      ></form-edit>
+      <transition name="slide-fade">
+        <form-edit
+          v-if="form_edit"
+          :table_name="table_name"
+          :form_id="form_id"
+          @close-menu="form_edit = false"
+          @data-update="fetchData()"
+        ></form-edit>
+      </transition>
       <table class="table table-bordered">
         <thead>
           <tr>

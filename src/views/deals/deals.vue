@@ -3,7 +3,7 @@
     <h5 class="pt-3 pb-2 mb-0 border-bottom text-center">Список сделок</h5>
     <div class="pt-2 pb-2 border-bottom border-gray">
       <loader v-if="loading"></loader>
-      <div v-if="data && data.length > 0" class="pb-2">
+      <div v-if="data && data.length > 0" class="pb-2" style="overflow: auto;">
         <table class="table table-bordered table-hover table-sm">
           <thead class>
             <tr>
@@ -36,12 +36,14 @@
       <button class="btn btn-primary btn-block" title="Добавить сделку" @click="form_deal = true">
         <i class="far fa-plus"></i> Добавить сделку
       </button>
-      <form-deal
-        v-if="form_deal"
-        @close-menu="form_deal = false"
-        @data-update="updateRoute()"
-        :data="{contact_id: fields.contact_id, contact: fields.contact}"
-      ></form-deal>
+      <transition name="slide-fade">
+        <form-deal
+          v-if="form_deal"
+          @close-menu="form_deal = false"
+          @data-update="updateRoute()"
+          :data="{contact_id: fields.contact_id, contact: fields.contact}"
+        ></form-deal>
+      </transition>
     </div>
   </div>
 </template>

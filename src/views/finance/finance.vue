@@ -38,12 +38,14 @@
       <button class="btn btn-primary btn-block" title="Добавить сделку" @click="form_deal = true">
         <i class="far fa-plus"></i> Добавить платеж
       </button>
-      <form-deal
-        v-if="form_deal"
-        @close-menu="form_deal = false"
-        @data-update="fetchData()"
-        :data="{deal_id: fields.deal_id, deal: fields.deal, contact_id: fields.contact_id, contact: fields.contact }"
-      ></form-deal>
+      <transition name="slide-fade">
+        <form-deal
+          v-if="form_deal"
+          @close-menu="form_deal = false"
+          @data-update="fetchData()"
+          :data="{deal_id: fields.deal_id, deal: fields.deal, contact_id: fields.contact_id, contact: fields.contact }"
+        ></form-deal>
+      </transition>
     </div>
   </div>
 </template>
@@ -58,15 +60,15 @@ import formDeal from "@/views/finance/form_finance.vue";
 export default {
   components: { loader, viewElement, formDeal },
   props: {
-      fields: {
-        type: Object,
-        default: () => {}
-      },
-      filters: Object,
-      sort: {
-        type: Object,
-        default: () => {}
-      }
+    fields: {
+      type: Object,
+      default: () => {}
+    },
+    filters: Object,
+    sort: {
+      type: Object,
+      default: () => {}
+    }
   },
   data: function() {
     return {

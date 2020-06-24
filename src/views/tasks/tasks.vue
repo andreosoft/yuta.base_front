@@ -38,12 +38,14 @@
       <button class="btn btn-primary btn-block" title="Добавить сделку" @click="form_deal = true">
         <i class="far fa-plus"></i> Добавить задачу
       </button>
-      <form-deal
-        v-if="form_deal"
-        @close-menu="form_deal = false"
-        @data-update="fetchData()"
-        :data="{contact_id: fields.contact_id, contact: fields.contact}"
-      ></form-deal>
+      <transition name="slide-fade">
+        <form-deal
+          v-if="form_deal"
+          @close-menu="form_deal = false"
+          @data-update="fetchData()"
+          :data="{contact_id: fields.contact_id, contact: fields.contact}"
+        ></form-deal>
+      </transition>
     </div>
   </div>
 </template>

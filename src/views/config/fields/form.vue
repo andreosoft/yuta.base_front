@@ -7,7 +7,12 @@
     <template v-slot:body>
       <div>
         <input-text :label="labels.name" v-model="fields.name"></input-text>
-        <input-select v-if="fields.can_edit == '1' || !fields.id" :label="labels.type" v-model="fields.type" :options="structure.types"></input-select>
+        <input-select
+          v-if="fields.can_edit == '1' || !fields.id"
+          :label="labels.type"
+          v-model="fields.type"
+          :options="structure.types"
+        ></input-select>
         <InputTableOptions v-if="fields.type == 'select'" v-model="fields.data.options"></InputTableOptions>
         <InputTableOptionsStatus v-if="fields.type == 'status'" v-model="fields.data.options"></InputTableOptionsStatus>
         <input-checkbox :label="labels.showtable" v-model="fields.data.showtable"></input-checkbox>

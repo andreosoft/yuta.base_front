@@ -58,7 +58,7 @@ export default {
         { value: 'selectmany', text: 'Мульти список' },
         { value: 'checkbox', text: 'Флаг' },
         { value: 'radiobox', text: 'Переключатель' },
-        { value: 'data', text: 'Дата' },
+        { value: 'date', text: 'Дата' },
         { value: 'href', text: 'Ссылка' }
     ],
 

@@ -15,15 +15,16 @@
       </div>
     </template>
     <template v-slot:body>
-      <form-deal v-if="form_deal" @close-menu="form_deal = false" @data-update="fetchData()"></form-deal>
+      <transition name="slide-fade">
+        <form-deal v-if="form_deal" @close-menu="form_deal = false" @data-update="fetchData()"></form-deal>
+      </transition>
       <div v-if="kanban">
         <div>
-          <div class="flex justify-center">
+          <div class="flex justify-center" style="position: absolute;">
             <div
-              class="flex overflow-x-scroll"
+              class="flex"
               style="    
             bottom: 0;
-    position: absolute;
     top: 75px;
     left: 15px;
     right: 15px;"
@@ -92,7 +93,7 @@
             </div>
           </div>
           <div>
-            <div class="flex-table fixed style-1" style="top:120px; left:15px; right: 15px;">
+            <div class="flex-table fixed style-1" style="top:120px; left:15px; right: 15px; min-width: 1500px;">
               <div class="flex-table-header" :style="{'min-width': tableWidth+'px'}">
                 <div class="flex-table-row">
                   <div

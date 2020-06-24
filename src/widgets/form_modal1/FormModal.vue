@@ -1,6 +1,5 @@
 <template>
-  <div class="modal-background" @click="$emit('close-menu')">
-    <transition name="right-modal">
+    <div class="modal-background" @click="$emit('close-menu')">
       <div class="r-modal" @click="clickBody" :class="type">
         <div class="r-header">
           <div class="r-header-title">
@@ -21,8 +20,7 @@
           </div>
         </div>
       </div>
-    </transition>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -33,6 +31,7 @@ export default {
     loader
   },
   props: {
+    view: false,
     loading: {
       type: Boolean,
       default: false

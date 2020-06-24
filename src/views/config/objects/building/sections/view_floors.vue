@@ -51,7 +51,7 @@ import api from "@/config/api";
 import loader from "@/views/common/loader.vue";
 import router from "@/config/router";
 import formFloor from "./form_floor.vue";
-import formApartment from "./form_apartment.vue";
+import formApartment from "@/views/buildings/form_apartment.vue";
 import viewApartments from "./view_apartments.vue";
 import axios from "axios";
 

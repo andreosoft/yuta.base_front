@@ -15,12 +15,14 @@
             <i class="far fa-save"></i> Редактировать
           </button>
         </span>
-        <form-deal
-          v-if="form_deal"
-          :data="fields"
-          @close-menu="form_deal = false"
-          @data-update="fetchData()"
-        ></form-deal>
+        <transition name="slide-fade">
+          <form-deal
+            v-if="form_deal"
+            :data="fields"
+            @close-menu="form_deal = false"
+            @data-update="fetchData()"
+          ></form-deal>
+        </transition>
         <span style="padding-left: 4px;">
           <button class="btn btn-danger" title="Закрыть" @click="remove()">
             <i class="far fa-times-circle"></i> Удалить
@@ -31,24 +33,7 @@
     <div class="separator"></div>
     <div class="row">
       <div class="col-md-5">
-        <div class="my-3 p-3 bg-white rounded shadow">
-          <h5 class="border-bottom border-gray pb-2 mb-0">Информация о сделке</h5>
-          <loader v-if="loading"></loader>
-          <div class="media text-muted pt-3">
-            <div class="row">
-              <div
-                class="col-md-12 border-top border-gray pb-2 pt-2 mb-0"
-                v-for="(el, key) in $store.getters['db/structure'].crm_deals"
-                :key="key"
-              >
-                {{el.name}}:
-                <b>
-                  <view-element :el="el" :fields="fields"></view-element>
-                </b>
-              </div>
-            </div>
-          </div>
-        </div>
+        <widgetInfo :fields="fields" :loading="loading"></widgetInfo>
       </div>
 
       <div class="col-md-12 col-lg-12 col-xl-7">
@@ -88,6 +73,7 @@ import formDeal from "./form_deal.vue";
 import router from "@/config/router";
 import axios from "axios";
 import viewElement from "@/widgets/viewElement.vue";
+import widgetInfo from "./widget_info";
 
 export default {
   mixins: [fitch_one_1],
@@ -95,7 +81,8 @@ export default {
     loader,
     breadcrumb,
     formDeal,
-    viewElement
+    viewElement,
+    widgetInfo
   },
   data: function() {
     return {

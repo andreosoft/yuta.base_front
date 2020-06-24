@@ -5,7 +5,7 @@
     </div>
     <div style="margin-bottom: 3px;">
       <div>
-        <b>Квартиры по статусам общее число</b>
+        <b>Сделки общее число</b>
       </div>
     </div>
     <div>
@@ -30,16 +30,14 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$store.getters['db/status']);
-    
     this.fetchData();
   },
   methods: {
     getStatus(status) {
-      return this.$store.getters["db/structure"].crm_apartments
+      return this.$store.getters["db/structure"].crm_deals
         .find(x => x.field_name == "status")
         .data.options.find(x => x.value == status)
-        ? this.$store.getters["db/structure"].crm_apartments
+        ? this.$store.getters["db/structure"].crm_deals
             .find(x => x.field_name == "status")
             .data.options.find(x => x.value == status)
         : {};
@@ -47,7 +45,7 @@ export default {
     fetchData() {
       this.loading = true;
       axios
-        .get(api.reports.rep1, { params: {} })
+        .get(api.reports.rep2, { params: {} })
         .then(response => {
           this.loading = false;
           let els = response.data.data;
@@ -74,7 +72,7 @@ export default {
         .catch(error => {
           console.log(error);
         });
-    },
+    }
   }
 };
 </script>

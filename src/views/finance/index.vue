@@ -9,7 +9,9 @@
       </div>
     </template>
     <template v-slot:body>
-      <form-f v-if="form_f" @close-menu="form_f = false" @data-update="fetchData()"></form-f>
+      <transition name="slide-fade">
+        <form-f v-if="form_f" @close-menu="form_f = false" @data-update="fetchData()"></form-f>
+      </transition>
       <div>
         <div class="row" style="margin-top: 10px;">
           <div class="col">Показано: {{data.length}} из {{pager.count}}</div>

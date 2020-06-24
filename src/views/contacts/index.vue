@@ -9,16 +9,21 @@
       </div>
     </template>
     <template v-slot:body>
-      <form-contact
-        v-if="form_contact"
-        @close-menu="form_contact = false"
-        @data-update="fetchData()"
-      ></form-contact>
+      <transition name="slide-fade">
+        <form-contact
+          v-if="form_contact"
+          @close-menu="form_contact = false"
+          @data-update="fetchData()"
+        ></form-contact>
+      </transition>
       <div>
         <div class="row" style="margin-top: 10px;">
           <div class="col">Показано: {{data.length}} из {{pager.count}}</div>
           <div class="col text-right">
-            <div style="margin:-13px 0px 0px 0px; white-space: nowrap;" v-if="pages.page.length > 1">
+            <div
+              style="margin:-13px 0px 0px 0px; white-space: nowrap;"
+              v-if="pages.page.length > 1"
+            >
               <button class="btn btn-secondary btn-round" style="margin: 2px;" @click="setPage(0)">
                 <i class="fas fa-chevron-left"></i>
               </button>
@@ -92,22 +97,11 @@
                   class="flex-table-col"
                   :style="{width: $store.getters['db/width']('crm_contacts')+'%'}"
                 >
-                  <div v-if="el.type == 'select'">
-                    <bselect
-                      v-model="filters[el.field_name]"
-                      @change="onChangeFilter(el.field_name)"
-                      :all="true"
-                      :options="el.data.options"
-                    ></bselect>
-                  </div>
-                  <div v-else>
-                    <input
-                      class="form-control"
-                      type="text"
-                      @change="onChangeFilter(el.field_name)"
-                      v-model="filters[el.field_name]"
-                    />
-                  </div>
+                  <findElement
+                    :el="el"
+                    v-model="filters[el.field_name]"
+                    @change="onChangeFilter(el.field_name)"
+                  ></findElement>
                 </div>
               </div>
             </div>
@@ -149,7 +143,7 @@ import router from "@/config/router";
 import fitch_all_1 from "@/mixings/fitch_all_1";
 import loader from "@/views/common/loader.vue";
 import viewElement from "@/widgets/viewElement.vue";
-import bselect from "@/widgets/binputs/select.vue";
+import findElement from "@/widgets/findElement.vue";
 
 export default {
   mixins: [base_input_1, fitch_all_1],
@@ -157,7 +151,7 @@ export default {
     loader,
     formContact,
     viewElement,
-    bselect
+    findElement
   },
   data: function() {
     return {

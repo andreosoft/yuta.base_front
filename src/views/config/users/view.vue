@@ -23,12 +23,14 @@
                   <i class="far fa-save"></i> Редактировать
                 </button>
               </span>
-              <form-user
-                v-if="form_user"
-                :data="fields"
-                @close-menu="form_user = false"
-                @data-update="fetchData()"
-              ></form-user>
+              <transition name="slide-fade">
+                <form-user
+                  v-if="form_user"
+                  :data="fields"
+                  @close-menu="form_user = false"
+                  @data-update="fetchData()"
+                ></form-user>
+              </transition>
               <span style="padding-left: 4px;">
                 <button class="btn btn-danger" title="Закрыть" @click="remove()">
                   <i class="far fa-times-circle"></i> Удалить
@@ -65,10 +67,14 @@
               <div class="row">
                 <div class="col-4">{{labels.role}}:</div>
                 <div class="col-8">
-                  {{user_model.role.find(x => x.value == fields.role)
-                  ? user_model.role.find(x => x.value == fields.role).text
+                  {{$store.getters['options/getall'].module_user.roles.find(x => x.value == fields.role)
+                  ? $store.getters['options/getall'].module_user.roles.find(x => x.value == fields.role).text
                   : ""}}
                 </div>
+              </div>
+              <div class="row">
+                <div class="col-4">{{labels.sip_number}}:</div>
+                <div class="col-8">{{fields.sip_number}}</div>
               </div>
             </div>
           </div>

@@ -9,7 +9,9 @@
       </div>
     </template>
     <template v-slot:body>
-      <form-task v-if="form_task" @close-menu="form_task = false" @data-update="fetchData()"></form-task>
+      <transition name="slide-fade">
+        <form-task v-if="form_task" @close-menu="form_task = false" @data-update="fetchData()"></form-task>
+      </transition>
       <div>
         <div>
           <div class="row" style="margin-top: 10px;">

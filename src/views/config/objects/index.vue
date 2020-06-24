@@ -4,13 +4,16 @@
       <div class="float-left">
         <div class="row mar-0">
           <h1>{{title}}</h1>
-          <breadcrumb
-            v-bind:data="[{url: '#/', title: 'Домой'}, {url: '', title: 'Настройки'}]"
-          ></breadcrumb>
+          <breadcrumb v-bind:data="[{url: '#/', title: 'Домой'}, {url: '', title: 'Настройки'}]"></breadcrumb>
         </div>
       </div>
-
-      <form-object v-if="form_object" @close-menu="form_object = false" @data-update="fetchData()"></form-object>
+      <transition name="slide-fade">
+        <form-object
+          v-if="form_object"
+          @close-menu="form_object = false"
+          @data-update="fetchData()"
+        ></form-object>
+      </transition>
     </div>
     <div class="separator"></div>
     <loader v-if="loading"></loader>
@@ -20,7 +23,7 @@
           <div class="card text-center">
             <img
               src="/img/objects.png"
-              style=" height: 70px; width: 70px; align-items: center; margin-top: 15px;"
+              style=" height: 70px; width: 70px; align-items: center; margin-top: 15px; margin:auto;"
               alt
               class="card-img-top"
             />

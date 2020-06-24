@@ -15,12 +15,14 @@
             <i class="far fa-save"></i> Редактировать
           </button>
         </span>
-        <form-contact
-          v-if="form_contact"
-          :data="fields"
-          @close-menu="form_contact = false"
-          @data-update="fetchData()"
-        ></form-contact>
+        <transition name="slide-fade">
+          <form-contact
+            v-if="form_contact"
+            :data="fields"
+            @close-menu="form_contact = false"
+            @data-update="fetchData()"
+          ></form-contact>
+        </transition>
         <span style="padding-left: 4px;">
           <button class="btn btn-danger" title="Закрыть" @click="remove()">
             <i class="far fa-times-circle"></i> Удалить
@@ -31,24 +33,7 @@
     <div class="separator"></div>
     <div class="row">
       <div class="col-md-12 col-lg-12 col-xl-5">
-        <div class="my-3 p-3 bg-white rounded shadow">
-          <h4 class="pb-2 mb-0">Информация о контакте</h4>
-          <loader v-if="loading"></loader>
-          <div class="media text-muted">
-            <div class="row">
-              <div
-                class="col-md-12 border-top border-gray pb-2 pt-2 mb-0"
-                v-for="(el, key) in $store.getters['db/structure'].crm_contacts"
-                :key="key"
-              >
-                {{el.name}}:
-                <b>
-                  <view-element :el="el" :fields="fields"></view-element>
-                </b>
-              </div>
-            </div>
-          </div>
-        </div>
+        <widgetInfo :fields="fields" :loading="loading"></widgetInfo>
       </div>
 
       <div class="col-md-12 col-lg-12 col-xl-7">
@@ -67,34 +52,33 @@
               </ul>
             </div>
             <div>
-              <router-view :fields="{contact_id:$route.params.id, contact: fields.name}" :filters="{ contact_id: $route.params.id }" />
+              <router-view
+                :fields="{contact_id:$route.params.id, contact: fields.name}"
+                :filters="{ contact_id: $route.params.id }"
+              />
             </div>
           </div>
         </div>
       </div>
-      
     </div>
   </div>
 </template>
 
 <script>
 import api from "@/config/api";
-import loader from "@/views/common/loader.vue";
 import breadcrumb from "@/views/common/breadcrumb.vue";
 import fitch_one_1 from "@/mixings/fitch_one_1.js";
-import viewElement from "@/widgets/viewElement.vue";
 import formContact from "./form_contact.vue";
 import router from "@/config/router";
 import axios from "axios";
-import { log } from "util";
+import widgetInfo from "./widget_info";
 
 export default {
   mixins: [fitch_one_1],
   components: {
-    loader,
     breadcrumb,
     formContact,
-    viewElement
+    widgetInfo
   },
   data: function() {
     return {

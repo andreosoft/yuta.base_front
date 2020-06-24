@@ -10,7 +10,7 @@
     </div>
     <div class="separator"></div>
     <loader v-if="loading"></loader>
-    <div>
+    <div class="panel-body">
       <div>
         <ul class="nav nav-tabs">
           <li class="nav-item" v-for="(el, key) of data_tabs" :key="key">
@@ -19,7 +19,9 @@
         </ul>
       </div>
       <div>
-        <router-view />
+        <div>
+          <router-view />
+        </div>
       </div>
     </div>
   </div>
@@ -51,7 +53,7 @@ export default {
           name: "Плитка",
           route: "buildings_tile",
           title: "Открыть вид плитки"
-        },
+        }
         /*{
           name: "Этажи",
           route: "buildings_floors",

@@ -34,7 +34,7 @@
           </div>
         </div>
         <div>
-          <div class="flex-table fixed style-1" style="top:120px; left:15px; right: 15px;">
+          <div class="flex-table fixed style-1" style="top:30px; left:0; right: 0;">
             <div class="flex-table-header" :style="{'min-width': tableWidth+'px'}">
               <div class="flex-table-row">
                 <div

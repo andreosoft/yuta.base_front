@@ -5,7 +5,7 @@
       <div class="left-side">
         <menu-block></menu-block>
       </div>
-      <div class="right-side panel-primary">
+      <div class="right-side panel-primary" v-if="$store.getters['db/status'] === 'success'">
         <router-view/>
       </div>
       <div class="content-block">

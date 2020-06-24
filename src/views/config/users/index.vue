@@ -4,9 +4,7 @@
       <div class="float-left">
         <div class="row mar-0">
           <h1>{{title}}</h1>
-          <breadcrumb
-            v-bind:data="[{url: '#/', title: 'Домой'}, {url: '', title: 'Настройки'}]"
-          ></breadcrumb>
+          <breadcrumb v-bind:data="[{url: '#/', title: 'Домой'}, {url: '', title: 'Настройки'}]"></breadcrumb>
         </div>
       </div>
       <div class="float-right">
@@ -19,7 +17,9 @@
           <i class="far fa-plus"></i> Добавить пользователя
         </button>
       </div>
-      <form-user v-if="form_user" @close-menu="form_user = false" @data-update="fetchData()"></form-user>
+      <transition name="slide-fade">
+        <form-user v-if="form_user" @close-menu="form_user = false" @data-update="fetchData()"></form-user>
+      </transition>
     </div>
 
     <div v-if="data">
@@ -78,13 +78,28 @@
           </div>
           <div class="flex-table-row" style="height: 44px;">
             <div class="flex-table-col flex-table-col-1">
-              <input class="form-control" type="text" @change="onChangeFilter('id')" v-model="filters.id" />
+              <input
+                class="form-control"
+                type="text"
+                @change="onChangeFilter('id')"
+                v-model="filters.id"
+              />
             </div>
             <div class="flex-table-col flex-table-col-3">
-              <input class="form-control" type="text" @change="onChangeFilter('login')" v-model="filters.login" />
+              <input
+                class="form-control"
+                type="text"
+                @change="onChangeFilter('login')"
+                v-model="filters.login"
+              />
             </div>
             <div class="flex-table-col flex-table-col-2">
-              <input class="form-control" type="text" @change="onChangeFilter('name')" v-model="filters.name" />
+              <input
+                class="form-control"
+                type="text"
+                @change="onChangeFilter('name')"
+                v-model="filters.name"
+              />
             </div>
             <div class="flex-table-col flex-table-col-2">
               <select
@@ -104,7 +119,7 @@
               <select class="form-control" @change="onChangeFilter('role')" v-model="filters.role">
                 <option value>Все</option>
                 <option
-                  v-for="(el, key) in user_model.role"
+                  v-for="(el, key) in $store.getters['options/getall'].module_user.roles"
                   :key="key"
                   :value="el.value"
                 >{{el.text}}</option>
@@ -125,8 +140,8 @@
               : ""}}
             </div>
             <div class="flex-table-col flex-table-col-2">
-              {{user_model.role.find(x => x.value == el.role)
-              ? user_model.role.find(x => x.value ==el.role).text
+              {{$store.getters['options/getall'].module_user.roles.find(x => x.value == el.role)
+              ? $store.getters['options/getall'].module_user.roles.find(x => x.value ==el.role).text
               : ""}}
             </div>
             <div class="flex-table-col flex-table-col-2">

@@ -1,7 +1,10 @@
 <template>
-  <div  style="padding-top: 20px;">
-    <div class="tails-list">
-      <span v-for="(el, key) of $store.getters['db/structure'].crm_apartments.find(x => x.field_name == 'status').data.options" :key="key">
+  <div style="padding-top: 20px;">
+    <div class="tails-list" v-if="$store.getters['db/structure'].crm_apartments">
+      <span
+        v-for="(el, key) of $store.getters['db/structure'].crm_apartments.find(x => x.field_name == 'status').data.options"
+        :key="key"
+      >
         <span class="tail-color" :style="{'background-color': el.color}"></span>
         {{el.text}}
       </span>
@@ -19,16 +22,11 @@
           <div class="tails-row" v-for="i in floor_gen">
             <div
               v-if="data.aparts[section] !== null && typeof data.aparts[section][i] !== 'undefined' && data.aparts[section][i] !== 'undefined'"
-            > 
+            >
               <div
-                class="tails-apartmet" :title='
-                get_status(apart) + "\n" +
-                "Номер квартиры: "+apart.apartment+"\n"+
-                "Площадь: "+apart.square+"\n"+
-                "Подъезд: "+apart.section+"\n"+
-                "Этаж: "+apart.floor+"\n"+
-                "Дом: "+apart.building+"\n"
-                '
+                style="cursor: pointer"
+                class="tails-apartmet"
+                :title="getTitle(apart)"
                 @click="$emit('change', {id: apart.apartment_id, view: apart.apartment} )"
                 v-for="(apart, key_apart) of data.aparts[section][i]"
                 :key="key_apart"
@@ -57,6 +55,10 @@ export default {
     loader
   },
   props: {
+    update: {
+      type: Boolean,
+      default: false
+    },
     id: String
   },
   data: function() {
@@ -67,16 +69,57 @@ export default {
       floor_gen: []
     };
   },
+  watch: {
+    update: function(v) {
+      if (v) {
+        this.fetchData();
+        this.$emit("updated", { result: true });
+      }
+    }
+  },
   methods: {
+    getTitle: function(apart) {
+      return (
+        this.get_status(apart) +
+        "\n" +
+        "Номер квартиры: " +
+        apart.apartment +
+        "\n" +
+        "Площадь: " +
+        apart.square +
+        "\n" +
+        "Подъезд: " +
+        apart.section +
+        "\n" +
+        "Этаж: " +
+        apart.floor +
+        "\n" +
+        "Дом: " +
+        apart.building +
+        "\n"
+      );
+    },
     get_color: function(apart) {
-      return this.$store.getters['db/structure'].crm_apartments.find(x => x.field_name == 'status').data.options.find(x => x.value == apart.status)
-        ? this.$store.getters['db/structure'].crm_apartments.find(x => x.field_name == 'status').data.options.find(x => x.value == apart.status).color
-        : "#fff";
+      if (this.$store.getters["db/structure"].crm_apartments) {
+        return this.$store.getters["db/structure"].crm_apartments
+          .find(x => x.field_name == "status")
+          .data.options.find(x => x.value == apart.status)
+          ? this.$store.getters["db/structure"].crm_apartments
+              .find(x => x.field_name == "status")
+              .data.options.find(x => x.value == apart.status).color
+          : "#fff";
+      }
     },
     get_status: function(apart) {
-      return this.$store.getters['db/structure'].crm_apartments.find(x => x.field_name == 'status').data.options.find(x => x.value == apart.status)
-        ? this.$store.getters['db/structure'].crm_apartments.find(x => x.field_name == 'status').data.options.find(x => x.value == apart.status).text
-        : "не задано";
+      if (this.$store.getters["db/structure"].crm_apartments) {
+        return this.$store.getters["db/structure"].crm_apartments
+          .find(x => x.field_name == "status")
+          .data.options.find(x => x.value == apart.status)
+          ? this.$store.getters["db/structure"].crm_apartments
+              .find(x => x.field_name == "status")
+              .data.options.find(x => x.value == apart.status).text
+          : "не задано";
+      }
     },
     floor_generator: function() {
       this.floor_gen = [];
@@ -159,7 +202,6 @@ export default {
   display: block;
   height: 20px;
   text-align: center;
-
 }
 .tails-row {
   display: block;

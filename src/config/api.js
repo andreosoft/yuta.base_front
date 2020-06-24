@@ -8,8 +8,8 @@ if (match !== null && typeof match[1] !== 'undefined' && match[1] !== 'undefined
     usr_id = 'glavstroy';//'dev';
 }
 
-const BASE_URL = 'http://' + usr_id + '.api.yuta.pro';
-const BASE_UPLOAD = 'http://' + usr_id + '.uploads.yuta.pro';
+const BASE_URL = 'https://api.' + usr_id + '.yuta.pro';
+const BASE_UPLOAD = 'https://uploads.' + usr_id + '.yuta.pro';
 
 export default {
     base_url: BASE_URL,
@@ -49,5 +49,13 @@ export default {
         buildings: BASE_URL + '/crm/manager/buildings',
         list: BASE_URL + '/crm/manager/list',
         tile: BASE_URL + '/crm/manager/tile'
+    },
+
+    reports: {
+        rep1: BASE_URL + '/crm/report/gen1',
+        rep2: BASE_URL + '/crm/report/gen2',
+        rep3: BASE_URL + '/crm/report/gen3',
+        rep4: BASE_URL + '/crm/report/gen4',
+        rep5: BASE_URL + '/crm/report/gen5'
     }
 }

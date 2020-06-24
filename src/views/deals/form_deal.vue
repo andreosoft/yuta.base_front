@@ -52,6 +52,7 @@ export default {
   },
   data: function() {
     return {
+      loading: false,
       api: api.deal,
       api_upload_image: api.uploads,
       fields: this.data,

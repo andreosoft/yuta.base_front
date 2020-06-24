@@ -15,12 +15,14 @@
             <i class="far fa-save"></i> Редактировать
           </button>
         </span>
-        <form-task
-          v-if="form_task"
-          :data="fields"
-          @close-menu="form_task = false"
-          @data-update="fetchData()"
-        ></form-task>
+        <transition name="slide-fade">
+          <form-task
+            v-if="form_task"
+            :data="fields"
+            @close-menu="form_task = false"
+            @data-update="fetchData()"
+          ></form-task>
+        </transition>
         <span style="padding-left: 4px;">
           <button class="btn btn-danger" title="Закрыть" @click="remove()">
             <i class="far fa-times-circle"></i> Удалить

@@ -43,9 +43,9 @@ export default {
     widgetList,
     widgetTile
   },
-
   data: function() {
     return {
+      loading: false,
       building: null,
       selectedTab: 0,
       data_tabs: [

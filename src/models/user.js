@@ -6,7 +6,9 @@ export default {
             login: null,
             password: null,
             name: null,
-            api_key: null
+            api_key: null,
+            sip_number: null,
+            sip_password: null
         }
     },
 
@@ -22,7 +24,9 @@ export default {
         password: 'Пароль',
         name: 'ФИО',
         role: 'Роль',
-        status: 'Статус'
+        status: 'Статус',
+        sip_number: 'Внутренний номер',
+        sip_password: 'SIP Пароль'
     },
 
     status: [
@@ -30,9 +34,4 @@ export default {
         { value: 2, text: 'Активный' },
         { value: 10, text: 'Не активный' },
     ],
-
-    role: [
-        { value: 1, text: 'Пользователь' },
-        { value: 100, text: 'Админ' }
-    ]
 }

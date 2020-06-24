@@ -47,6 +47,7 @@ export default {
   },
   data: function() {
     return {
+      loading: false,
       api: api.tasks,
       api_upload_image: api.uploads,
       fields: this.data,

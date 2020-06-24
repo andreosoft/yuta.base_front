@@ -35,6 +35,13 @@ var router = new Router({
         },
 
         {
+            path: 'apartment/:id',
+            name: 'apartment_view',
+            meta: { 'title': 'Помещение', auth: [1, 50, 100] },
+            component: () =>
+                import('@/views/buildings/view_apartment.vue')
+        },
+        {
             path: '/buildings',
             name: 'buildings',
             meta: { 'title': 'Здания', auth: [1, 50, 100] },

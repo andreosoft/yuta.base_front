@@ -74,18 +74,31 @@
                 >{{el.crm_contacts_name}}</router-link>
               </span>
               <span v-else>
-                <span style="cursor: pointer;" title="Добавить контакт" @click="genClient(el)">Клинет не найден</span></span>
+                <span
+                  style="cursor: pointer;"
+                  title="Добавить контакт"
+                  @click="genClient(el)"
+                >Клинет не найден</span>
+              </span>
             </div>
-            <div class="flex-table-col flex-table-col-2">{{el.phone}}</div>
+            <div class="flex-table-col flex-table-col-2">
+              <span>
+                {{el.phone}}
+                <button
+                  class="btn"
+                  style="color: #699738"
+                  title="Набрать номер"
+                  @click="$root.$emit('global-call', {phone_number: el.phone})"
+                >
+                  <i class="fas fa-phone"></i>
+                </button>
+              </span>
+            </div>
             <div class="flex-table-col flex-table-col-3" v-html="player(el.uuid)"></div>
           </div>
         </div>
       </div>
-      <form-contact
-        v-if="form_contact"
-        :phone="phone"
-        @close-menu="form_contact = false"
-      ></form-contact>
+      <form-contact v-if="form_contact" :phone="phone" @close-menu="form_contact = false"></form-contact>
     </template>
   </form1>
 </template>
@@ -118,7 +131,7 @@ export default {
   methods: {
     player: function(url) {
       return (
-        '<audio style="calls-audio" controls>' +
+        '<audio class="audio-player calls-audio" controls>' +
         '<source src="' +
         this.$store.getters["options/getall"].module_calls.record_url +
         url +

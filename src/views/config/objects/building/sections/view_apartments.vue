@@ -40,12 +40,14 @@
         </div>
       </div>
     </div>
-    <form-apartment
-      v-if="form_apartment"
-      :data="form_data_apartment"
-      @close-menu="form_apartment = false"
-      @data-update="update()"
-    ></form-apartment>
+    <transition name="slide-fade">
+      <form-apartment
+        v-if="form_apartment"
+        :data="form_data_apartment"
+        @close-menu="form_apartment = false"
+        @data-update="update()"
+      ></form-apartment>
+    </transition>
   </div>
 </template>
        
@@ -53,9 +55,8 @@
 import api from "@/config/api";
 import loader from "@/views/common/loader.vue";
 import router from "@/config/router";
-import formApartment from "./form_apartment.vue";
+import formApartment from "@/views/buildings/form_apartment.vue";
 import axios from "axios";
-import { log } from "util";
 
 export default {
   components: {

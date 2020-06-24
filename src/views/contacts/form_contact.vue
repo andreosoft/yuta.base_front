@@ -58,8 +58,10 @@ export default {
       }
     };
   },
-  created() {
-    this.fields.phone = this.phone;
+  mounted() {
+    if (!this.fields.phone) {
+      this.fields.phone = this.phone;
+    }
   },
   methods: {}
 };
